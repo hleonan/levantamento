@@ -1,0 +1,4459 @@
+[
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Angra dos Reis",
+  "nome": "CIRETRAN Angra dos Reis",
+  "endereco": "POETA BRASIL DOS REIS S/Nº - PRAIA DO ANIL",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 01",
+   "DRV ANGRA DOS REIS cod 067"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U001",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "obs": "DRV/ANGRA DOS REIS: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Araruama",
+  "nome": "CIRETRAN Araruama",
+  "endereco": "AVENIDA GETÚLIO VARGAS, S/Nº - PARQUE HOTEL",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 02",
+   "HAB ARARUAMA cod 0802",
+   "DRV ARARUAMA II cod 079"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U002",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/ARARUAMA: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Barra do Piraí",
+  "nome": "CIRETRAN Barra do Piraí",
+  "endereco": "RUA PREFEITO IAGO JOSÉ DE CASTRO VALÉRIO, Nº 452 - OFICINAS VELHAS",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 03",
+   "HAB BARRA DO PIRAÍ cod 2303"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U003",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Barra do Piraí: logradouro com grafia/identificação diferente do site || DRV/BARRA DO PIRAI: número diverge: contrato 436 x site 452 || HABBIO/BARRA DO PIRAI: código do posto = cód. HAB no site; logradouro com grafia/identificação diferente do site || HABAPOIO/Barra do Piraí: logradouro com graf",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Barra Mansa",
+  "nome": "CIRETRAN Barra Mansa",
+  "endereco": "RUA HOMERO LEITE, Nº 450 - SAUDADE",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 04",
+   "HAB BARRA MANSA cod 1704"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U004",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/BARRA MANSA: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Cabo Frio",
+  "nome": "CIRETRAN Cabo Frio",
+  "endereco": "RUA MEIRA JUNIOR, S/Nº - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "CIRETRAN cod 07"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U005",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Campos dos Goytacazes",
+  "nome": "CIRETRAN Campos dos Goytacazes",
+  "endereco": "RUA BARÃO DE MIRACEMA, Nº 246 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 10",
+   "HAB CAMPOS I cod 0210"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U006",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/CAMPOS GOYTACAZES I: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Duque de Caxias",
+  "nome": "CIRETRAN Duque de Caxias",
+  "endereco": "AV. BRIGADEIRO LIMA E SILVA, 23 - 25 DE AGOSTO",
+  "horario": "SEG. A SEXTA, DAS 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "CIRETRAN cod 17"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U007",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Itaboraí",
+  "nome": "CIRETRAN Itaboraí",
+  "endereco": "AV 22 DE MAIO, S/Nº - VENDA DAS PEDRAS",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 19",
+   "HAB ITABORAÍ cod 0029",
+   "DRV ITABORAÍ cod 019"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U008",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Itaguaí",
+  "nome": "CIRETRAN Itaguaí",
+  "endereco": "RODOVIA RIO SANTOS S/Nº - LOTE B LOJAS 1047/1079 – SHOPPING PÁTIO MIX - PONTE PRETA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 20",
+   "HAB ITAGUAÍ cod 1020",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV ITAGUAÍ cod 821"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U009",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/ITAGUAI: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Itaperuna",
+  "nome": "CIRETRAN Itaperuna",
+  "endereco": "AV. PORTO ALEGRE N° 247 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 22",
+   "HAB ITAPERUNA cod 1322"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U010",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/ITAPERUNA: código do posto = cód. HAB no site; número diverge: contrato 245 x site 247 || HABAPOIO/Itaperuna: número diverge: contrato 245 x site 247",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Macaé",
+  "nome": "CIRETRAN Macaé",
+  "endereco": "AV. DOS JESUÍTAS, S/Nº - IMBETIBA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 24",
+   "HAB MACAÉ (CIRETRAN) cod 1224"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U011",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/MACAE: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Maricá",
+  "nome": "CIRETRAN Maricá",
+  "endereco": "RODOVIA AMARAL PEIXOTO, KM 21,5 - SÃO JOSÉ DO IMBASSAÍ",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 27",
+   "DRV MARICÁ cod 060"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U012",
+  "servicos_contrato": [],
+  "obs": "DRV/MARICÁ: mesmo município e mesmo serviço (Veículos); único posto do site no município; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Mesquita",
+  "nome": "CIRETRAN Mesquita",
+  "endereco": "RUA JULIANA, Nº 478 - SANTO ELIAS",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 92",
+   "HAB MESQUITA cod 2792",
+   "DRV MESQUITA cod 050"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U013",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Mesquita: número diverge: contrato 475 x site 478 || HABBIO/MESQUITA: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Miracema",
+  "nome": "CIRETRAN Miracema",
+  "endereco": "AVENIDA DEPUTADO LUÍS FERNANDO LINHARES, Nº 1010 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 30",
+   "DRV MIRACEMA cod 071"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U014",
+  "servicos_contrato": [
+   "Veículos",
+   "Habilitação (biometria)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Nilópolis",
+  "nome": "CIRETRAN Nilópolis",
+  "endereco": "RUA PEDRO ÁLVARES CABRAL, Nº 561 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 32",
+   "HAB NILÓPOLIS cod 1932"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U015",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Niterói",
+  "nome": "CIRETRAN Niterói",
+  "endereco": "RUA DESIDÉRIO DE OLIVEIRA, S/Nº - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 33",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS - USV NITERÓI cod 811"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U016",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Nova Friburgo",
+  "nome": "CIRETRAN Nova Friburgo",
+  "endereco": "AVENIDA DOS FERROVIÁRIOS, S/Nº - DUAS PEDRAS",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 34",
+   "HAB NOVA FRIBURGO cod 0334"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U017",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/NOVA FRIBURGO: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Nova Iguaçu",
+  "nome": "CIRETRAN Nova Iguaçu",
+  "endereco": "AV. ABÍLIO AUGUSTO TÁVORA , Nº 1111, SALA 4080/81 - LUZ",
+  "horario": "SEG. A SEXTA, DE 10H ÀS 19H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 35",
+   "HAB SHOPPING NOVA IGUAÇU cod 9974"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U018",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Petrópolis",
+  "nome": "CIRETRAN Petrópolis",
+  "endereco": "RUA TEREZA, 1515 - ALTO DA SERRA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 39",
+   "HAB PETRÓPOLIS cod 0539"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U019",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/PETROPOLIS: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Resende",
+  "nome": "CIRETRAN Resende",
+  "endereco": "AV. RITA MARIA FERREIRA ROCHA Nº 161 LOJA 01 - JARDIM JALISCO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "CIRETRAN cod 42"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U020",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Rio Bonito",
+  "nome": "CIRETRAN Rio Bonito",
+  "endereco": "RUA DESEMBARGADOR ITABAIANA DE OLIVEIRA, Nº 39 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "CIRETRAN cod 43"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U021",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Santo Antônio de Pádua",
+  "nome": "CIRETRAN Santo Antônio de Pádua",
+  "endereco": "ROD. PREFEITO RENATO DE ALVIM PADILHA, 3034 - ALTO DAS SETE MOÇAS - ALTO DAS SETE MOÇAS",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 47",
+   "HAB SANTO ANTÔNIO DE PÁDUA (POSTO ATENDE SEM AGENDAMENTO) cod 1447"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U022",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/SANTO ANTONIO DE PADUA: código do posto = cód. HAB no site; número diverge: contrato 58 x site 3034; logradouro com grafia/identificação diferente do site || HABAPOIO/Santo Antonio de Pádua: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "São Gonçalo",
+  "nome": "CIRETRAN São Gonçalo",
+  "endereco": "AVENIDA PRESIDENTE KENNEDY, 425, L4. - SHOPPING PARTAGE - ROCHA",
+  "horario": "SEG. A SEXTA, DE 10H ÀS 19H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 49",
+   "HAB SÃO GONÇALO I cod 1149"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U023",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "São João de Meriti",
+  "nome": "CIRETRAN São João do Meriti",
+  "endereco": "RUA DEFENSOR PUBLICO ZILMAR PINNAUD, S/N - JARDIM MERITI",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "CIRETRAN cod 51"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U024",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Teresópolis",
+  "nome": "CIRETRAN Teresópolis",
+  "endereco": "RUA JOSEFA JORGE COPELO, Nº 390 - ARARAS",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 58",
+   "HAB TERESÓPOLIS cod 0858"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U025",
+  "servicos_contrato": [],
+  "obs": "HABBIO/TERESOPOLIS: mesmo município e mesmo serviço (Habilitação); único posto do site no município; endereço diverge || HABAPOIO/Teresópolis: mesmo município e mesmo serviço (Habilitação); único posto do site no município; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Três Rios",
+  "nome": "CIRETRAN Três Rios",
+  "endereco": "RUA PREFEITO JOAQUIM JOSÉ FERREIRA , 28 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "CIRETRAN cod 60",
+   "HAB TRÊS RIOS cod 9971"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U026",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Valença",
+  "nome": "CIRETRAN Valença",
+  "endereco": "AV. GERALDO LIMA BASTOS, 999 - BARROSO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Veículos"
+  ],
+  "postos": [
+   "CIRETRAN cod 61",
+   "DRV VALENÇA cod 052"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U027",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "CIRETRAN",
+  "municipio": "Volta Redonda",
+  "nome": "CIRETRAN Volta Redonda",
+  "endereco": "AVENIDA PAULO DE FRONTIN, Nº 300 - ATERRADO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "CIRETRAN cod 63"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U028",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Aperibé",
+  "nome": "SAT Aperibé",
+  "endereco": "RUA ANIBAL CORTES, 46 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 80"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U029",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Areal",
+  "nome": "SAT Areal",
+  "endereco": "AV AMARAL PEIXOTO, Nº 816 LOJAS 4, 5 E 6 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 81",
+   "HAB AREAL cod 6000"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U030",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Armação dos Búzios",
+  "nome": "SAT Armação dos Búzios",
+  "endereco": "ESTRADA CABO FRIO, Nº 60 - BÚZIOS",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "SAT cod 91",
+   "HAB ARMAÇÃO DE BÚZIOS cod 0003",
+   "DRV BÚZIOS cod 069"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U031",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Armação de Búzios: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Arraial do Cabo",
+  "nome": "SAT Arraial do Cabo",
+  "endereco": "RUA ANTONIO DE SOUZA TEIXEIRA, Nº 08 - PRAIA GRANDE",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 65"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U032",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Belford Roxo",
+  "nome": "SAT Belford Roxo",
+  "endereco": "AV. JORGE JULIO DA COSTA DOS SANTOS, Nº 200 - LOJA 04 - SHOPPING CARREFOUR - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "SAT cod 72",
+   "HAB BELFORD ROXO cod 0025",
+   "DRV BELFORD ROXO cod 036"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U033",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Bom Jesus de Itabapoana",
+  "nome": "SAT Bom Jesus de Itabapoana",
+  "endereco": "RUA ARISTIDES FIGUEIREDO, S/Nº - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "SAT cod 06",
+   "HAB BOM JESUS DE ITABAPOANA cod 1306",
+   "DRV BOM JESUS DO ITABAPOANA cod 068"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U034",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/BOM JESUS DO ITABAPOANA: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Cachoeira de Macacu",
+  "nome": "SAT Cachoeira de Macacu",
+  "endereco": "RUA DESEMBARGADOR BRAGA LAND, S/Nº - PARQUE SANTA LUIZA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "SAT cod 08",
+   "HAB CACHOEIRA DE MACACU cod 0009",
+   "DRV CACHOEIRAS DE MACACU cod 053"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U035",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Cachoeiras de Macacu: logradouro com grafia/identificação diferente do site || DRV/CACHOEIRAS DE MACACU: logradouro com grafia/identificação diferente do site || HABBIO/CACHOEIRAS DE MACACU: logradouro com grafia/identificação diferente do site || HABAPOIO/Cachoeiras de Macacu: logradouro com gr",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Cambuci",
+  "nome": "SAT Cambuci",
+  "endereco": "RUA MARIA JACOB, Nº 208 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 09"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U036",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Cantagalo",
+  "nome": "SAT Cantagalo",
+  "endereco": "RUA LUIZ CARLOS FALCÃO, SL. 01 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 11",
+   "HAB CANTAGALO cod 0012"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U037",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Carapebus",
+  "nome": "SAT Carapebus",
+  "endereco": "RUA JOAQUIM JOSE DA SILVA XAVIER, Nº 259 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 85"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U038",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Cardoso Moreira",
+  "nome": "SAT Cardoso Moreira",
+  "endereco": "RUA: SÃO JOSÉ, Nº 86 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 71",
+   "HAB CARDOSO MOREIRA cod 6003"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U039",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/CARDOSO MOREIRA: número diverge: contrato 81 x site 86 || HABAPOIO/Cardoso Moreira: número diverge: contrato 81 x site 86",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Carmo",
+  "nome": "SAT Carmo",
+  "endereco": "AV. MARIO MESQUITA, Nº 42 / LJ 01 - PROGRESSO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 12",
+   "HAB CARMO (POSTO ATENDE SEM AGENDAMENTO) cod 9969"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U040",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Comendador Levy Gasparian",
+  "nome": "SAT Comendador Levy Gasparian",
+  "endereco": "AV REGINALDO MAIA, Nº 729 - RETA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 78"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U041",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Conceição de Macabu",
+  "nome": "SAT Conceição de Macabu",
+  "endereco": "RUA PLÁCIDO FREIRE Nº 32- CENTRO - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 14"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U042",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Cordeiro",
+  "nome": "SAT Cordeiro",
+  "endereco": "AV: PRESIDENTE VARGAS, 110 – LJ 113 – PARQUE SHOPPING - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 15"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U043",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Duas Barras",
+  "nome": "SAT Duas Barras",
+  "endereco": "AV. GETÚLIO VARGAS, Nº 275 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 16",
+   "HAB DUAS BARRAS cod 9968"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U044",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Duas Barras: número diverge: contrato 265 x site 275 || HABBIO/DUAS BARRAS: número diverge: contrato 265 x site 275 || HABAPOIO/Duas Barras: número diverge: contrato 265 x site 275",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Guapimirim",
+  "nome": "SAT Guapimirim",
+  "endereco": "ESTRADA DO BANANAL, LOTE 54 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 73",
+   "HAB GUAPIMIRIM cod 9983"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U045",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Iguaba Grande",
+  "nome": "SAT Iguaba Grande",
+  "endereco": "AV. PAULINO RODRIGUES DE SOUZA, Nº 2275, SALAS 01 E 02 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 83"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U046",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Italva",
+  "nome": "SAT Italva",
+  "endereco": "RUA ERIVELTON ALVES MARINHO, Nº 69 - SALA 01 - SÃO CAETANO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 66"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U047",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Itaocara",
+  "nome": "SAT Itaocara",
+  "endereco": "RUA GAMALIEL BORGES PINHEIRO, Nº 58 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 21",
+   "HAB ITAOCARA cod 9990"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U048",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Itatiaia",
+  "nome": "SAT Itatiaia",
+  "endereco": "RUA WANDERBLIT DUARTE DE BARROS, Nº 80 - TERMINAL TODOVIÁRIO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 69"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U049",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Japeri",
+  "nome": "SAT Japeri",
+  "endereco": "PRAÇA MANUEL MARQUES, S/Nº - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 77",
+   "HAB JAPERI cod 571"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U050",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Laje de Muriaé",
+  "nome": "SAT Laje de Muriaé",
+  "endereco": "RUA ANTONIO CARLOS ALBERONI, Nº 220 - CHÁCARA CRUZEIRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 23"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U051",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Macuco",
+  "nome": "SAT Macuco",
+  "endereco": "RUA DINAH MACHADO BOTELHO, PARQUE DE EXPOSIÇÕES EDGAR RODRIGUES LUTERBACK - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "SAT cod 90",
+   "HAB MACUCO cod 0008",
+   "DRV MACUCO cod 070"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U052",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Macuco: logradouro com grafia/identificação diferente do site || DRV/MACUCO: logradouro com grafia/identificação diferente do site || HABBIO/MACUCO: logradouro com grafia/identificação diferente do site || HABAPOIO/Macuco: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Magé",
+  "nome": "SAT Magé",
+  "endereco": "AV. SIMÃO DA MOTTA, Nº 369 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 25",
+   "HAB MAGÉ cod 0159"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U053",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Mangaratiba",
+  "nome": "SAT Mangaratiba",
+  "endereco": "RUA CORONEL MOREIRA DA SILVA, Nº 209 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 26"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U054",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Mendes",
+  "nome": "SAT Mendes",
+  "endereco": "RUA PROFESSOR PAULO SERGIO DE NADER PEREIRA, 300 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 28",
+   "HAB MENDES cod 0020"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U055",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Miguel Pereira",
+  "nome": "SAT Miguel Pereira",
+  "endereco": "RUA MARECHAL RONDON, S/N° SL. 45 - RODOVIÁRIA - CENTRO",
+  "horario": "DE SEG. À SEX., DAS 8H ÀS 17H.",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 94",
+   "HAB MIGUEL PEREIRA cod 2329"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U056",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/MIGUEL PEREIRA: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Natividade",
+  "nome": "SAT Natividade",
+  "endereco": "AV. DR. TANCREDO LOPES – CENTRO COMERCIAL COMVACA, LJ6 - MORADA DO ENGENHO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 31"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U057",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/NATIVIDADE: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Paracambi",
+  "nome": "SAT Paracambi",
+  "endereco": "RUA MARIA AMALIA, S/Nº - BH DE CIMA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 36",
+   "HAB PARACAMBI cod 0436"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U058",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/PARACAMBI: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Paraíba do Sul",
+  "nome": "SAT Paraíba do Sul",
+  "endereco": "AV. BRASIL, Nº 320 - PARQUE MORONI - TERMINAL RODOVIÁRIO - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 37",
+   "HAB PARAÍBA DO SUL cod 1637"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U059",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/PARAIBA DO SUL: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Paraty",
+  "nome": "SAT Paraty",
+  "endereco": "RUA JANGO PÁDUA, S/N - RODOVIÁRIA - PARQUE IMPERIAL",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 38"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U060",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Paty do Alferes",
+  "nome": "SAT Paty do Alferes",
+  "endereco": "PRAÇA PREFEITO CORNELIO NETTO, S/N - LOJA 4 - MERCADO PRODUTOR - ARCOZELO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Veículos"
+  ],
+  "postos": [
+   "SAT cod 67",
+   "DRV PATY DO ALFERES cod 054"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U061",
+  "servicos_contrato": [],
+  "obs": "DRV/PATY DO ALFERES: nome da unidade coincide com o do site; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Pinheiral",
+  "nome": "SAT Pinheiral",
+  "endereco": "RUA WALTER VALIN BOTELHO, Nº 107 - VALE DO SOL",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 84",
+   "HAB PINHEIRAL cod 0004"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U062",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Pinheiral: logradouro com grafia/identificação diferente do site || HABBIO/PINHEIRAL: logradouro com grafia/identificação diferente do site || HABAPOIO/Pinheiral: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Piraí",
+  "nome": "SAT Piraí",
+  "endereco": "RUA EPITÁCIO CAMPOS, Nº 34 / LOJA 01 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 40"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U063",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Porciúncula",
+  "nome": "SAT Porciúncula",
+  "endereco": "RUA DEPUTADO LUIZ FERNANDO LINHARES, Nº 598 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 41"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U064",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "obs": "DIC/Porciúncula: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Porto Real",
+  "nome": "SAT Porto Real",
+  "endereco": "AV. DOM PEDRO II, Nº 1203 / LJ – 03 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 87"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U065",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "obs": "DIC/Porto Real: número diverge: contrato 1220 x site 1203",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Quatis",
+  "nome": "SAT Quatis",
+  "endereco": "RUA PROFESSOR PESSOA DE BARROS, Nº 62 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 75"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U066",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Queimados",
+  "nome": "SAT Queimados",
+  "endereco": "RUA MARIA CLARA - VILA CAMARIM",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "SAT cod 74",
+   "HAB QUEIMADOS cod 0474",
+   "DRV QUEIMADOS cod 042"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U067",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/QUEIMADOS: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Quissamã",
+  "nome": "SAT Quissamã",
+  "endereco": "RUA BARÃO DE VILA FRANÇA, Nº 376 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 70"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U068",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Rio Claro",
+  "nome": "SAT Rio Claro",
+  "endereco": "RUA PREFEITO ANTONIO GRIJÓ FILHO, S/ Nº, PARQUE DE EXPOSIÇÃO - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 44"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U069",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Rio das Flores",
+  "nome": "SAT Rio das Flores",
+  "endereco": "RUA LEONI RAMOS, Nº 399 - CENTRO",
+  "horario": "SEG. A SEXTA  DAS 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 45"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U070",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Rio das Ostras",
+  "nome": "SAT Rio das Ostras",
+  "endereco": "RUA NITERÓI, S/N - JARDIM MARILEA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 79",
+   "HAB RIO DAS OSTRAS cod 9986"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U071",
+  "servicos_contrato": [
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "São Fidélis",
+  "nome": "SAT São Fidélis",
+  "endereco": "RUA TEODORO GOUVEIA DE ABREU, Nº 230 - SÃO VICENTE DE PAULA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 48",
+   "HAB SÃO FIDÉLIS cod 0023"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U072",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "São Francisco de Itabapoana",
+  "nome": "SAT São Francisco de Itabapoana",
+  "endereco": "AV. VEREADOR DA SILVA EDENITES VIANA, 107 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H  SHOPPING MASCOR GANTOS - LOJA 105",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 82",
+   "HAB SÃO FRANCISCO DE ITABAPOANA cod 0282"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U073",
+  "servicos_contrato": [
+   "Habilitação (biometria)"
+  ],
+  "obs": "HABBIO/SÃO FRANCISCO DO ITABAPOANA: código do posto = cód. HAB no site; logradouro com grafia/identificação diferente do site || HABAPOIO/São Francisco Itabapoana: mesmo município e mesmo serviço (Habilitação); único posto do site no município; endereço diverge",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "São João da Barra",
+  "nome": "SAT São João da Barra",
+  "endereco": "- RUA BARÃO DE BARCELOS, Nº 88 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 50"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U074",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "São José de Ubá",
+  "nome": "SAT São José de Ubá",
+  "endereco": "AVENIDA JOÃO ARNALDO RODRIGUES, Nº 87 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 88"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U075",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "São José do Vale do Rio Preto",
+  "nome": "SAT São José do Vale do Rio Preto",
+  "endereco": "RUA CEL. FRANCISCO LIMONGI, 333 - ESTAÇÃO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 68"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U076",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "São Pedro da Aldeia",
+  "nome": "SAT São Pedro da Aldeia",
+  "endereco": "PROFESSOR GUSTAVO ADOLFO MENEZES, S/Nº - BALNEÁRIO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "SAT cod 52",
+   "HAB SÃO PEDRO D ALDEIA cod 2052",
+   "DRV SÃO PEDRO DA ALDEIA cod 066"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U077",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DRV/SÃO PEDRO DA ALDEIA: logradouro com grafia/identificação diferente do site || HABBIO/SAO PEDRO D´ALDEIA: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Sapucaia",
+  "nome": "SAT Sapucaia",
+  "endereco": "RUA XV DE NOVEMBRO, Nº 40 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 54"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U078",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Saquarema",
+  "nome": "SAT Saquarema",
+  "endereco": "AVENIDA SAQUAREMA, 4299 - PORTO DA ROÇA",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 55"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U079",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Seropédica",
+  "nome": "SAT Seropédica",
+  "endereco": "AV. RITA BATISTA, Nº 11 - BAIRRO DO BOSCO / KM 40",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 86",
+   "HAB SEROPÉDICA cod 6007"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U080",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Silva Jardim",
+  "nome": "SAT Silva Jardim",
+  "endereco": "RODOVIÁRIA ARÃO LOPES DA CUNHA/RUA JOSÉ VICENTE, S/Nº - LOJA 4 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 56"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U081",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Sumidouro",
+  "nome": "SAT Sumidouro",
+  "endereco": "RUA DEZ DE JUNHO, 138 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 57"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U082",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Tanguá",
+  "nome": "SAT Tanguá",
+  "endereco": "RUA FIRMINO FRANCISCO LEITE, Nº 90 LJ. 03 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 89"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U083",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Trajano de Morais",
+  "nome": "SAT Trajano de Morais",
+  "endereco": "AVENIDA CASTELO BRANCO, Nº 41 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 59",
+   "HAB TRAJANO DE MORAES cod 9965"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U084",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Varre-sai",
+  "nome": "SAT Varre-sai",
+  "endereco": "RUA JOSÉ VARGAS DE FIGUEIREDO, Nº 33 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT"
+  ],
+  "postos": [
+   "SAT cod 76"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U085",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "SAT",
+  "municipio": "Vassouras",
+  "nome": "SAT Vassouras",
+  "endereco": "OTÁVIO GOMES, Nº 395, LJ. 02-03 - CENTRO",
+  "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
+  "servicos_site": [
+   "CIRETRAN/SAT",
+   "Habilitação"
+  ],
+  "postos": [
+   "SAT cod 62",
+   "HAB VASSOURAS cod 2362"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U086",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/VASSOURAS: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Sede",
+  "municipio": "Rio de Janeiro",
+  "nome": "Sede - Presidente Vargas",
+  "endereco": "AV. PRESIDENTE VARGAS 817 (ACESSO 1) - TÉRREO",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB SEDE - PRESIDENTE VARGAS cod 9984"
+  ],
+  "conf": "",
+  "zona": "Centro",
+  "id": "U087",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Rio Poupa Tempo",
+  "municipio": "Duque de Caxias",
+  "nome": "Poupa Tempo Duque de Caxias",
+  "endereco": "RODOVIA WASHINGTON LUIZ, 2895, CAXIAS SHOPPING",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB POUPA TEMPO DUQUE DE CAXIAS cod 0717",
+   "DRV RIO POUPA TEMPO CAXIAS cod 828"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U088",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/SÃO JOÃO DE MERITI RIO POUPATEMPO: município do nome no contrato (São João de Meriti) difere do município do site (Duque de Caxias); endereço (rua e número) coincide — possível troca de nome/endereço no contrato",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Rio Poupa Tempo",
+  "municipio": "Rio de Janeiro",
+  "nome": "Rio Poupa Tempo - Bangu",
+  "endereco": "RUA FONSECA, Nº 240, 2º PISO, BANGU SHOPPING",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB RIO POUPA TEMPO - BANGU cod 9994",
+   "DRV RIO POUPA TEMPO – ZONA OESTE cod 810"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U089",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/DUQUE DE CAXIAS RIO POUPA TEMPO: município do nome no contrato (Duque de Caxias) difere do município do site (Rio de Janeiro); endereço (rua e número) coincide — possível troca de nome/endereço no contrato",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Rio Poupa Tempo",
+  "municipio": "São João de Meriti",
+  "nome": "Rio Poupa Tempo - São João de Meriti",
+  "endereco": "RUA MARIA SOARES SENDAS, 111, PARQUE BARRETO - SHOPPING GRANDE RIO",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB RIO POUPA TEMPO - SÃO JOÃO DE MERITI cod 222",
+   "DRV SÃO JOÃO DE MERITI cod 040",
+   "DRV RIO POUPA TEMPO – SÃO JOÃO DE MERITI cod 829"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U090",
+  "servicos_contrato": [
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/BANGU RIO POUPATEMPO: município do nome no contrato (Rio de Janeiro) difere do município do site (São João de Meriti); endereço (rua e número) coincide — possível troca de nome/endereço no contrato",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Cabo Frio",
+  "nome": "Shopping Unapark",
+  "endereco": "AVENIDA INDEPENDÊNCIA, LOTE 16 – QUADRA 15",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB SHOPPING UNAPARK cod 9972",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV CABO FRIO - UNAMAR cod 825"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U091",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Campos dos Goytacazes",
+  "nome": "Campos II",
+  "endereco": "AV. NILO PEÇANHA, 614 – SHOPPING ESTRADA - CENTRO",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB CAMPOS II cod 9988",
+   "DRV CAMPOS II cod 059",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV CAMPOS cod 831"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U092",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Campos (Shopping Estrada): logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Campos dos Goytacazes",
+  "nome": "Campos III",
+  "endereco": "AV. SEN. JOSÉ CARLOS PEREIRA PINTO, 442 – GUARUS PLAZA SHOPPING PARQUE CALABOUÇO",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB CAMPOS III cod 6418",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV GUARUS cod 830"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U093",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Campos dos Goytacazes Guarus Shopping: número diverge: contrato 422 x site 442 || HABBIO/CAMPOS GOYTACAZES GUARUS: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Niterói",
+  "nome": "Mercado Municipal de Niterói",
+  "endereco": "RUA SANTO ANTÕNIO Nº 53",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB MERCADO MUNICIPAL DE NITERÓI cod 9970",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV NITERÓI - MERCADO MUNICIPAL cod 824"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U094",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Niterói",
+  "nome": "Niterói",
+  "endereco": "RUA DESEMBARGADOR LIMA CASTRO, 276",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB NITERÓI cod 0133",
+   "DRV NITERÓI cod 016"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U095",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/NITEROI: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Petrópolis",
+  "nome": "Shopping Estação Itaipava",
+  "endereco": "ESTRADA UNIÃO E INDÚSTRIA, 11.000",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB SHOPPING ESTAÇÃO ITAIPAVA cod 9973",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV PETRÓPOLIS / ITAIPAVA cod 815"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U096",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Shopping Estação Itaipava: mesma rua e mesmo nome; número diverge; número diverge: contrato 10341 x site 11000",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Resende",
+  "nome": "Resende",
+  "endereco": "AV. DORIVAL MARCONDES DE GODOY, 500 (SHOPPING PÁTIOMIX)",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB RESENDE cod 1842",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV RESENDE cod 820"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U097",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/RESENDE: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Américas Shopping",
+  "endereco": "AV. DAS AMERICAS, 15.500 – G: 01 - RECREIO DOS BANDEIRANTES",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB AMÉRICAS SHOPPING cod 9980",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV RECREIO cod 817"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U098",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Barra da Tijuca",
+  "endereco": "AVENIDA AYRTON SENNA, 2541 – SHOPPING AEROTOWN",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB BARRA DA TIJUCA cod 0017",
+   "DRV BARRA DA TIJUCA cod 001"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U099",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/BARRA DA TIJUCA: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Center Shopping",
+  "endereco": "AV. GEREMARIO DANTAS, 404 – G-02 (TANQUE - JACAREPAGUÁ)",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB CENTER SHOPPING cod 9978",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV JACAREPAGUÁ cod 816"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U100",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Guadalupe Shopping",
+  "endereco": "AV. BRASIL, 22.155 – LOJAS 206/11/12/13/14",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB GUADALUPE SHOPPING cod 9981",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV GUADALUPE cod 814"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U101",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Shopping Jardim Guadalupe: número diverge: contrato 22150 x site 22155",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Haddock Lobo",
+  "endereco": "RUA JOÃO PAULO I, S/N",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB HADDOCK LOBO cod 6004",
+   "DRV HADDOCK LOBO cod 027"
+  ],
+  "conf": "a validar",
+  "zona": "Zona Norte",
+  "id": "U102",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)"
+  ],
+  "obs": "HABBIO/HADDOCK LOBO: endereço em branco no contrato; casado pelo nome",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Ilha do Governador",
+  "endereco": "PRAÇA POETA MANOEL BANDEIRA, S/Nº",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB ILHA DO GOVERNADOR cod 9999",
+   "DRV COCOTÁ (ILHA) cod 026"
+  ],
+  "conf": "a validar",
+  "zona": "Zona Norte",
+  "id": "U103",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Irajá- Ceasa",
+  "endereco": "AVENIDA BRASIL, Nº 19.001",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB IRAJÁ- CEASA cod 9966",
+   "DRV CEASA cod 008"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U104",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Sulacap Shopping",
+  "endereco": "PARQUE SHOPPING SULACAP - AV. MARECHAL FONTENELLE, Nº 3545",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB SULACAP SHOPPING cod 9967",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV SULACAP cod 826"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U105",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "Via Brasil",
+  "endereco": "RUA ITAPERA, 500, 3º PISO - LOJA 348 - SHOPPING VIA BRASIL",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB VIA BRASIL cod 9987",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV IRAJÁ cod 813"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U106",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "Rio de Janeiro",
+  "nome": "West Shopping",
+  "endereco": "ESTRADA DO MENDANHA, 555",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB WEST SHOPPING cod 9975",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV WEST SHOPPING cod 822"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U107",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "São Gonçalo",
+  "nome": "São Gonçalo II",
+  "endereco": "RUA OLIVEIRA BOTELHO S/N",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB SÃO GONÇALO II cod 1194",
+   "DRV SÃO GONÇALO cod 015"
+  ],
+  "conf": "a validar",
+  "zona": "",
+  "id": "U108",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Veículos",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/SAO GONCALO: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Atendimento",
+  "municipio": "São João de Meriti",
+  "nome": "São João de Meriti",
+  "endereco": "RUA ALDENOR RIBEIRO DE MATOS, 175",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação",
+   "Veículos"
+  ],
+  "postos": [
+   "HAB SÃO JOÃO DE MERITI cod 1951",
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV VILAR DOS TELES cod 819"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U109",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/SAO JOAO DE MERITI: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Angra dos Reis",
+  "nome": "Angra dos Reis",
+  "endereco": "ESTRADA MUNICIPAL DO MARINAS, 91 - SALAS 328 A 330 - SHOPPING PIRATAS MALL",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB ANGRA DOS REIS cod 1001"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U110",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Angra dos Reis: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Bom Jardim",
+  "nome": "Bom Jardim",
+  "endereco": "RUA NILO PEÇANHA, 238",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB BOM JARDIM cod 6001"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U111",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/BOM JARDIM: número diverge: contrato 218 x site 238 || HABAPOIO/Bom Jardim: número diverge: contrato 218 x site 238",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Cabo Frio",
+  "nome": "Cabo Frio",
+  "endereco": "AV. TEIXEIRA DE SOUZA, 1.612",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB CABO FRIO cod 2007"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U112",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/CABO FRIO: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Cordeiro",
+  "nome": "Cordeiro",
+  "endereco": "RUA SÃO SEBASTIÃO, 8 – LOJA 2",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB CORDEIRO cod 0013"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U113",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Itaboraí",
+  "nome": "Itaboraí Plaza Shopping",
+  "endereco": "BR 101 – KM 295 – SENTIDO NORTE BLOCO SHOPPING / Nº DA LOJA 004-B",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB ITABORAÍ PLAZA SHOPPING cod 9979"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U114",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Maricá",
+  "nome": "Maricá",
+  "endereco": "RUA NELSON ALVES DE SOUZA",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB MARICÁ cod 0019"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U115",
+  "servicos_contrato": [],
+  "obs": "HABBIO/MARICA: mesmo município e mesmo serviço (Habilitação); único posto do site no município; endereço diverge || HABAPOIO/Maricá: mesmo município e mesmo serviço (Habilitação); único posto do site no município; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Miracema",
+  "nome": "Miracema",
+  "endereco": "PRAÇA ARI PARREIRAS, 171",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB MIRACEMA cod 9985"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U116",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Natividade",
+  "nome": "Natividade (posto Atende Sem Agendamento)",
+  "endereco": "RUA INTENDENTE FRANKLIN RABELO, 08",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB NATIVIDADE (POSTO ATENDE SEM AGENDAMENTO) cod 0022"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U117",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Paraty",
+  "nome": "Paraty",
+  "endereco": "LARGO DO ROSÁRIO, S/N",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB PARATY cod 3398"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U118",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Paraty: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Paty do Alferes",
+  "nome": "Paty do Alferes",
+  "endereco": "AV. BRASIL, 457-423 - LOT. NOVO ARCOZELO",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB PATY DO ALFERES cod 1667"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U119",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "DIC/Paty do Alferes: mesma rua e mesmo nome; número diverge; número diverge: contrato 161 x site 457 || HABBIO/PATY DO ALFERES: código do posto = cód. HAB no site; número diverge: contrato 161 x site 457 || HABAPOIO/Paty do Alferes: nome da unidade coincide com o do site; número diverge: contrato 16",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Piraí",
+  "nome": "Piraí",
+  "endereco": "RUA SANTOS DUMONT, 156",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB PIRAÍ cod 2340"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U120",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/PIRAI: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio Bonito",
+  "nome": "Rio Bonito",
+  "endereco": "RUA JULIA CORTINES Nº 67, ESQUINA COM A RUA ANTENOR MARMO Nº 16",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB RIO BONITO cod 030"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U121",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Botafogo",
+  "endereco": "RUA VOLUNTÁRIOS DA PÁTRIA, 120",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB BOTAFOGO cod 6002"
+  ],
+  "conf": "",
+  "zona": "Zona Sul",
+  "id": "U122",
+  "servicos_contrato": [
+   "Habilitação (biometria)"
+  ],
+  "obs": "HABBIO/BOTAFOGO: endereço em branco no contrato; casado pelo nome",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Campo Grande",
+  "endereco": "ESTRADA DO MONTEIRO, 1200 – PARK SHOPPING",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB CAMPO GRANDE cod 0002"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U123",
+  "servicos_contrato": [
+   "Habilitação (biometria)"
+  ],
+  "obs": "HABBIO/CAMPO GRANDE DETRAN - OESTE: código do posto = cód. HAB no site; número diverge: contrato 126 x site 1200; logradouro com grafia/identificação diferente do site || HABAPOIO/Campo Grande - Detran Oeste: nome da unidade coincide com o do site; endereço diverge",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Copacabana",
+  "endereco": "RUA BARATA RIBEIRO, 370, 3º PISO",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB COPACABANA cod 0032"
+  ],
+  "conf": "",
+  "zona": "Zona Sul",
+  "id": "U124",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Gávea",
+  "endereco": "RUA RODRIGO OTÁVIO, 200",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB GÁVEA cod 0001"
+  ],
+  "conf": "",
+  "zona": "Zona Sul",
+  "id": "U125",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/GÁVEA -DETRAN - SUL: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Jacarepaguá",
+  "endereco": "EST. DO GABINAL, 313 2º PISO MALL A LOJAS 286, 287, 288, 289 E 290 RIO SHOPPING",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB JACAREPAGUÁ cod 9998"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U126",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Jacarezinho",
+  "endereco": "RUA DOM HELDER CAMARA, Nº 1715",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB JACAREZINHO cod 6005"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U127",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/JACAREZINHO: mesma rua e mesmo nome; número diverge; número diverge: contrato 2233 x site 1715 || HABAPOIO/Jacarezinho: mesma rua e mesmo nome; número diverge; número diverge: contrato 2233 x site 1715",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Largo do Machado",
+  "endereco": "RUA MACHADO DE ASSIS, Nº 80",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB LARGO DO MACHADO cod 0018"
+  ],
+  "conf": "",
+  "zona": "Zona Sul",
+  "id": "U128",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/LARGO DO MACHADO: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Madureira II – Vaz Lobo",
+  "endereco": "AV. MINISTRO EDGARD ROMERO, 878",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB MADUREIRA II – VAZ LOBO cod 9982"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U129",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Maré",
+  "endereco": "RUA PRINCIPAL, S/N – BAIXA DO SAPATEIRO",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB MARÉ cod 9977"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U130",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/MARE: logradouro com grafia/identificação diferente do site || HABAPOIO/Maré: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Muzema",
+  "endereco": "ESTRADA DO ITANHANGÁ, 483, LOJA H",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB MUZEMA cod 6008"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U131",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Méier",
+  "endereco": "RUA JOAQUIM MEIER, 51 LOJA A",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB MÉIER cod 0027"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U132",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/MEIER: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "OUVIDOR – 15º CARTÓRIO DE OFÍCIO",
+  "endereco": "RUA DO OUVIDOR, 89",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB OUVIDOR – 15º CARTÓRIO DE OFÍCIO cod 9976"
+  ],
+  "conf": "",
+  "zona": "Centro",
+  "id": "U133",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Parque Maré",
+  "endereco": "RUA TEIXEIRA RIBEIRO, 629",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB PARQUE MARÉ cod 9963"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U134",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Penha",
+  "endereco": "AVENIDA BRÁS DE PINA, 150 LOJA 229 - 2º PISO - SHOPPING PENHA",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB PENHA cod 0016"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U135",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/PENHA: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Rocinha",
+  "endereco": "RUA BERTHA LUTZ, 84",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB ROCINHA cod 6006"
+  ],
+  "conf": "",
+  "zona": "Zona Sul",
+  "id": "U136",
+  "servicos_contrato": [
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Rio de Janeiro",
+  "nome": "Vila Isabel",
+  "endereco": "RUA BARÃO DE SÃO FRANCISCO, 236 - 5º PISO - BOULEVARD RIO SHOPPING",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB VILA ISABEL cod 0015"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U137",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "obs": "HABBIO/VILA ISABEL: código do posto = cód. HAB no site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "São José do Vale do Rio Preto",
+  "nome": "São José do Vale do Rio Preto",
+  "endereco": "RUA CORONEL FRANCISCO LIMONGI, 353",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB SÃO JOSÉ DO VALE DO RIO PRETO cod 0024"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U138",
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (biometria)",
+   "Habilitação (apoio)"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Valença",
+  "nome": "Valença",
+  "endereco": "RUA COMENDADOR ALUÍZIO LEITE, 242",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB VALENÇA cod 2441"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U139",
+  "servicos_contrato": [],
+  "obs": "HABBIO/VALENCA: mesmo município e mesmo serviço (Habilitação); único posto do site no município; endereço diverge || HABAPOIO/Valença: mesmo município e mesmo serviço (Habilitação); único posto do site no município; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Habilitação",
+  "municipio": "Volta Redonda",
+  "nome": "Volta Redonda",
+  "endereco": "RODOVIA DOS METALÚRGICOS, Nº 1189",
+  "horario": "",
+  "servicos_site": [
+   "Habilitação"
+  ],
+  "postos": [
+   "HAB VOLTA REDONDA cod 0663"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U140",
+  "servicos_contrato": [
+   "Habilitação (biometria)"
+  ],
+  "obs": "HABBIO/VOLTA REDONDA: código do posto = cód. HAB no site; número diverge: contrato 759 x site 1189; logradouro com grafia/identificação diferente do site || HABAPOIO/Volta Redonda: mesmo município e mesmo serviço (Habilitação); único posto do site no município; endereço diverge",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "USV",
+  "municipio": "Itaboraí",
+  "nome": "Unidade de Serviços de Veículos – USV Itaboraí",
+  "endereco": "RODOVIA BR 101, KM 295, S/N",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS – USV ITABORAÍ cod 818"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U141",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "USV",
+  "municipio": "Rio de Janeiro",
+  "nome": "Unidade de Serviços de Veículos - USV Barra da Tijuca",
+  "endereco": "AVENIDA DAS AMÉRICAS, 500 - LOJA 104",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV UNIDADE DE SERVIÇOS DE VEÍCULOS - USV BARRA DA TIJUCA cod 812"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U142",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Barra do Piraí",
+  "nome": "Barra do Piraí",
+  "endereco": "RUA SÃO JOÂO BATISTA, 452",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV BARRA DO PIRAÍ cod 073"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U143",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Barra Mansa",
+  "nome": "Barra Mansa",
+  "endereco": "AV. HOMERO LEITE, 440",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV BARRA MANSA cod 062"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U144",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Campos dos Goytacazes",
+  "nome": "Campos I",
+  "endereco": "RUA XV DE NOVEMBRO 70/80 - CENTRO (ANTIGA GARAGEM COMAUTO)",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV CAMPOS I cod 055"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U145",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Casimiro de Abreu",
+  "nome": "Casimiro de Abreu",
+  "endereco": "RODOVIA BR 101, KM 207, GALPÃO C - LT. PEDRO RATTES BASTOS",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV CASIMIRO DE ABREU cod 078"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U146",
+  "servicos_contrato": [],
+  "obs": "DRV/CASEMIRO DE ABREU: mesmo município e mesmo serviço (Veículos); único posto do site no município; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Cordeiro",
+  "nome": "Cordeiro",
+  "endereco": "PARQUE DE EXPOSIÇÕES RAUL VEIGA",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV CORDEIRO cod 056"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U147",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "obs": "DRV/CORDEIRO: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Duque de Caxias",
+  "nome": "Reduc",
+  "endereco": "RODOVIA WASHINGTON LUIZ, KM 10,5, SAÍDA 114",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV REDUC cod 017"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U148",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Itaperuna",
+  "nome": "Itaperuna",
+  "endereco": "RUA GREGÓRIO LOPES, 226 - (PRÓXIMO AO MERCADO TEIXEIRÃO)",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV ITAPERUNA cod 064"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U149",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "obs": "DRV/ITAPERUNA: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Macaé",
+  "nome": "Macaé",
+  "endereco": "RUA VITÓRIA RÉGIA, 283",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV MACAÉ cod 074"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U150",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Magé",
+  "nome": "Magé",
+  "endereco": "AV. SIMÃO DA MOTTA, 329",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV MAGÉ cod 035"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U151",
+  "servicos_contrato": [],
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Miguel Pereira",
+  "nome": "Miguel Pereira",
+  "endereco": "AV. TRAPIA, 29",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV MIGUEL PEREIRA cod 080"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U152",
+  "servicos_contrato": [],
+  "obs": "DRV/MIGUEL PEREIRA: nome da unidade coincide com o do site; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Nilópolis",
+  "nome": "Nilópolis",
+  "endereco": "RUA PRAÇA WALLACE PAES LEME, Nº 1.508",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV NILÓPOLIS cod 041"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U153",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Nova Friburgo",
+  "nome": "Nova Friburgo",
+  "endereco": "AV. JOSÉ ROBERTO DA SILVEIRA, 74",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV NOVA FRIBURGO cod 076"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U154",
+  "servicos_contrato": [],
+  "obs": "DRV/NOVA FRIBURGO: mesmo município e mesmo serviço (Veículos); único posto do site no município; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Nova Iguaçu",
+  "nome": "Nova Iguaçu",
+  "endereco": "ESTR. ADRIANÓPOLIS, S/Nº",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV NOVA IGUAÇU cod 013"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U155",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Paracambi",
+  "nome": "Paracambi",
+  "endereco": "ESTRADA RJ-127, 10.604",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV PARACAMBI cod 057"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U156",
+  "servicos_contrato": [],
+  "obs": "DRV/PARACAMBI: mesmo município e mesmo serviço (Veículos); único posto do site no município; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Paraíba do Sul",
+  "nome": "Paraíba do Sul",
+  "endereco": "RODOVIA LÚCIO MEIRA, KM 128 - BR 393 (PRÓXIMO AO MOTEL FREE LOVE)",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV PARAÍBA DO SUL cod 051"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U157",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "obs": "DRV/PARAÍBA DO SUL: mesma rua e mesmo nome; número diverge; número diverge: contrato 171 x site 128",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Paraty",
+  "nome": "Paraty",
+  "endereco": "RUA RAUL DE SÁ, Nº 151",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV PARATY cod 077"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U158",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "obs": "DRV/PARATY: mesma rua e mesmo nome; número diverge; número diverge: contrato 387 x site 151",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Petrópolis",
+  "nome": "Petrópolis",
+  "endereco": "RUA CONDE AFONSO CELSO, Nº 66",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV PETRÓPOLIS cod 072"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U159",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Resende",
+  "nome": "Resende",
+  "endereco": "RUA MACEDO DE MIRANDA, LT. 63/34",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV RESENDE cod 075"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U160",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Rio de Janeiro",
+  "nome": "Campo Grande (DER)",
+  "endereco": "ESTRADA DO MENDANHA, 1.672",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV CAMPO GRANDE (DER) cod 009"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U161",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Rio de Janeiro",
+  "nome": "Francisco Bicalho",
+  "endereco": "RUA IDALINA, Nº35",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV FRANCISCO BICALHO cod 004"
+  ],
+  "conf": "",
+  "zona": "Centro",
+  "id": "U162",
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "obs": "DIC/Francisco Bicalho: logradouro com grafia/identificação diferente do site || DRV/FRANCISCO BICALHO: nome da unidade coincide com o do site; endereço diverge",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Rio de Janeiro",
+  "nome": "Machado de Assis",
+  "endereco": "RUA DO CATETE, 325",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV MACHADO DE ASSIS cod 022"
+  ],
+  "conf": "",
+  "zona": "Zona Sul",
+  "id": "U163",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Rio de Janeiro",
+  "nome": "Parada de Lucas (DER)",
+  "endereco": "AVENIDA BRASIL, 13.350",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV PARADA DE LUCAS (DER) cod 006"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U164",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Rio de Janeiro",
+  "nome": "Santa Cruz",
+  "endereco": "AV. ÁTILA TEMPORAL, S/Nº - EM FRENTE À ELEVATÓRIA DA CEDAE, DISTRITO INDUSTRIAL",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV SANTA CRUZ cod 018"
+  ],
+  "conf": "",
+  "zona": "Zona Oeste",
+  "id": "U165",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Rio de Janeiro",
+  "nome": "URSD Governador Marcello Alencar",
+  "endereco": "ESTRADA DO TUBIACANGA S/Nº.",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV URSD GOVERNADOR MARCELLO ALENCAR cod 005"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U166",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Rio de Janeiro",
+  "nome": "Vila Isabel",
+  "endereco": "RUA TORRES HOMEM, 697 - ANTIGO PÁTIO DA CTC",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV VILA ISABEL cod 020"
+  ],
+  "conf": "",
+  "zona": "Zona Norte",
+  "id": "U167",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Santo Antônio de Pádua",
+  "nome": "Santo Antônio de Pádua",
+  "endereco": "RODOVIA RENATO DE ALVIM PADILHA, KM 2 - RJ 186",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV SANTO ANTÔNIO DE PÁDUA cod 063"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U168",
+  "servicos_contrato": [],
+  "obs": "DRV/SANTO ANTONIO DE PADUA: mesmo município e mesmo serviço (Veículos); único posto do site no município; endereço diverge",
+  "fonte": "site"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Teresópolis",
+  "nome": "Teresópolis",
+  "endereco": "RUA AVELINO MACHADO BASTOS, 250",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV TERESÓPOLIS cod 061"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U169",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Vassouras",
+  "nome": "Vassouras",
+  "endereco": "ROD. LÚCIO MEIRA, KM 233",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV VASSOURAS cod 065"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U170",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "obs": "DRV/VASSOURAS: número diverge: contrato 232 x site 233",
+  "fonte": "site e contratos"
+ },
+ {
+  "tipo": "Posto de Vistoria",
+  "municipio": "Volta Redonda",
+  "nome": "Volta Redonda",
+  "endereco": "AVENIDA FRANCISCO C. TORRES, 1.135",
+  "horario": "",
+  "servicos_site": [
+   "Veículos"
+  ],
+  "postos": [
+   "DRV VOLTA REDONDA cod 058"
+  ],
+  "conf": "",
+  "zona": "",
+  "id": "U171",
+  "servicos_contrato": [
+   "Veículos"
+  ],
+  "obs": "DRV/VOLTA REDONDA: logradouro com grafia/identificação diferente do site",
+  "fonte": "site e contratos"
+ },
+ {
+  "id": "U172",
+  "tipo": "Consta só em contrato",
+  "municipio": "Aperibé",
+  "nome": "Aperibé",
+  "endereco": "Rua Juvenal Leal, 264 – Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U173",
+  "tipo": "Consta só em contrato",
+  "municipio": "Bom Jardim",
+  "nome": "Bom Jardim",
+  "endereco": "Praça Cel. Monnerat, 228 - lj. 17 - Shopping Santa Rita- Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U174",
+  "tipo": "Consta só em contrato",
+  "municipio": "Cabo Frio",
+  "nome": "UnaPark",
+  "endereco": "Av. Independência L16 / Q15 loteamento Unamar - Cabo Frio - RJ - CEP 28972-972",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U175",
+  "tipo": "Consta só em contrato",
+  "municipio": "Cabo Frio",
+  "nome": "Cabo Frio",
+  "endereco": "Rua Jorge Lócio, S/N – Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato)"
+ },
+ {
+  "id": "U176",
+  "tipo": "Consta só em contrato",
+  "municipio": "Casimiro de Abreu",
+  "nome": "Casimiro de Abreu",
+  "endereco": "Rua Mário Costa, 238 – Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U177",
+  "tipo": "Consta só em contrato",
+  "municipio": "Duque de Caxias",
+  "nome": "Duque de Caxias - Saracuruna",
+  "endereco": "Rua Nascimento Silva, S/N - Quadra 4 - Lote 15 - Parque Uruguaiana - Duque de Caxias",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U178",
+  "tipo": "Consta só em contrato",
+  "municipio": "Engenheiro Paulo de Frontin",
+  "nome": "Eng. Paulo de Frontin",
+  "endereco": "Praça Nelson Salles, nº. 27 (Centro) Prédio da Rodoviária",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U179",
+  "tipo": "Consta só em contrato",
+  "municipio": "Itaperuna",
+  "nome": "Itaperuna",
+  "endereco": "Rua Coronel Luiz Ferraz , nº. 307 - Centro - Itaperuna",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato)"
+ },
+ {
+  "id": "U180",
+  "tipo": "Consta só em contrato",
+  "municipio": "Maricá",
+  "nome": "Maricá",
+  "endereco": "Av. Roberto Silveira, 46 - Shopping Costa Azul - Lj 201 - Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (apoio)",
+   "Habilitação (biometria)"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo; HAB 098/2020 3º aditivo; HAB 135/2021 3º aditivo",
+  "obs": "colaboradores sugeridos: cadastramento 1 | postos (distribuição p.41-43): atendentes 1, supervisores 1, conferentes 0"
+ },
+ {
+  "id": "U181",
+  "tipo": "Consta só em contrato",
+  "municipio": "Mesquita",
+  "nome": "Hospital da Mãe - Mesquita",
+  "endereco": "Av. Dr. Carvalhães, S/N - Rocha Sobrinho - Mesquita",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U182",
+  "tipo": "Consta só em contrato",
+  "municipio": "Niterói",
+  "nome": "Niterói Shopping",
+  "endereco": "Rua da Conceição, 188, G3",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (apoio)",
+   "Habilitação (biometria)"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo; HAB 098/2020 3º aditivo; HAB 135/2021 3º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato) | colaboradores sugeridos: cadastramento 2; prova teórica 1 | postos (distribuição p.41-43): atendentes 5, supervisores 2, conferentes 1"
+ },
+ {
+  "id": "U183",
+  "tipo": "Consta só em contrato",
+  "municipio": "Niterói",
+  "nome": "Hospital Azevedo Lima - Niterói",
+  "endereco": "Rua Teixeira de Freitas, 30 - Fonseca – Niterói",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U184",
+  "tipo": "Consta só em contrato",
+  "municipio": "Nova Iguaçu",
+  "nome": "Maternidade Mariana Bulhões",
+  "endereco": "Av. Gov. Roberto Silveira, 2012 – Nova Iguaçu",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U185",
+  "tipo": "Consta só em contrato",
+  "municipio": "Petrópolis",
+  "nome": "Petrópolis",
+  "endereco": "Rua Dr. Porciúncula, 75 - Centro (Antiga Rodoviária)",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato)"
+ },
+ {
+  "id": "U186",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio das Ostras",
+  "nome": "Rio das Ostras",
+  "endereco": "Av das Casuarinas, nº 595 - Âncora.",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U187",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "Campo Grande",
+  "endereco": "Rua Artur Rios, Nº 126 - Campo Grande",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (apoio)"
+  ],
+  "zona": "Zona Oeste",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo; HAB 098/2020 3º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato) | postos (distribuição p.41-43): atendentes 3, supervisores 3, conferentes 1"
+ },
+ {
+  "id": "U188",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "OAB",
+  "endereco": "Rua da Assembleia, 10, 11 Andar",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Habilitação (apoio)",
+   "Habilitação (biometria)"
+  ],
+  "zona": "Centro",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: HAB 098/2020 3º aditivo; HAB 135/2021 3º aditivo",
+  "obs": "postos (distribuição p.41-43): atendentes 1, supervisores 1, conferentes 0"
+ },
+ {
+  "id": "U189",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "Cesarão – Sta. Cruz",
+  "endereco": "Av. Canal, S/N – Conj. Cesarão - Sta Cruz – RJ",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "Zona Oeste",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U190",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "Hosp. Rocha Faria",
+  "endereco": "Av. Cesário de Melo, 3215 - Campo Grande",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "Zona Oeste",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U191",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "Desembargador Isidro",
+  "endereco": "Rua Desembargador Isidro, nº. 41 - Sub-Prefeitura - Tijuca VIII R.A",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "Zona Norte",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato)"
+ },
+ {
+  "id": "U192",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "Tribunal de Justiça - TJ",
+  "endereco": "Avenida Erasmo Braga, 115 - 4º Andar",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Habilitação (apoio)",
+   "Habilitação (biometria)"
+  ],
+  "zona": "Centro",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: HAB 098/2020 3º aditivo; HAB 135/2021 3º aditivo",
+  "obs": "colaboradores sugeridos: cadastramento 1 | postos (distribuição p.41-43): atendentes 1, supervisores 1, conferentes 0"
+ },
+ {
+  "id": "U193",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "Atendimento Preferencial",
+  "endereco": "Avenida Francisco Bicalho, 234",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Habilitação (apoio)",
+   "Habilitação (biometria)"
+  ],
+  "zona": "Centro",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: HAB 098/2020 3º aditivo; HAB 135/2021 3º aditivo",
+  "obs": "colaboradores sugeridos: cadastramento 1 | postos (distribuição p.41-43): atendentes 1, supervisores 1, conferentes 0"
+ },
+ {
+  "id": "U194",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "Ministério Público",
+  "endereco": "Avenida Marechal Câmara, 350 - Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Habilitação (apoio)",
+   "Habilitação (biometria)"
+  ],
+  "zona": "Centro",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: HAB 098/2020 3º aditivo; HAB 135/2021 3º aditivo",
+  "obs": "colaboradores sugeridos: cadastramento 1 | postos (distribuição p.41-43): atendentes 0, supervisores 1, conferentes 0"
+ },
+ {
+  "id": "U195",
+  "tipo": "Consta só em contrato",
+  "municipio": "Rio de Janeiro",
+  "nome": "Hosp. Albert Schwartz",
+  "endereco": "Rua Nilópolis, 329 – Realengo",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "Zona Oeste",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U196",
+  "tipo": "Consta só em contrato",
+  "municipio": "Santa Maria Madalena",
+  "nome": "Santa Mª Madalena",
+  "endereco": "Rua Dr. ª Aurea Emery Trindade, nº. 03 - Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U197",
+  "tipo": "Consta só em contrato",
+  "municipio": "Santo Antônio de Pádua",
+  "nome": "Santo Antonio de Pádua",
+  "endereco": "Rua Arthur Silva, nº. 58 - Galeria João Jazbiek - Loja 3 - Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U198",
+  "tipo": "Consta só em contrato",
+  "municipio": "Saquarema",
+  "nome": "Hospital dos Lagos – Bacaxá",
+  "endereco": "Rua Manoel Domingos dos Santos, nº. 725/ Bacaxá - Saquarema",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U199",
+  "tipo": "Consta só em contrato",
+  "municipio": "Saquarema",
+  "nome": "Saquarema",
+  "endereco": "Av. Saquarema, 5123 – Bacaxá",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U200",
+  "tipo": "Consta só em contrato",
+  "municipio": "Silva Jardim",
+  "nome": "Silva Jardim",
+  "endereco": "Rua Augusto Antônio de Amorim, nº. 180 - Centro - Silva Jardim",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U201",
+  "tipo": "Consta só em contrato",
+  "municipio": "Sumidouro",
+  "nome": "Sumidouro",
+  "endereco": "Rua 10 de Junho, nº. 110 – Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U202",
+  "tipo": "Consta só em contrato",
+  "municipio": "São Francisco de Itabapoana",
+  "nome": "São Francisco Itabapoana",
+  "endereco": "Rua Valdir Gonçalves Delmiro S/n",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Habilitação (apoio)"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: HAB 098/2020 3º aditivo",
+  "obs": "postos (distribuição p.41-43): atendentes 1, supervisores 1, conferentes 0"
+ },
+ {
+  "id": "U203",
+  "tipo": "Consta só em contrato",
+  "municipio": "São Gonçalo",
+  "nome": "São Gonçalo – Rocha",
+  "endereco": "Rua José Lourenço de Azevedo, 44/lj 10 - Rocha",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato)"
+ },
+ {
+  "id": "U204",
+  "tipo": "Consta só em contrato",
+  "municipio": "São João de Meriti",
+  "nome": "Maternidade Heloneida Studart (S. J.Meriti)",
+  "endereco": "Av. Automóvel Clube, S/N Jardim Bonifácio - São João de Meriti",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U205",
+  "tipo": "Consta só em contrato",
+  "municipio": "São João de Meriti",
+  "nome": "São João de Meriti",
+  "endereco": "Rua Cesar Lemos, 22 - Vilar dos Teles",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato)"
+ },
+ {
+  "id": "U206",
+  "tipo": "Consta só em contrato",
+  "municipio": "São Sebastião do Alto",
+  "nome": "São Sebastião do Alto",
+  "endereco": "Rua Dr. Júlio Vieiras, 135 – Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U207",
+  "tipo": "Consta só em contrato",
+  "municipio": "Teresópolis",
+  "nome": "Teresópolis",
+  "endereco": "Rua Edmundo Bittencourt, nº. 101 - Lj 303 - 3º Piso - Shopping Teresópolis",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (apoio)",
+   "Habilitação (biometria)"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo; HAB 098/2020 3º aditivo; HAB 135/2021 3º aditivo",
+  "obs": ""
+ },
+ {
+  "id": "U208",
+  "tipo": "Consta só em contrato",
+  "municipio": "Três Rios",
+  "nome": "Três Rios I",
+  "endereco": "Rua Manuel Duarte, nº 36 - Centro de Três Rios -RJ",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato)"
+ },
+ {
+  "id": "U209",
+  "tipo": "Consta só em contrato",
+  "municipio": "Valença",
+  "nome": "Valença",
+  "endereco": "Praça Paulo de Frontin, nº. 22 - A – Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (apoio)",
+   "Habilitação (biometria)"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo; HAB 098/2020 3º aditivo; HAB 135/2021 3º aditivo",
+  "obs": "colaboradores sugeridos: cadastramento 1 | postos (distribuição p.41-43): atendentes 2, supervisores 1, conferentes 0"
+ },
+ {
+  "id": "U210",
+  "tipo": "Consta só em contrato",
+  "municipio": "Volta Redonda",
+  "nome": "Volta Redonda",
+  "endereco": "Av. Pres. Getúlio Vargas, nº. 759 – Centro",
+  "horario": "",
+  "servicos_site": [],
+  "servicos_contrato": [
+   "Identificação Civil",
+   "Habilitação (apoio)"
+  ],
+  "zona": "",
+  "conf": "a validar: consta em contrato e não no site",
+  "postos": [],
+  "fonte": "contrato: DIC 106/2020 2º aditivo; HAB 098/2020 3º aditivo",
+  "obs": "atende também carteira de visitante SEAP (indicação \"(SEAP)\" no contrato) | postos (distribuição p.41-43): atendentes 3, supervisores 3, conferentes 1"
+ }
+]
