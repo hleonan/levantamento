@@ -760,7 +760,7 @@
  },
  {
   "tipo": "SAT",
-  "municipio": "Bom Jesus de Itabapoana",
+  "municipio": "Bom Jesus do Itabapoana",
   "nome": "SAT Bom Jesus de Itabapoana",
   "endereco": "RUA ARISTIDES FIGUEIREDO, S/Nº - CENTRO",
   "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
@@ -788,7 +788,7 @@
  },
  {
   "tipo": "SAT",
-  "municipio": "Cachoeira de Macacu",
+  "municipio": "Cachoeiras de Macacu",
   "nome": "SAT Cachoeira de Macacu",
   "endereco": "RUA DESEMBARGADOR BRAGA LAND, S/Nº - PARQUE SANTA LUIZA",
   "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
@@ -1138,7 +1138,7 @@
  },
  {
   "tipo": "SAT",
-  "municipio": "Laje de Muriaé",
+  "municipio": "Laje do Muriaé",
   "nome": "SAT Laje de Muriaé",
   "endereco": "RUA ANTONIO CARLOS ALBERONI, Nº 220 - CHÁCARA CRUZEIRO",
   "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
@@ -1855,7 +1855,7 @@
  },
  {
   "tipo": "SAT",
-  "municipio": "Trajano de Morais",
+  "municipio": "Trajano de Moraes",
   "nome": "SAT Trajano de Morais",
   "endereco": "AVENIDA CASTELO BRANCO, Nº 41 - CENTRO",
   "horario": "SEG. A SEXTA, DE 8H ÀS 17H",
@@ -1879,7 +1879,7 @@
  },
  {
   "tipo": "SAT",
-  "municipio": "Varre-sai",
+  "municipio": "Varre-Sai",
   "nome": "SAT Varre-sai",
   "endereco": "RUA JOSÉ VARGAS DE FIGUEIREDO, Nº 33 - CENTRO",
   "horario": "SEG. A SEXTA, DE 8H ÀS 17H",

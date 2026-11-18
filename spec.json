@@ -1,6 +1,6 @@
 {
  "title": "Relatório de Levantamento da Unidade de Atendimento",
- "version": "v2",
+ "version": "v3",
  "intro": {
   "title": "Apresentação",
   "paras": [
@@ -16,8 +16,12 @@
     "Supervisores Regionais e Agentes de Verificação do Atendimento - AVAs, designados por ordem de serviço da CGIS."
    ],
    [
+    "Como se aplica",
+    "por aplicativo no celular de quem visita, com ou sem internet. O supervisor responde apenas o que só se vê no local. O que está em contrato ou em sistema é lançado depois pela CGIS, na base, pelo código da unidade. O que o aplicativo sabe (data, horas, cadastro, somas e médias), ele mesmo preenche."
+   ],
+   [
     "O que muda em relação ao Relatório de Supervisão de Unidades 2026 (junho de 2026)",
-    "permanecem a identificação, a população, a região e as fotos; passam a constar a contagem e o estado de cada item, as pessoas presentes no dia em comparação com as lotadas, a medição da fila e a entrevista com quem aguarda atendimento. O texto livre fica restrito ao que os números não registram."
+    "permanecem a identificação, a região e as fotos; passam a constar a contagem e o estado de cada item, as pessoas presentes no dia, a contagem da fila e a entrevista com quem aguarda atendimento. O texto livre fica restrito ao que os números não registram."
    ],
    [
     "Relação com o Formulário de Verificação de Conformidade (Minuta C)",
@@ -28,7 +32,7 @@
   "rules": [
    [
     "Natureza",
-    "trata-se de levantamento e verificação de conformidade do atendimento, e não de fiscalização de contrato, auditoria ou correição. Os prestadores de serviço são contados, e não avaliados em face do contrato. A comparação entre postos contratados e presentes serve ao retrato da unidade e segue no relatório consolidado da CGIS, sem juízo no local."
+    "trata-se de levantamento e verificação de conformidade do atendimento, e não de fiscalização de contrato, auditoria ou correição. Os prestadores de serviço são contados, e não avaliados em face do contrato. A comparação entre postos contratados e presentes é feita depois, na base da CGIS, sem juízo no local."
    ],
    [
     "Sem decisão no local",
@@ -36,7 +40,7 @@
    ],
    [
     "Lei Geral de Proteção de Dados Pessoais - LGPD (Lei Federal nº 13.709/2018)",
-    "do cidadão não se registram nome, Cadastro de Pessoas Físicas - CPF, placa, telefone ou endereço. Servidores e prestadores são registrados apenas em número, por vínculo e função; os únicos nomes registrados são os de quem realiza o levantamento (1.23 e 10.12) e de quem atesta a visita (10.10). As fotos não podem conter rosto identificável nem tela com dado de cidadão."
+    "do cidadão não se registram nome, Cadastro de Pessoas Físicas - CPF, placa, telefone ou endereço. Servidores e prestadores são registrados apenas em número, por vínculo e função; os únicos nomes registrados são os de quem realiza o levantamento (1.23) e de quem atesta a visita (10.10). As fotos não podem conter rosto identificável nem tela com dado de cidadão."
    ],
    [
     "Vocabulário",
@@ -48,80 +52,75 @@
    ],
    [
     "Prazo",
-    "o relatório é entregue em até 2 dias úteis após a visita."
+    "o levantamento é finalizado no aplicativo no dia da visita, e o PDF assinado é entregue em até 2 dias úteis."
    ]
   ]
  },
  "before": {
   "title": "Antes da visita",
   "paras": [
-   "O supervisor parte para a visita com o formulário já preenchido com os dados de que a CGIS dispõe (kit) e, no local, confirma-os ou corrige-os. O trabalho de campo registra o que os sistemas não alcançam."
+   "O aplicativo já traz o cadastro de cada unidade: nome, tipo, município, endereço e, quando houver, horário e serviços divulgados no site. O que a CGIS obtém por contrato ou por sistema é lançado depois, na base, pelo código da unidade. O trabalho de campo registra o que só se vê no local."
   ],
   "items": [
    [
     "Lista de unidades do território",
-    "a CGIS entrega a cada supervisor a relação das unidades do seu território: CIRETRANs e SATs (Coordenadoria de Serviços Descentralizados - COOSD), postos de vistoria (extração de 27/07/2026, com 69 unidades em 40 municípios) e postos de identificação civil e de habilitação (a consolidar). A unidade encontrada no território e ausente da relação é registrada como \"unidade não listada\"."
+    "a CGIS indica a cada supervisor as unidades do seu território. A lista do aplicativo reúne as unidades divulgadas no site do DETRAN-RJ e as que constam nos contratos de atendimento. A unidade encontrada no território e ausente da lista é registrada pelo botão \"Unidade não listada\"."
    ],
    [
     "Município do Rio de Janeiro",
-    "as visitas são segmentadas pelas 5 Áreas de Planejamento - AP da Prefeitura do Rio de Janeiro: AP1 Centro; AP2 Zona Sul e Grande Tijuca; AP3 Zona Norte; AP4 Barra e Jacarepaguá; AP5 Zona Oeste."
+    "as visitas são organizadas por zona (Centro, Zona Sul, Zona Norte e Zona Oeste), conforme o cadastro."
    ],
    [
     "Demais municípios",
     "visitam-se, na mesma rodada, todas as unidades do DETRAN-RJ existentes no município, de modo a evidenciar sobreposições e lacunas de cobertura."
    ]
   ],
-  "kit_title": "Kit pré-preenchido pela CGIS",
-  "kit": [
+  "base_title": "Dados que a CGIS lança na base, depois da visita",
+  "base_itens": [
    [
-    "Código, nome, tipo, diretoria, vinculação, município, bairro, AP, região, endereço e telefone da unidade (1.01 a 1.09)",
+    "Diretoria responsável, CIRETRAN de vinculação, bairro, zona e região de governo (1.04 a 1.09)",
     "Cadastro da CGIS"
    ],
    [
-    "Servidores lotados, por vínculo, e chefia, com indicação de cargo ocupado no DETRAN-RJ pelo servidor cedido (4.01 a 4.03, coluna Lotados, e 4.12)",
+    "Teste do telefone da unidade (1.13)",
+    "Ligação feita pela CGIS, no mesmo padrão para todas as unidades"
+   ],
+   [
+    "Vínculo do imóvel e responsável pelo pagamento de água, luz, internet e limpeza (2.01 a 2.05)",
+    "Contratos, termos de cessão e área administrativa"
+   ],
+   [
+    "Servidores lotados, por vínculo (4.01 a 4.03)",
     "Extração mais recente de lotação da Coordenadoria de Gestão de Pessoas - CGP"
    ],
    [
-    "Postos contratados e empresa, por área de serviço: atendimento, recepção e orientação, vigilância e limpeza (4.04 a 4.06 e 4.21 a 4.25, coluna Lotados; 4.09 a 4.11 e 4.26 a 4.29)",
+    "Postos contratados, por área de serviço (4.21 a 4.25, 4.05 e 4.06)",
     "Gestores dos contratos"
    ],
    [
-    "Responsável pelo pagamento de água, luz, internet e limpeza (2.02 a 2.05) e área total do imóvel (2.07), quando houver",
-    "Área administrativa responsável pelas despesas e pelo cadastro dos imóveis"
-   ],
-   [
-    "Média mensal de processos dos últimos 3 meses e por dia útil (5.14)",
-    "Planilhas de produção mensal"
-   ],
-   [
-    "Serviços previstos na Carta de Serviços (5.01 a 5.07, coluna Na Carta?)",
+    "Serviços previstos na Carta de Serviços (5.01 a 5.07)",
     "Carta de Serviços ao Usuário do DETRAN-RJ"
    ],
    [
-    "População do município",
-    "Instituto Brasileiro de Geografia e Estatística - IBGE, estimativa mais recente"
+    "Vagas de agendamento por dia (5.09) e média de processos por dia útil (5.14)",
+    "Sistema de agendamento e planilhas de produção mensal"
    ],
    [
-    "Pedidos da unidade já registrados na CGIS (8.06 a 8.08)",
-    "Controle da CGIS"
-   ],
-   [
-    "Área de referência por baia (2.33), limite de vagas para unidade pequena sem dado de produção (Bloco 6) e lista de atividades privativas de servidor (4.20)",
-    "CGIS"
+    "Cores por dimensão (10.01 a 10.05)",
+    "Regra do Bloco 10, aplicada pela CGIS"
    ]
   ],
   "after": [
-   "Atualmente, a produção registrada no sistema abrange apenas os serviços de veículos. Nos postos de identificação civil, de habilitação e de vistoria, o item 5.14 fica registrado como \"sem dado\" até que a diretoria responsável forneça a informação.",
-   "Na falta de informação dos gestores dos contratos ou da área administrativa, a chefia a presta no local, e o registro é feito nas observações do bloco, com a marca \"informado pela chefia\"."
+   "Atualmente, a produção registrada no sistema abrange apenas os serviços de veículos. Nos postos de identificação civil, de habilitação e de vistoria, o item 5.14 fica registrado como \"sem dado\" até que a diretoria responsável forneça a informação."
   ],
   "items2": [
    [
     "Material",
-    "ordem de serviço impressa, crachá, celular com câmera e localização ativadas, trena (de preferência a laser) e relógio."
+    "ordem de serviço impressa, crachá e celular com o aplicativo instalado, câmera funcionando e bateria carregada. Não é preciso trena."
    ],
    [
     "Dia e hora",
-    "chegar antes da abertura, para a aferição A1 do Bloco 6; não avisar à unidade o dia exato, porque a fila do dia avisado não corresponde à fila habitual; evitar segunda-feira seguinte a feriado e véspera de feriado; se o dia for atípico (sistema fora do ar, chuva forte, greve de transporte), registrar no item 1.21. O teste do telefone (1.13) é feito em horário de funcionamento, sem identificação, como cidadão, com até 3 tentativas e sem menção à visita."
+    "não avisar à unidade o dia exato, porque a fila do dia avisado não corresponde à fila habitual; evitar segunda-feira seguinte a feriado e véspera de feriado; se o movimento do dia não for normal (sistema fora do ar, chuva forte, greve de transporte), registrar no item 1.21."
    ]
   ]
  },
@@ -129,32 +128,36 @@
   "title": "Como preencher",
   "items": [
    [
-    "Arquivo",
-    "o formulário é um arquivo PDF preenchível. No celular, deve ser aberto no aplicativo gratuito Adobe Acrobat Reader; no computador, em qualquer leitor de PDF. Cada campo tem lista de opções ou espaço para digitação."
+    "Como funciona",
+    "o levantamento é feito neste aplicativo, com ou sem internet. Tudo fica salvo no aparelho a cada alteração, e o envio à CGIS acontece sozinho quando houver conexão."
    ],
    [
-    "Um arquivo por unidade",
-    "salvar com o nome \"código da unidade, Levantamento, data\" (ex.: SAT-ITALVA Levantamento 2026-11-03) e enviar à CGIS com as fotos."
+    "Uma visita por unidade",
+    "escolha a unidade na lista. O aplicativo traz o que já está no cadastro e grava sozinho a data e as horas."
    ],
    [
-    "Campos do kit",
-    "vêm preenchidos pela CGIS; no local, apenas são confirmados ou corrigidos."
+    "Ordem sugerida",
+    "na chegada, conte a fila (Bloco 6) e faça as entrevistas (Bloco 7). Depois siga os demais blocos na ordem que for mais prática."
    ],
    [
     "Campo sem resposta",
-    "deixar em branco. Nenhum número é registrado sem base: a estimativa é identificada como tal no campo de observações do bloco (2.35, 3.27, 4.30, 5.22 ou 6.13), com o código do item."
+    "deixe em branco. Nenhum número é registrado sem base: o que for estimativa ou informado pela chefia vai nas observações do bloco."
    ],
    [
-    "Consolidação",
-    "cada campo tem código fixo, que corresponde a uma coluna na base da CGIS. Os PDFs entregues são lidos em lote, sem redigitação."
+    "Perguntas que aparecem e somem",
+    "algumas perguntas só aparecem conforme a resposta anterior. É assim mesmo."
    ],
    [
-    "Assinaturas",
-    "os itens 10.11 e 10.13 são assinados no próprio arquivo, pela função \"Preencher e assinar\" do Adobe Acrobat Reader, só no fim do preenchimento."
+    "Fotos",
+    "são tiradas pelo próprio aplicativo, que pede para cobrir os rostos antes de finalizar."
    ],
    [
-    "Manual",
-    "o passo a passo do preenchimento no celular está no Manual de Preenchimento do Levantamento da Unidade."
+    "No fim",
+    "toque em \"Revisar e finalizar\". O aplicativo gera o PDF: imprima, colha as assinaturas à mão e entregue à CGIS."
+   ],
+   [
+    "Código de acesso",
+    "é pessoal. Pode ser digitado em maiúsculas ou minúsculas, com ou sem hífen."
    ]
   ]
  },
@@ -162,24 +165,14 @@
   {
    "id": "1",
    "title": "Bloco 1. Identificação da unidade",
-   "lead": "Cada campo tem código fixo, igual em todas as unidades.",
+   "lead": "Os dados do cadastro aparecem no quadro acima. Confirme o que está certo e corrija o que mudou.",
    "groups": [
     {
      "type": "fields",
      "rows": [
       {
-       "code": "1.01",
-       "label": "Código da unidade (CGIS)",
-       "kind": "txt"
-      },
-      {
-       "code": "1.02",
-       "label": "Nome da unidade",
-       "kind": "txt"
-      },
-      {
        "code": "1.03",
-       "label": "Tipo",
+       "label": "Tipo de unidade",
        "kind": "sel",
        "opts": [
         "CIRETRAN",
@@ -188,91 +181,35 @@
         "Posto de habilitação",
         "Posto de vistoria ou USV",
         "Posto em shopping",
+        "Rio Poupa Tempo",
         "Sede",
         "Outro"
-       ]
-      },
-      {
-       "code": "1.04",
-       "label": "Diretoria responsável pelo serviço",
-       "kind": "txt"
-      },
-      {
-       "code": "1.05",
-       "label": "CIRETRAN de vinculação (só SAT)",
-       "kind": "txt"
-      },
-      {
-       "code": "1.06",
-       "label": "Município",
-       "kind": "txt"
-      },
-      {
-       "code": "1.07",
-       "label": "Bairro",
-       "kind": "txt"
-      },
-      {
-       "code": "1.08",
-       "label": "Área de Planejamento (só município do Rio)",
-       "kind": "sel",
-       "opts": [
-        "Não se aplica",
-        "AP1 Centro",
-        "AP2 Zona Sul e Grande Tijuca",
-        "AP3 Zona Norte",
-        "AP4 Barra e Jacarepaguá",
-        "AP5 Zona Oeste"
-       ]
-      },
-      {
-       "code": "1.09",
-       "label": "Região de governo do Estado",
-       "kind": "sel",
-       "opts": [
-        "Metropolitana",
-        "Noroeste Fluminense",
-        "Norte Fluminense",
-        "Serrana",
-        "Baixadas Litorâneas",
-        "Médio Paraíba",
-        "Centro-Sul Fluminense",
-        "Costa Verde"
-       ]
+       ],
+       "auto": "unidade_tipo"
       },
       {
        "code": "1.10",
-       "label": "Endereço do kit confere?",
+       "label": "O endereço que aparece no quadro acima está certo?",
        "kind": "sel",
        "opts": [
-        "Confere",
-        "Corrigido"
+        "Sim",
+        "Não"
        ]
       },
       {
        "code": "1.11",
-       "label": "Endereço corrigido, com Código de Endereçamento Postal - CEP",
-       "kind": "txt"
-      },
-      {
-       "code": "1.12",
-       "label": "Coordenadas (pelo celular, na porta)",
-       "kind": "txt"
-      },
-      {
-       "code": "1.13",
-       "label": "Telefone da unidade atende? (ligação sem identificação, até 3 tentativas)",
-       "kind": "sel",
-       "opts": [
-        "Sim",
-        "Não",
-        "Número errado ou inexistente",
-        "Sem telefone"
-       ]
+       "label": "Endereço correto, com CEP",
+       "kind": "txt",
+       "when": {
+        "key": "c1_10",
+        "in": [
+         "Não"
+        ]
+       }
       },
       {
        "code": "1.14",
-       "label": "Situação",
+       "label": "Situação da unidade hoje",
        "kind": "sel",
        "opts": [
         "Em funcionamento",
@@ -282,37 +219,28 @@
       },
       {
        "code": "1.15",
-       "label": "Horário afixado na porta",
-       "kind": "txt"
+       "label": "Há horário de atendimento afixado na porta?",
+       "kind": "sel",
+       "opts": [
+        "Sim",
+        "Não"
+       ]
       },
       {
-       "code": "1.16",
-       "label": "Hora real de abertura observada",
-       "kind": "time"
+       "code": "1.24",
+       "label": "Qual horário está na porta?",
+       "kind": "txt",
+       "hint": "Exemplo: 8h às 17h.",
+       "when": {
+        "key": "c1_15",
+        "in": [
+         "Sim"
+        ]
+       }
       },
       {
        "code": "1.17",
-       "label": "Outras unidades do DETRAN-RJ no mesmo imóvel",
-       "kind": "txt"
-      },
-      {
-       "code": "1.18",
-       "label": "Data da visita (dd/mm/aaaa)",
-       "kind": "date"
-      },
-      {
-       "code": "1.19",
-       "label": "Hora de chegada",
-       "kind": "time"
-      },
-      {
-       "code": "1.20",
-       "label": "Hora de saída",
-       "kind": "time"
-      },
-      {
-       "code": "1.21",
-       "label": "Dia atípico?",
+       "label": "Há outra unidade do DETRAN-RJ no mesmo imóvel?",
        "kind": "sel",
        "opts": [
         "Não",
@@ -320,14 +248,87 @@
        ]
       },
       {
+       "code": "1.25",
+       "label": "Qual unidade?",
+       "kind": "txt",
+       "when": {
+        "key": "c1_17",
+        "in": [
+         "Sim"
+        ]
+       }
+      },
+      {
+       "code": "1.21",
+       "label": "O movimento de hoje foi normal?",
+       "kind": "sel",
+       "opts": [
+        "Sim",
+        "Não"
+       ],
+       "hint": "Responda \"Não\" se algo mudou o movimento: sistema fora do ar, greve, chuva forte, véspera de feriado."
+      },
+      {
        "code": "1.22",
-       "label": "Motivo do dia atípico",
-       "kind": "txt"
+       "label": "O que houve de diferente hoje?",
+       "kind": "txt",
+       "when": {
+        "key": "c1_21",
+        "in": [
+         "Não"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "type": "fields",
+     "subtitle": "Preenchido pelo aplicativo",
+     "recolhido": true,
+     "nota": "Confira e corrija só se estiver errado.",
+     "rows": [
+      {
+       "code": "1.01",
+       "label": "Código da unidade",
+       "kind": "txt",
+       "auto": "unidade_id"
+      },
+      {
+       "code": "1.02",
+       "label": "Nome da unidade",
+       "kind": "txt",
+       "auto": "unidade_nome"
+      },
+      {
+       "code": "1.06",
+       "label": "Município",
+       "kind": "txt",
+       "auto": "unidade_municipio"
+      },
+      {
+       "code": "1.18",
+       "label": "Data da visita",
+       "kind": "date",
+       "auto": "hoje"
+      },
+      {
+       "code": "1.19",
+       "label": "Hora de chegada",
+       "kind": "time",
+       "auto": "agora"
+      },
+      {
+       "code": "1.20",
+       "label": "Hora de saída",
+       "kind": "time",
+       "auto": "agora_fim",
+       "hint": "O aplicativo grava ao finalizar."
       },
       {
        "code": "1.23",
-       "label": "Supervisor ou AVA: nome e Identidade Funcional - ID",
-       "kind": "txt"
+       "label": "Quem levantou: nome e ID funcional",
+       "kind": "txt",
+       "auto": "usuario"
       }
      ]
     }
@@ -336,81 +337,22 @@
   {
    "id": "2",
    "title": "Bloco 2. Imóvel e instalações",
-   "lead": "O bloco não constitui vistoria predial: registra o estado do imóvel e o espaço disponível. O item 2.33 é prioritário neste momento, porque indica onde podem ser acomodados os servidores que deixarão os postos de vistoria com a entrada em operação das Empresas Credenciadas de Vistoria - ECVs. Escala: Bom (funciona e está conservado), Regular (funciona com defeito ou desgaste), Ruim (não funciona, ou oferece risco ou constrangimento ao público), Inexistente. Para o 2.33, cada baia nova ocupa a área de referência fixada pela CGIS no kit, já incluída a circulação.",
+   "lead": "Registre o estado do imóvel pelo que se vê. Não é vistoria predial, e nada precisa ser medido com trena. Escala: Bom (funciona e está conservado), Regular (funciona com defeito ou desgaste), Ruim (não funciona, ou oferece risco ou constrangimento ao público), Inexistente. O item 2.33 é prioritário: indica onde podem ser acomodados os servidores que deixarão os postos de vistoria com a entrada em operação das Empresas Credenciadas de Vistoria - ECVs.",
    "groups": [
     {
      "type": "fields",
      "rows": [
       {
-       "code": "2.01",
-       "label": "Vínculo do imóvel (informado pela chefia)",
-       "kind": "sel",
-       "opts": [
-        "Próprio do DETRAN-RJ",
-        "Do Estado",
-        "Cedido pela prefeitura",
-        "Alugado",
-        "Outro",
-        "Não sabe"
-       ]
-      },
-      {
-       "code": "2.02",
-       "label": "Quem paga a água (kit)",
-       "kind": "sel",
-       "opts": [
-        "DETRAN-RJ",
-        "Prefeitura",
-        "Shopping ou condomínio (incluído na cessão ou aluguel)",
-        "Outro",
-        "Não sabe"
-       ]
-      },
-      {
-       "code": "2.03",
-       "label": "Quem paga a luz (kit)",
-       "kind": "sel",
-       "opts": [
-        "DETRAN-RJ",
-        "Prefeitura",
-        "Shopping ou condomínio (incluído na cessão ou aluguel)",
-        "Outro",
-        "Não sabe"
-       ]
-      },
-      {
-       "code": "2.04",
-       "label": "Quem paga a internet (kit)",
-       "kind": "sel",
-       "opts": [
-        "DETRAN-RJ",
-        "Prefeitura",
-        "Shopping ou condomínio (incluído na cessão ou aluguel)",
-        "Outro",
-        "Não sabe"
-       ]
-      },
-      {
-       "code": "2.05",
-       "label": "Quem paga a limpeza (kit)",
-       "kind": "sel",
-       "opts": [
-        "DETRAN-RJ",
-        "Prefeitura",
-        "Shopping ou condomínio (incluído na cessão ou aluguel)",
-        "Outro",
-        "Não sabe"
-       ]
-      },
-      {
        "code": "2.06",
-       "label": "Área de atendimento ao público (m², medida ou estimada)",
-       "kind": "num"
+       "label": "Área de atendimento ao público, em m² (estimativa)",
+       "kind": "num",
+       "hint": "Conte passos largos de largura e de comprimento e multiplique. Um passo largo tem cerca de 1 metro."
       },
       {
        "code": "2.07",
-       "label": "Área total da unidade (m², do kit, medida ou estimada)",
-       "kind": "num"
+       "label": "Área total da unidade, em m² (estimativa)",
+       "kind": "num",
+       "hint": "Inclui salas internas, arquivo e copa."
       },
       {
        "code": "2.08",
@@ -499,7 +441,14 @@
        "opts": [
         "Sim",
         "Não"
-       ]
+       ],
+       "when": {
+        "key": "c2_15",
+        "in": [
+         "Sim",
+         "Usa banheiro do imóvel ou do shopping"
+        ]
+       }
       },
       {
        "code": "2.17",
@@ -508,7 +457,14 @@
        "opts": [
         "Sim",
         "Não"
-       ]
+       ],
+       "when": {
+        "key": "c2_15",
+        "in": [
+         "Sim",
+         "Usa banheiro do imóvel ou do shopping"
+        ]
+       }
       },
       {
        "code": "2.18",
@@ -560,15 +516,6 @@
        ]
       },
       {
-       "code": "2.23",
-       "label": "Porta com 80 cm livres ou mais",
-       "kind": "sel",
-       "opts": [
-        "Sim",
-        "Não"
-       ]
-      },
-      {
        "code": "2.24",
        "label": "Assento preferencial",
        "kind": "sel",
@@ -606,7 +553,7 @@
       },
       {
        "code": "2.28",
-       "label": "Extintor com validade",
+       "label": "Há extintor dentro da validade?",
        "kind": "sel",
        "opts": [
         "Sim",
@@ -643,21 +590,39 @@
       {
        "code": "2.32",
        "label": "O que se acumula e quanto (estimativa)",
-       "kind": "long"
+       "kind": "long",
+       "when": {
+        "any": [
+         {
+          "key": "c2_30",
+          "in": [
+           "Sim"
+          ]
+         },
+         {
+          "key": "c2_31",
+          "in": [
+           "Sim"
+          ]
+         }
+        ]
+       }
       },
       {
        "code": "2.33",
-       "label": "Novas baias que cabem no espaço livre (quantidade, pela área de referência do kit)",
-       "kind": "num"
-      },
-      {
-       "code": "2.34",
-       "label": "Área livre para novas baias (m², medida com trena)",
-       "kind": "num"
+       "label": "Quantos guichês novos cabem no espaço livre, na sua estimativa?",
+       "kind": "sel",
+       "opts": [
+        "Nenhum",
+        "1 a 2",
+        "3 a 5",
+        "6 a 10",
+        "Mais de 10"
+       ]
       },
       {
        "code": "2.35",
-       "label": "Observações do bloco (estimativas, dados informados pela chefia e o que as opções não registram, com o código do item)",
+       "label": "Observações",
        "kind": "long"
       }
      ]
@@ -668,20 +633,32 @@
   {
    "id": "3",
    "title": "Bloco 3. Mobiliário, equipamentos e Tecnologia da Informação - TI",
-   "lead": "Conta-se cada item, separando o que funciona (no mobiliário, o que está em condição de uso) do que não funciona. Trata-se de contagem para planejamento de aquisições e remanejamento, e não de inventário patrimonial: não se anota número de tombamento.",
+   "lead": "Conte cada item, separando o que funciona (no mobiliário, o que está em condição de uso) do que não funciona. O total o aplicativo soma. É contagem para planejar compra e remanejamento, e não inventário patrimonial: não se anota número de tombamento.",
    "groups": [
     {
      "type": "grid",
      "cols": [
       "Total",
-      "Funciona ou em condição de uso",
-      "Não funciona ou sem condição de uso"
+      "Funciona",
+      "Não funciona"
      ],
+     "ids": [
+      1,
+      2,
+      3
+     ],
+     "soma": {
+      "col": 1,
+      "de": [
+       2,
+       3
+      ]
+     },
      "cell": "num",
      "rows": [
       {
        "code": "3.01",
-       "label": "Guichês ou baias de atendimento",
+       "label": "Guichês de atendimento",
        "kind": "txt"
       },
       {
@@ -783,26 +760,25 @@
        "code": "3.19",
        "label": "Câmeras de segurança",
        "kind": "txt"
-      },
-      {
-       "code": "3.20",
-       "label": "Mobiliário fora do padrão ou trazido de fora do DETRAN-RJ",
-       "kind": "txt"
       }
      ]
     },
     {
      "type": "fields",
-     "subtitle": "Conectividade e insumos",
+     "subtitle": "Sistema e insumos",
      "rows": [
       {
-       "code": "3.21",
-       "label": "Internet: operadora e tipo de link (informado pela chefia)",
-       "kind": "txt"
+       "code": "3.20",
+       "label": "Há móveis fora do padrão ou trazidos de fora do DETRAN-RJ?",
+       "kind": "sel",
+       "opts": [
+        "Não",
+        "Sim"
+       ]
       },
       {
        "code": "3.22",
-       "label": "Sistema fora do ar ou lento durante a visita",
+       "label": "O sistema ficou fora do ar ou lento durante a visita?",
        "kind": "sel",
        "opts": [
         "Não",
@@ -812,7 +788,13 @@
       {
        "code": "3.23",
        "label": "Qual sistema e por quanto tempo",
-       "kind": "txt"
+       "kind": "txt",
+       "when": {
+        "key": "c3_22",
+        "in": [
+         "Sim"
+        ]
+       }
       },
       {
        "code": "3.24",
@@ -826,7 +808,7 @@
       },
       {
        "code": "3.25",
-       "label": "Falta de papel, toner ou formulário nos últimos 30 dias",
+       "label": "Faltou papel, toner ou formulário nos últimos 30 dias?",
        "kind": "sel",
        "opts": [
         "Não",
@@ -834,13 +816,8 @@
        ]
       },
       {
-       "code": "3.26",
-       "label": "Chamado técnico de TI aberto e sem solução: desde quando e número",
-       "kind": "txt"
-      },
-      {
        "code": "3.27",
-       "label": "Observações sobre mobiliário e equipamentos",
+       "label": "Observações",
        "kind": "long"
       }
      ]
@@ -850,15 +827,18 @@
   {
    "id": "4",
    "title": "Bloco 4. Pessoas",
-   "lead": "O dado central é a diferença entre lotados e presentes: quem a unidade tem de fato no dia, e não no papel. As pessoas são registradas apenas em número, sem nome. A coluna Lotados vem do kit: para servidores, da lotação informada pela CGP; para prestadores, vigilância e limpeza, dos postos contratados informados pelos gestores dos contratos. No local, a coluna só é corrigida mediante informação da chefia, registrada nas observações do bloco (4.30).",
+   "lead": "Conte quem está na unidade hoje, só em número, sem nome. \"Presentes\" é quem veio trabalhar. \"Atendendo\" é quem está no guichê, atendendo o público, no momento da contagem. O quadro de pessoal no papel (lotação e postos contratados) a CGIS lança depois, na base.",
    "groups": [
     {
      "type": "grid",
+     "subtitle": "Quem atende",
      "cols": [
-      "Lotados ou postos contratados (kit)",
       "Presentes",
-      "Atendendo",
-      "Ausentes"
+      "Atendendo"
+     ],
+     "ids": [
+      2,
+      3
      ],
      "cell": "num",
      "rows": [
@@ -878,28 +858,23 @@
        "kind": "txt"
       },
       {
-       "code": "4.04",
-       "label": "Prestadores de atendimento (soma de 4.21 a 4.24, exceto recepção)",
-       "kind": "txt"
-      },
-      {
        "code": "4.21",
-       "label": "Prestadores de atendimento: veículos",
+       "label": "Prestadores de veículos (guichê)",
        "kind": "txt"
       },
       {
        "code": "4.22",
-       "label": "Prestadores de atendimento: habilitação",
+       "label": "Prestadores de habilitação",
        "kind": "txt"
       },
       {
        "code": "4.23",
-       "label": "Prestadores de atendimento: identificação civil",
+       "label": "Prestadores de identificação civil",
        "kind": "txt"
       },
       {
        "code": "4.24",
-       "label": "Prestadores de atendimento: vistoria",
+       "label": "Prestadores de vistoria (quem examina o veículo)",
        "kind": "txt"
       },
       {
@@ -907,6 +882,30 @@
        "label": "Prestadores de recepção e orientação",
        "kind": "txt"
       },
+      {
+       "code": "4.04",
+       "label": "Total de prestadores de atendimento (soma de 4.21 a 4.24)",
+       "kind": "txt",
+       "soma_de": [
+        "4.21",
+        "4.22",
+        "4.23",
+        "4.24"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "grid",
+     "subtitle": "Apoio",
+     "cols": [
+      "Presentes"
+     ],
+     "ids": [
+      2
+     ],
+     "cell": "num",
+     "rows": [
       {
        "code": "4.05",
        "label": "Vigilância",
@@ -931,42 +930,157 @@
     },
     {
      "type": "fields",
+     "subtitle": "Empresas dos prestadores",
+     "nota": "Só aparecem as áreas em que há alguém presente.",
      "rows": [
       {
        "code": "4.09",
-       "label": "Empresa dos prestadores de atendimento: veículos (kit)",
-       "kind": "txt"
+       "label": "Empresa dos prestadores de veículos",
+       "kind": "multi",
+       "opts_ref": "empresas",
+       "extra": [
+        "Outra (escrever abaixo)",
+        "Não sabe"
+       ],
+       "hint": "Marque uma ou mais.",
+       "when": {
+        "key": "c4_21_c2",
+        "gt": 0
+       }
       },
       {
        "code": "4.26",
-       "label": "Empresa dos prestadores de atendimento: habilitação (kit)",
-       "kind": "txt"
+       "label": "Empresa dos prestadores de habilitação",
+       "kind": "multi",
+       "opts_ref": "empresas",
+       "extra": [
+        "Outra (escrever abaixo)",
+        "Não sabe"
+       ],
+       "hint": "Marque uma ou mais.",
+       "when": {
+        "key": "c4_22_c2",
+        "gt": 0
+       }
       },
       {
        "code": "4.27",
-       "label": "Empresa dos prestadores de atendimento: identificação civil (kit)",
-       "kind": "txt"
+       "label": "Empresa dos prestadores de identificação civil",
+       "kind": "multi",
+       "opts_ref": "empresas",
+       "extra": [
+        "Outra (escrever abaixo)",
+        "Não sabe"
+       ],
+       "hint": "Marque uma ou mais.",
+       "when": {
+        "key": "c4_23_c2",
+        "gt": 0
+       }
       },
       {
        "code": "4.28",
-       "label": "Empresa dos prestadores de atendimento: vistoria (kit)",
-       "kind": "txt"
+       "label": "Empresa dos prestadores de vistoria",
+       "kind": "multi",
+       "opts_ref": "empresas",
+       "extra": [
+        "Outra (escrever abaixo)",
+        "Não sabe"
+       ],
+       "hint": "Marque uma ou mais.",
+       "when": {
+        "key": "c4_24_c2",
+        "gt": 0
+       }
       },
       {
        "code": "4.29",
-       "label": "Empresa dos prestadores de recepção e orientação (kit)",
-       "kind": "txt"
+       "label": "Empresa dos prestadores de recepção e orientação",
+       "kind": "multi",
+       "opts_ref": "empresas",
+       "extra": [
+        "Outra (escrever abaixo)",
+        "Não sabe"
+       ],
+       "hint": "Marque uma ou mais.",
+       "when": {
+        "key": "c4_25_c2",
+        "gt": 0
+       }
       },
       {
        "code": "4.10",
-       "label": "Empresa de vigilância (kit)",
-       "kind": "txt"
+       "label": "Empresa de vigilância",
+       "kind": "multi",
+       "opts_ref": "empresas",
+       "extra": [
+        "Outra (escrever abaixo)",
+        "Não sabe"
+       ],
+       "hint": "Marque uma ou mais.",
+       "when": {
+        "key": "c4_05_c2",
+        "gt": 0
+       }
       },
       {
        "code": "4.11",
-       "label": "Empresa de limpeza (kit)",
-       "kind": "txt"
+       "label": "Empresa de limpeza",
+       "kind": "multi",
+       "opts_ref": "empresas",
+       "extra": [
+        "Outra (escrever abaixo)",
+        "Não sabe"
+       ],
+       "hint": "Marque uma ou mais.",
+       "when": {
+        "key": "c4_06_c2",
+        "gt": 0
+       }
       },
+      {
+       "code": "4.31",
+       "label": "Empresa que não está na lista: nome e serviço",
+       "kind": "txt",
+       "when": {
+        "any": [
+         {
+          "key": "c4_09",
+          "has": "Outra (escrever abaixo)"
+         },
+         {
+          "key": "c4_26",
+          "has": "Outra (escrever abaixo)"
+         },
+         {
+          "key": "c4_27",
+          "has": "Outra (escrever abaixo)"
+         },
+         {
+          "key": "c4_28",
+          "has": "Outra (escrever abaixo)"
+         },
+         {
+          "key": "c4_29",
+          "has": "Outra (escrever abaixo)"
+         },
+         {
+          "key": "c4_10",
+          "has": "Outra (escrever abaixo)"
+         },
+         {
+          "key": "c4_11",
+          "has": "Outra (escrever abaixo)"
+         }
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "type": "fields",
+     "subtitle": "Chefia e cobertura",
+     "rows": [
       {
        "code": "4.12",
        "label": "Chefia da unidade",
@@ -980,56 +1094,24 @@
        ]
       },
       {
-       "code": "4.13",
-       "label": "Presentes por função: chefe",
-       "kind": "num"
-      },
-      {
-       "code": "4.14",
-       "label": "Presentes por função: atendentes",
-       "kind": "num"
-      },
-      {
        "code": "4.15",
-       "label": "Presentes por função: supervisor de prestador",
-       "kind": "num"
-      },
-      {
-       "code": "4.16",
-       "label": "Presentes por função: apoio administrativo",
-       "kind": "num"
-      },
-      {
-       "code": "4.17",
-       "label": "Presentes por função: outros",
-       "kind": "num"
+       "label": "Supervisores das empresas prestadoras presentes (quantidade)",
+       "kind": "num",
+       "hint": "Se não houver, digite 0."
       },
       {
        "code": "4.18",
-       "label": "Horário dos prestadores cobre o horário de atendimento?",
+       "label": "O horário dos prestadores cobre todo o horário de atendimento?",
        "kind": "sel",
        "opts": [
         "Sim",
-        "Não"
-       ]
-      },
-      {
-       "code": "4.19",
-       "label": "Se não cobre, faixa descoberta (de __h a __h)",
-       "kind": "txt"
-      },
-      {
-       "code": "4.20",
-       "label": "Atividade privativa de servidor feita por prestador ou estagiário (conforme lista do kit)",
-       "kind": "sel",
-       "opts": [
-        "Não observado",
-        "Observado (descrever em 10.07)"
+        "Não",
+        "Não há prestador na unidade"
        ]
       },
       {
        "code": "4.30",
-       "label": "Observações do bloco (estimativas, dados informados pela chefia e o que as opções não registram, com o código do item)",
+       "label": "Observações",
        "kind": "long"
       }
      ]
@@ -1040,7 +1122,7 @@
   {
    "id": "5",
    "title": "Bloco 5. Serviços e capacidade",
-   "lead": "O bloco registra os serviços efetivamente oferecidos pela unidade, em comparação com a Carta de Serviços, a parcela da capacidade instalada sem uso e os cidadãos que saem sem atendimento por falta de serviço.",
+   "lead": "Registre o que a unidade oferece de fato hoje. A comparação com a Carta de Serviços e com o site é feita depois pela CGIS, na base.",
    "groups": [
     {
      "type": "selgrid",
@@ -1060,14 +1142,21 @@
         "Não",
         "Misto"
        ]
-      ],
-      [
-       "Na Carta? (kit)",
-       [
-        "Sim",
-        "Não"
-       ]
       ]
+     ],
+     "ids": [
+      1,
+      2
+     ],
+     "dep": [
+      {
+       "col": 2,
+       "de": 1,
+       "in": [
+        "Sim",
+        "Parcial"
+       ]
+      }
      ],
      "rows": [
       {
@@ -1111,68 +1200,35 @@
      "type": "fields",
      "rows": [
       {
-       "code": "5.08",
-       "label": "Serviço da Carta que a unidade não presta atualmente, e o motivo (informado pela chefia)",
-       "kind": "long"
-      },
-      {
-       "code": "5.09",
-       "label": "Vagas de agendamento por dia (informado pela chefia)",
-       "kind": "num"
-      },
-      {
-       "code": "5.10",
-       "label": "Baias existentes",
-       "kind": "num"
-      },
-      {
-       "code": "5.11",
-       "label": "Baias ativas na visita",
-       "kind": "num"
-      },
-      {
-       "code": "5.12",
-       "label": "Baias paradas por falta de servidor",
-       "kind": "num"
-      },
-      {
-       "code": "5.13",
-       "label": "Baias paradas por equipamento",
-       "kind": "num"
-      },
-      {
-       "code": "5.20",
-       "label": "Baias paradas por sistema",
-       "kind": "num"
-      },
-      {
-       "code": "5.14",
-       "label": "Média de processos por dia útil (sistema, kit)",
-       "kind": "num"
-      },
-      {
-       "code": "5.15",
-       "label": "Atendimentos concluídos até a saída",
-       "kind": "num"
-      },
-      {
-       "code": "5.21",
-       "label": "Senhas emitidas até a saída",
-       "kind": "num"
+       "code": "5.23",
+       "label": "Há guichê parado agora? Motivo principal",
+       "kind": "sel",
+       "opts": [
+        "Não há guichê parado",
+        "Falta de pessoal",
+        "Equipamento",
+        "Sistema",
+        "Outro motivo"
+       ]
       },
       {
        "code": "5.16",
-       "label": "Cidadãos encaminhados a outra unidade durante a visita",
-       "kind": "num"
+       "label": "Cidadãos encaminhados a outra unidade durante a visita (quantidade)",
+       "kind": "num",
+       "hint": "Se não houve, digite 0."
       },
       {
        "code": "5.17",
        "label": "Para qual serviço e para qual unidade",
-       "kind": "txt"
+       "kind": "txt",
+       "when": {
+        "key": "c5_16",
+        "gt": 0
+       }
       },
       {
        "code": "5.18",
-       "label": "Serviço recusado por limite de senhas ou vagas no dia",
+       "label": "Algum serviço foi recusado hoje por limite de senhas ou de vagas?",
        "kind": "sel",
        "opts": [
         "Não",
@@ -1181,12 +1237,18 @@
       },
       {
        "code": "5.19",
-       "label": "Se sim, a partir de que horário",
-       "kind": "txt"
+       "label": "A partir de que horário",
+       "kind": "time",
+       "when": {
+        "key": "c5_18",
+        "in": [
+         "Sim"
+        ]
+       }
       },
       {
        "code": "5.22",
-       "label": "Observações do bloco (estimativas, dados informados pela chefia e o que as opções não registram, com o código do item)",
+       "label": "Observações",
        "kind": "long"
       }
      ]
@@ -1196,25 +1258,12 @@
   {
    "id": "6",
    "title": "Bloco 6. Fila e espera",
-   "lead": [
-    "A fila é medida presencialmente, por observação direta de quem levanta, em três horários fixos, iguais em todas as unidades: A1 na abertura; A2 às 11h; A3 às 15h ou 1 hora antes do encerramento, o que ocorrer primeiro. Registra-se a hora real de cada aferição (6.01). A unidade com média inferior a 5 processos por dia útil (kit) realiza apenas A1 e A2; nos postos sem dado de produção, adota-se o mesmo critério com base nas vagas de agendamento por dia (5.09), conforme o limite fixado pela CGIS no kit.",
-    "No dia com mais de uma unidade, a A1 é feita apenas na primeira; nas demais, fazem-se duas aferições, uma na chegada e outra na saída, registradas nas colunas A2 e A3 com a hora exata, e a base as sinaliza como fora do horário padrão."
-   ],
+   "lead": "A fila é contada uma vez, logo na chegada, antes de qualquer outra coisa. O aplicativo grava a hora da contagem. A espera é calculada pelo aplicativo a partir da hora de chegada que cada entrevistado informar no Bloco 7.",
    "groups": [
     {
-     "type": "grid",
-     "cols": [
-      "A1 abertura",
-      "A2 11h",
-      "A3 15h"
-     ],
-     "cell": "txt",
+     "type": "fields",
+     "subtitle": "Contagem na chegada",
      "rows": [
-      {
-       "code": "6.01",
-       "label": "Hora exata da aferição",
-       "kind": "time"
-      },
       {
        "code": "6.02",
        "label": "Pessoas aguardando dentro da unidade",
@@ -1237,24 +1286,21 @@
       },
       {
        "code": "6.06",
-       "label": "Guichês atendendo naquele momento",
+       "label": "Guichês atendendo neste momento",
        "kind": "num"
       },
       {
-       "code": "6.07",
-       "label": "Senha em chamada / última senha emitida",
-       "kind": "txt"
-      },
-      {
-       "code": "6.08",
-       "label": "Maior espera entre os entrevistados (min; calculada pela CGIS a partir de 6.01 e 7.01, contada da abertura)",
-       "kind": "txt",
-       "cgis": true
+       "code": "6.01",
+       "label": "Hora da contagem",
+       "kind": "time",
+       "auto": "agora_primeira_contagem",
+       "hint": "O aplicativo grava quando o primeiro número é digitado."
       }
      ]
     },
     {
      "type": "fields",
+     "subtitle": "Organização da fila",
      "rows": [
       {
        "code": "6.09",
@@ -1279,7 +1325,7 @@
       },
       {
        "code": "6.11",
-       "label": "Desistências observadas (pessoas que foram embora sem atendimento)",
+       "label": "Pessoas que foram embora sem atendimento durante a visita (quantidade observada)",
        "kind": "num"
       },
       {
@@ -1293,13 +1339,38 @@
       },
       {
        "code": "6.13",
-       "label": "Observações do bloco (estimativas, dados informados pela chefia e o que as opções não registram, com o código do item)",
+       "label": "Observações",
        "kind": "long"
+      }
+     ]
+    },
+    {
+     "type": "fields",
+     "subtitle": "Espera, calculada pelo aplicativo",
+     "nota": "Os números aparecem conforme as entrevistas do Bloco 7 são feitas.",
+     "rows": [
+      {
+       "code": "6.14",
+       "label": "Espera média na fila, da chegada da pessoa até a entrevista (minutos)",
+       "kind": "num",
+       "calc": "espera_media_fila"
+      },
+      {
+       "code": "6.08",
+       "label": "Maior espera na fila, da chegada da pessoa até a entrevista (minutos)",
+       "kind": "num",
+       "calc": "espera_maior_fila"
+      },
+      {
+       "code": "6.15",
+       "label": "Tempo médio da chegada à saída, nas entrevistas de saída (minutos)",
+       "kind": "num",
+       "calc": "permanencia_media_saida"
       }
      ]
     }
    ],
-   "tail": "Com esses números, a CGIS calcula a espera máxima (contada a partir da hora de abertura), as pessoas por guichê ativo e o horário de pico. Quem visita não precisa calcular."
+   "tail": "Com esses números e com as entrevistas, o aplicativo calcula a espera, e a CGIS calcula as pessoas por guichê ativo. Quem visita não precisa calcular."
   },
   {
    "id": "7",
@@ -1311,11 +1382,11 @@
      "items": [
       [
        "Na fila",
-       "em cada aferição, até 5 pessoas, ou todas, se houver menos. A escolha é feita pela posição na fila (a primeira, a do meio e a última e, havendo mais pessoas, a que está entre a primeira e a do meio e a que está entre a do meio e a última), e não pela disposição aparente em falar."
+       "logo depois da contagem, até 10 pessoas, ou todas, se houver menos. Procure chegar a pelo menos 5. A escolha é feita pela posição na fila (a primeira, a do meio, a última e as que ficam entre elas), e não pela disposição aparente em falar."
       ],
       [
        "Na saída",
-       "3 pessoas ao longo do dia."
+       "3 pessoas, ao longo da visita."
       ],
       [
        "Abertura, sempre com as mesmas palavras",
@@ -1326,24 +1397,20 @@
     {
      "type": "questions",
      "subtitle": "Perguntas na fila",
-     "intro": "Aplicadas a até 15 pessoas na fila (E01 a E15), com registro da aferição correspondente (A1, A2 ou A3).",
-     "n": 15,
+     "intro": "Até 10 pessoas na fila (E01 a E10). O aplicativo grava a hora de cada entrevista.",
+     "n": 10,
      "prefix": "E",
-     "extra": [
-      [
-       "Aferição",
-       "sel",
-       [
-        "A1",
-        "A2",
-        "A3"
-       ]
-      ]
-     ],
      "rows": [
       {
+       "code": "7.17",
+       "label": "Hora da entrevista",
+       "kind": "time",
+       "auto": "agora",
+       "hint": "O aplicativo grava sozinho."
+      },
+      {
        "code": "7.01",
-       "label": "A que horas o(a) senhor(a) chegou?",
+       "label": "A que horas o(a) senhor(a) chegou à unidade?",
        "kind": "time"
       },
       {
@@ -1387,19 +1454,24 @@
       },
       {
        "code": "7.05",
-       "label": "De onde veio? (município; no Rio, bairro)",
-       "kind": "txt"
+       "label": "De que município veio?",
+       "kind": "sel",
+       "opts_ref": "municipios",
+       "primeiro": "unidade_municipio",
+       "extra": [
+        "Outro estado"
+       ]
       },
       {
-       "code": "7.06",
-       "label": "Por que escolheu esta unidade?",
-       "kind": "sel",
-       "opts": [
-        "Perto de casa ou trabalho",
-        "Outra unidade não faz",
-        "Indicação",
-        "Outro"
-       ]
+       "code": "7.16",
+       "label": "No Rio, de que bairro?",
+       "kind": "txt",
+       "when": {
+        "key": "c7_05",
+        "in": [
+         "Rio de Janeiro"
+        ]
+       }
       },
       {
        "code": "7.07",
@@ -1421,34 +1493,27 @@
         "Não",
         "Em parte"
        ]
-      },
-      {
-       "code": "7.09",
-       "label": "Tem atendimento prioritário por lei?",
-       "kind": "sel",
-       "opts": [
-        "Sim",
-        "Não"
-       ]
       }
      ]
     },
     {
      "type": "questions",
      "subtitle": "Perguntas na saída",
-     "intro": "Aplicadas a 3 pessoas na saída (S01 a S03).",
+     "intro": "A 3 pessoas na saída (S01 a S03). O aplicativo grava a hora da saída.",
      "n": 3,
      "prefix": "S",
      "rows": [
       {
        "code": "7.10",
-       "label": "A que horas chegou?",
+       "label": "A que horas chegou à unidade?",
        "kind": "time"
       },
       {
        "code": "7.11",
-       "label": "Hora da saída (a da entrevista)",
-       "kind": "time"
+       "label": "Hora da saída",
+       "kind": "time",
+       "auto": "agora",
+       "hint": "O aplicativo grava sozinho."
       },
       {
        "code": "7.12",
@@ -1462,8 +1527,15 @@
       },
       {
        "code": "7.13",
-       "label": "Se não resolveu, por quê?",
-       "kind": "txt"
+       "label": "Por que não resolveu?",
+       "kind": "txt",
+       "when": {
+        "key": "c7_12",
+        "in": [
+         "Em parte",
+         "Não"
+        ]
+       }
       },
       {
        "code": "7.14",
@@ -1490,13 +1562,13 @@
      "rows": [
       {
        "code": "7.15",
-       "label": "Se a pessoa tentou pela internet e não conseguiu, o problema relatado (resumo dos relatos)",
+       "label": "Problemas relatados por quem tentou resolver pela internet e não conseguiu (resumo)",
        "kind": "long"
       }
      ]
     }
    ],
-   "tail": "Encerramento: agradecer e não prometer solução. O relato grave (cobrança indevida, atuação de intermediário, maus-tratos) é registrado no Bloco 10, em Constatações acessórias (10.07), sem identificação de pessoas."
+   "tail": "Encerramento: agradecer e não prometer solução. O relato grave (cobrança indevida, atuação de intermediário, maus-tratos) é registrado no Bloco 10, no item 10.07, sem identificação de pessoas."
   },
   {
    "id": "8",
@@ -1519,7 +1591,11 @@
         "Impede o atendimento",
         "Reduz o atendimento",
         "Não afeta diretamente o atendimento"
-       ]
+       ],
+       "when": {
+        "key": "c8_01",
+        "filled": true
+       }
       },
       {
        "code": "8.02",
@@ -1534,7 +1610,11 @@
         "Impede o atendimento",
         "Reduz o atendimento",
         "Não afeta diretamente o atendimento"
-       ]
+       ],
+       "when": {
+        "key": "c8_02",
+        "filled": true
+       }
       },
       {
        "code": "8.03",
@@ -1549,12 +1629,11 @@
         "Impede o atendimento",
         "Reduz o atendimento",
         "Não afeta diretamente o atendimento"
-       ]
-      },
-      {
-       "code": "8.04",
-       "label": "Se pudesse resolver uma coisa só, qual seria?",
-       "kind": "long"
+       ],
+       "when": {
+        "key": "c8_03",
+        "filled": true
+       }
       },
       {
        "code": "8.05",
@@ -1565,7 +1644,7 @@
     },
     {
      "type": "grid",
-     "subtitle": "Pedidos já feitos e sem resposta (informado pela chefia)",
+     "subtitle": "Pedidos já feitos e sem resposta, inclusive chamado de TI (informado pela chefia)",
      "cols": [
       "Para qual área",
       "O que foi pedido",
@@ -1596,7 +1675,7 @@
   {
    "id": "9",
    "title": "Bloco 9. Fotos e evidências",
-   "lead": "Seis fotos obrigatórias, sempre com os mesmos enquadramentos, para que as fotos de uma unidade se comparem com as de outra. O achado grave tem foto própria: é grave o que configura risco iminente (10.08) ou leva a vermelho em alguma dimensão do Bloco 10. Fotos adicionais de outros achados são livres.",
+   "lead": "Seis fotos obrigatórias, sempre com os mesmos enquadramentos, para que as fotos de uma unidade se comparem com as de outra. O achado grave tem foto própria: é grave o que configura risco iminente (10.08) ou leva a vermelho em alguma dimensão do Bloco 10. Fotos adicionais são livres. O aplicativo marca sozinho cada foto tirada.",
    "groups": [
     {
      "type": "fields",
@@ -1604,76 +1683,65 @@
       {
        "code": "9.01",
        "label": "Fachada: de frente, com a placa do DETRAN visível (ou a falta dela)",
-       "kind": "sel",
-       "opts": [
-        "Feita",
-        "Não feita"
-       ]
+       "kind": "foto",
+       "calc": "foto_feita"
       },
       {
        "code": "9.02",
-       "label": "Entrada: mostrando degrau, rampa e largura da porta",
-       "kind": "sel",
-       "opts": [
-        "Feita",
-        "Não feita"
-       ]
+       "label": "Entrada: mostrando degrau ou rampa",
+       "kind": "foto",
+       "calc": "foto_feita"
       },
       {
        "code": "9.03",
        "label": "Espera: do fundo para a entrada, mostrando assentos e fila",
-       "kind": "sel",
-       "opts": [
-        "Feita",
-        "Não feita"
-       ]
+       "kind": "foto",
+       "calc": "foto_feita"
       },
       {
        "code": "9.04",
        "label": "Guichês: em linha, mostrando quantos estão ocupados",
-       "kind": "sel",
-       "opts": [
-        "Feita",
-        "Não feita"
-       ]
+       "kind": "foto",
+       "calc": "foto_feita"
       },
       {
        "code": "9.05",
        "label": "Banheiro do público: por dentro, sem pessoas",
-       "kind": "sel",
-       "opts": [
-        "Feita",
-        "Não feita"
-       ]
+       "kind": "foto",
+       "calc": "foto_feita"
       },
       {
        "code": "9.06",
        "label": "Área interna de trabalho ou arquivo",
-       "kind": "sel",
-       "opts": [
-        "Feita",
-        "Não feita"
-       ]
+       "kind": "foto",
+       "calc": "foto_feita"
       },
       {
        "code": "9.07",
-       "label": "Fotos de achados graves (quantidade)",
-       "kind": "num"
+       "label": "Fotos de achados graves",
+       "kind": "fotos",
+       "calc": "conta_fotos"
       },
       {
        "code": "9.08",
-       "label": "Fotos adicionais (quantidade)",
-       "kind": "num"
+       "label": "Fotos adicionais",
+       "kind": "fotos",
+       "calc": "conta_fotos"
+      },
+      {
+       "code": "9.09",
+       "label": "Se alguma foto obrigatória não pôde ser feita, diga qual e por quê",
+       "kind": "txt"
       }
      ]
     }
    ],
-   "tail": "Data, hora e localização da câmera ativadas. Nome do arquivo: código da unidade e número da foto (ex.: SAT-ITALVA 9.03); as fotos de achados graves e as adicionais seguem a numeração 9.07-1, 9.07-2, 9.08-1 e assim por diante. Nunca fotografar tela ou documento com dado de cidadão. Os rostos são borrados antes do envio; foto com rosto identificável não entra no relatório."
+   "tail": "Nunca fotografe tela ou documento com dado de cidadão. Os rostos são cobertos no próprio aplicativo antes do envio; foto com rosto identificável não entra no relatório."
   },
   {
    "id": "10",
    "title": "Bloco 10. Síntese e classificação da unidade",
-   "lead": "Cada unidade recebe uma cor por dimensão. A cor resulta da regra abaixo, aplicada aos números dos blocos, e não da impressão de quem visitou: é atribuída pela CGIS na base, e quem visita não preenche os itens 10.01 a 10.05. Os limites são proposta da CGIS, a calibrar após a validação com os Supervisores Regionais.",
+   "lead": "As cores de cada dimensão são atribuídas depois pela CGIS, na base, pela regra abaixo aplicada aos números dos blocos, e não pela impressão de quem visitou. Os limites são proposta da CGIS, a calibrar depois das primeiras visitas.",
    "groups": [
     {
      "type": "static",
@@ -1687,13 +1755,13 @@
       [
        "Imóvel (Bloco 2)",
        "Risco visível (2.14 ou infiltração em área de atendimento), ou sem banheiro do público funcionando (não se aplica quando o público usa banheiro do imóvel ou do shopping)",
-       "3 ou mais itens Ruim dentre os itens 2.08 a 2.13, 2.18 e 2.21, ou extintor sem validade (2.28), ou saída de emergência sem sinalização (2.29)",
+       "3 ou mais itens Ruim dentre os itens 2.08 a 2.13, 2.18 e 2.21, ou sem extintor dentro da validade (2.28), ou saída de emergência sem sinalização (2.29)",
        "Os demais casos"
       ],
       [
        "Equipamentos (Bloco 3)",
-       "Menos da metade dos computadores de atendimento funcionando",
-       "Alguma baia parada por equipamento (5.13), ou menos da metade dos aparelhos de ar-condicionado funcionando (3.07)",
+       "Menos da metade dos computadores de atendimento funcionando (3.10)",
+       "Guichê parado por equipamento (5.23), ou menos da metade dos aparelhos de ar-condicionado funcionando (3.07)",
        "Os demais casos"
       ],
       [
@@ -1703,10 +1771,10 @@
        "Os demais casos"
       ],
       [
-       "Fila (Bloco 6)",
-       "Espera máxima acima de 2h, contada a partir da abertura, ou pessoas aguardando do lado de fora nas aferições A2 ou A3",
-       "Espera máxima de 1h a 2h",
-       "Espera máxima abaixo de 1h"
+       "Fila (Blocos 6 e 7)",
+       "Maior espera na fila acima de 2h (6.08)",
+       "Maior espera de 1h a 2h",
+       "Maior espera abaixo de 1h"
       ],
       [
        "Resolução (Bloco 7)",
@@ -1716,8 +1784,8 @@
       ]
      ],
      "note": [
-      "Na dimensão Pessoas, aplica-se também o critério do diagnóstico de chefias: a unidade com 1 servidor, cedido e sem cargo no DETRAN-RJ (dado do kit), recebe duplo vermelho.",
-      "Na dimensão Resolução, a cor exige no mínimo 5 entrevistas na fila; abaixo disso, registra-se \"Sem amostra\". A resposta \"Veio de outra unidade\" (7.04) não conta como retorno desta unidade. A unidade sem funcionamento recebe \"Não se aplica\" em todas as dimensões."
+      "Na dimensão Pessoas, aplica-se também o critério do diagnóstico de chefias: a unidade com 1 servidor, cedido e sem cargo no DETRAN-RJ (dado da base da CGIS), recebe duplo vermelho.",
+      "Nas dimensões Fila e Resolução, a cor exige no mínimo 5 entrevistas na fila; abaixo disso, registra-se \"Sem amostra\". A espera é contada da chegada da pessoa até a hora da entrevista. A espera média (6.14) é o número de comparação entre as unidades. A resposta \"Veio de outra unidade\" (7.04) não conta como retorno desta unidade. A unidade sem funcionamento recebe \"Não se aplica\" em todas as dimensões."
      ]
     },
     {
@@ -1768,6 +1836,7 @@
         "Verde",
         "Amarelo",
         "Vermelho",
+        "Sem amostra",
         "Não se aplica"
        ],
        "cgis": true
@@ -1787,12 +1856,12 @@
       },
       {
        "code": "10.06",
-       "label": "Três providências propostas, em ordem de prioridade, cada uma com a área tecnicamente competente indicada a título de subsídio",
+       "label": "Na sua avaliação, as três providências mais urgentes para esta unidade, em ordem de prioridade",
        "kind": "long"
       },
       {
        "code": "10.07",
-       "label": "Constatações acessórias: fatos fora do escopo de atendimento da CGIS, descritos sem juízo de mérito e sem nome, para conhecimento superior",
+       "label": "Algo fora do atendimento que a CGIS precisa saber? Descreva o fato, sem opinião e sem nomes",
        "kind": "long"
       },
       {
@@ -1806,23 +1875,25 @@
       },
       {
        "code": "10.09",
-       "label": "Se comunicado: a quem, data e hora",
-       "kind": "txt"
+       "label": "A quem foi comunicado, data e hora",
+       "kind": "txt",
+       "when": {
+        "key": "c10_08",
+        "in": [
+         "Comunicado"
+        ]
+       }
       },
       {
        "code": "10.10",
-       "label": "Ateste da unidade: \"Atesto o comparecimento do servidor identificado no item 1.23, na data e no horário dos itens 1.18 a 1.20.\" Nome, cargo e ID funcional do responsável presente",
-       "kind": "txt"
+       "label": "Ateste da unidade: nome, cargo e ID funcional do responsável presente",
+       "kind": "txt",
+       "hint": "\"Atesto o comparecimento do servidor identificado no item 1.23, na data e no horário dos itens 1.18 a 1.20.\""
       },
       {
        "code": "10.11",
        "label": "Assinatura do responsável pela unidade",
        "kind": "sig"
-      },
-      {
-       "code": "10.12",
-       "label": "Quem levantou: nome, ID funcional e data",
-       "kind": "txt"
       },
       {
        "code": "10.13",
@@ -1835,34 +1906,486 @@
    "tail": "O risco iminente não aguarda o relatório: é comunicado no mesmo dia, por telefone, ao superior imediato de quem levantou e à CGIS."
   }
  ],
+ "lists": {
+  "municipios": [
+   "Angra dos Reis",
+   "Aperibé",
+   "Araruama",
+   "Areal",
+   "Armação dos Búzios",
+   "Arraial do Cabo",
+   "Barra do Piraí",
+   "Barra Mansa",
+   "Belford Roxo",
+   "Bom Jardim",
+   "Bom Jesus do Itabapoana",
+   "Cabo Frio",
+   "Cachoeiras de Macacu",
+   "Cambuci",
+   "Campos dos Goytacazes",
+   "Cantagalo",
+   "Carapebus",
+   "Cardoso Moreira",
+   "Carmo",
+   "Casimiro de Abreu",
+   "Comendador Levy Gasparian",
+   "Conceição de Macabu",
+   "Cordeiro",
+   "Duas Barras",
+   "Duque de Caxias",
+   "Engenheiro Paulo de Frontin",
+   "Guapimirim",
+   "Iguaba Grande",
+   "Itaboraí",
+   "Itaguaí",
+   "Italva",
+   "Itaocara",
+   "Itaperuna",
+   "Itatiaia",
+   "Japeri",
+   "Laje do Muriaé",
+   "Macaé",
+   "Macuco",
+   "Magé",
+   "Mangaratiba",
+   "Maricá",
+   "Mendes",
+   "Mesquita",
+   "Miguel Pereira",
+   "Miracema",
+   "Natividade",
+   "Nilópolis",
+   "Niterói",
+   "Nova Friburgo",
+   "Nova Iguaçu",
+   "Paracambi",
+   "Paraíba do Sul",
+   "Paraty",
+   "Paty do Alferes",
+   "Petrópolis",
+   "Pinheiral",
+   "Piraí",
+   "Porciúncula",
+   "Porto Real",
+   "Quatis",
+   "Queimados",
+   "Quissamã",
+   "Resende",
+   "Rio Bonito",
+   "Rio Claro",
+   "Rio das Flores",
+   "Rio das Ostras",
+   "Rio de Janeiro",
+   "Santa Maria Madalena",
+   "Santo Antônio de Pádua",
+   "São Fidélis",
+   "São Francisco de Itabapoana",
+   "São Gonçalo",
+   "São João da Barra",
+   "São João de Meriti",
+   "São José de Ubá",
+   "São José do Vale do Rio Preto",
+   "São Pedro da Aldeia",
+   "São Sebastião do Alto",
+   "Sapucaia",
+   "Saquarema",
+   "Seropédica",
+   "Silva Jardim",
+   "Sumidouro",
+   "Tanguá",
+   "Teresópolis",
+   "Trajano de Moraes",
+   "Três Rios",
+   "Valença",
+   "Varre-Sai",
+   "Vassouras",
+   "Volta Redonda"
+  ],
+  "empresas": [
+   "IBAP/RJ",
+   "MD Soluções",
+   "Montreal",
+   "Cix",
+   "FXX",
+   "Rio Shop",
+   "Ellos"
+  ]
+ },
+ "base": [
+  {
+   "key": "c1_04",
+   "code": "1.04",
+   "label": "Diretoria responsável pelo serviço",
+   "fonte": "Cadastro da CGIS"
+  },
+  {
+   "key": "c1_05",
+   "code": "1.05",
+   "label": "CIRETRAN de vinculação (só SAT)",
+   "fonte": "Cadastro da CGIS"
+  },
+  {
+   "key": "c1_07",
+   "code": "1.07",
+   "label": "Bairro",
+   "fonte": "Endereço do cadastro"
+  },
+  {
+   "key": "c1_08",
+   "code": "1.08",
+   "label": "Zona (só município do Rio)",
+   "fonte": "Lista de unidades",
+   "pre": "zona"
+  },
+  {
+   "key": "c1_09",
+   "code": "1.09",
+   "label": "Região de governo do Estado",
+   "fonte": "Tabela por município [CONFERIR com a divisão oficial vigente]",
+   "pre": "regiao"
+  },
+  {
+   "key": "c1_13",
+   "code": "1.13",
+   "label": "Telefone da unidade atende? (ligação da CGIS, até 3 tentativas)",
+   "fonte": "Ligação feita pela CGIS"
+  },
+  {
+   "key": "c2_01",
+   "code": "2.01",
+   "label": "Vínculo do imóvel (próprio do DETRAN-RJ, do Estado, cedido pela prefeitura, alugado, outro)",
+   "fonte": "Contratos e termos de cessão"
+  },
+  {
+   "key": "c2_02",
+   "code": "2.02",
+   "label": "Quem paga a água",
+   "fonte": "Área administrativa"
+  },
+  {
+   "key": "c2_03",
+   "code": "2.03",
+   "label": "Quem paga a luz",
+   "fonte": "Área administrativa"
+  },
+  {
+   "key": "c2_04",
+   "code": "2.04",
+   "label": "Quem paga a internet",
+   "fonte": "Área administrativa"
+  },
+  {
+   "key": "c2_05",
+   "code": "2.05",
+   "label": "Quem paga a limpeza",
+   "fonte": "Área administrativa"
+  },
+  {
+   "key": "c4_01_c1",
+   "code": "4.01",
+   "label": "Servidores efetivos lotados",
+   "fonte": "Lotação da CGP"
+  },
+  {
+   "key": "c4_02_c1",
+   "code": "4.02",
+   "label": "Servidores cedidos lotados",
+   "fonte": "Lotação da CGP"
+  },
+  {
+   "key": "c4_03_c1",
+   "code": "4.03",
+   "label": "Comissionados sem vínculo lotados",
+   "fonte": "Lotação da CGP"
+  },
+  {
+   "key": "c4_21_c1",
+   "code": "4.21",
+   "label": "Postos contratados: veículos",
+   "fonte": "Gestor do contrato"
+  },
+  {
+   "key": "c4_22_c1",
+   "code": "4.22",
+   "label": "Postos contratados: habilitação",
+   "fonte": "Gestor do contrato"
+  },
+  {
+   "key": "c4_23_c1",
+   "code": "4.23",
+   "label": "Postos contratados: identificação civil",
+   "fonte": "Gestor do contrato"
+  },
+  {
+   "key": "c4_24_c1",
+   "code": "4.24",
+   "label": "Postos contratados: vistoria",
+   "fonte": "Gestor do contrato"
+  },
+  {
+   "key": "c4_25_c1",
+   "code": "4.25",
+   "label": "Postos contratados: recepção e orientação",
+   "fonte": "Gestor do contrato"
+  },
+  {
+   "key": "c4_05_c1",
+   "code": "4.05",
+   "label": "Postos contratados: vigilância",
+   "fonte": "Gestor do contrato"
+  },
+  {
+   "key": "c4_06_c1",
+   "code": "4.06",
+   "label": "Postos contratados: limpeza",
+   "fonte": "Gestor do contrato"
+  },
+  {
+   "key": "c4_07_c1",
+   "code": "4.07",
+   "label": "Estagiários lotados",
+   "fonte": "Lotação da CGP"
+  },
+  {
+   "key": "c5_01_c3",
+   "code": "5.01",
+   "label": "Na Carta de Serviços? Veículos",
+   "fonte": "Carta de Serviços ao Usuário"
+  },
+  {
+   "key": "c5_02_c3",
+   "code": "5.02",
+   "label": "Na Carta de Serviços? Transferência de propriedade especial",
+   "fonte": "Carta de Serviços ao Usuário"
+  },
+  {
+   "key": "c5_03_c3",
+   "code": "5.03",
+   "label": "Na Carta de Serviços? Habilitação",
+   "fonte": "Carta de Serviços ao Usuário"
+  },
+  {
+   "key": "c5_04_c3",
+   "code": "5.04",
+   "label": "Na Carta de Serviços? Identificação civil",
+   "fonte": "Carta de Serviços ao Usuário"
+  },
+  {
+   "key": "c5_05_c3",
+   "code": "5.05",
+   "label": "Na Carta de Serviços? Vistoria",
+   "fonte": "Carta de Serviços ao Usuário"
+  },
+  {
+   "key": "c5_06_c3",
+   "code": "5.06",
+   "label": "Na Carta de Serviços? Infrações e recursos",
+   "fonte": "Carta de Serviços ao Usuário"
+  },
+  {
+   "key": "c5_07_c3",
+   "code": "5.07",
+   "label": "Na Carta de Serviços? Informação e orientação",
+   "fonte": "Carta de Serviços ao Usuário"
+  },
+  {
+   "key": "c5_09",
+   "code": "5.09",
+   "label": "Vagas de agendamento por dia",
+   "fonte": "Sistema de agendamento (a validar)"
+  },
+  {
+   "key": "c5_14",
+   "code": "5.14",
+   "label": "Média de processos por dia útil",
+   "fonte": "Planilhas de produção mensal"
+  },
+  {
+   "key": "c10_01",
+   "code": "10.01",
+   "label": "Cor: Imóvel",
+   "fonte": "Regra do Bloco 10"
+  },
+  {
+   "key": "c10_02",
+   "code": "10.02",
+   "label": "Cor: Equipamentos",
+   "fonte": "Regra do Bloco 10"
+  },
+  {
+   "key": "c10_03",
+   "code": "10.03",
+   "label": "Cor: Pessoas",
+   "fonte": "Regra do Bloco 10"
+  },
+  {
+   "key": "c10_04",
+   "code": "10.04",
+   "label": "Cor: Fila",
+   "fonte": "Regra do Bloco 10"
+  },
+  {
+   "key": "c10_05",
+   "code": "10.05",
+   "label": "Cor: Resolução",
+   "fonte": "Regra do Bloco 10"
+  }
+ ],
+ "retirados": [
+  [
+   "1.12",
+   "Coordenadas",
+   "sai: o endereço basta para a CGIS localizar a unidade"
+  ],
+  [
+   "1.16",
+   "Hora real de abertura observada",
+   "sai (ordem de Hugo, 18/11/2026)"
+  ],
+  [
+   "2.23",
+   "Porta com 80 cm livres ou mais",
+   "sai (ordem de Hugo, 18/11/2026): exige trena"
+  ],
+  [
+   "2.34",
+   "Área livre para novos guichês, medida com trena",
+   "sai (ordem de Hugo, 18/11/2026)"
+  ],
+  [
+   "3.21",
+   "Internet: operadora e tipo de link",
+   "sai (ordem de Hugo, 18/11/2026)"
+  ],
+  [
+   "3.26",
+   "Chamado técnico de TI aberto",
+   "vai como pedido no Bloco 8 (8.06 a 8.08)"
+  ],
+  [
+   "4.13",
+   "Presentes por função: chefe",
+   "sai: repete o item 4.12"
+  ],
+  [
+   "4.14",
+   "Presentes por função: atendentes",
+   "sai: repete a grade do Bloco 4"
+  ],
+  [
+   "4.16",
+   "Presentes por função: apoio administrativo",
+   "sai: repete a grade do Bloco 4"
+  ],
+  [
+   "4.17",
+   "Presentes por função: outros",
+   "sai: repete a grade do Bloco 4"
+  ],
+  [
+   "4.19",
+   "Faixa de horário descoberta pelos prestadores",
+   "sai (ordem de Hugo, 18/11/2026)"
+  ],
+  [
+   "4.20",
+   "Atividade privativa de servidor feita por prestador ou estagiário",
+   "sai (ordem de Hugo, 18/11/2026)"
+  ],
+  [
+   "5.08",
+   "Serviço da Carta que a unidade não presta",
+   "sai (ordem de Hugo, 18/11/2026): a base compara a Carta com o item Oferece?"
+  ],
+  [
+   "5.10",
+   "Guichês existentes",
+   "sai: repete o item 3.01"
+  ],
+  [
+   "5.11",
+   "Guichês ativos na visita",
+   "sai: repete o item 6.06"
+  ],
+  [
+   "5.12",
+   "Guichês parados por falta de servidor",
+   "vira o item 5.23 (motivo principal)"
+  ],
+  [
+   "5.13",
+   "Guichês parados por equipamento",
+   "vira o item 5.23 (motivo principal)"
+  ],
+  [
+   "5.20",
+   "Guichês parados por sistema",
+   "vira o item 5.23 (motivo principal)"
+  ],
+  [
+   "5.15",
+   "Atendimentos concluídos até a saída",
+   "sai (ordem de Hugo, 18/11/2026): a produção vem do sistema"
+  ],
+  [
+   "5.21",
+   "Senhas emitidas até a saída",
+   "sai (ordem de Hugo, 18/11/2026)"
+  ],
+  [
+   "6.07",
+   "Senha em chamada e última senha emitida",
+   "sai (proposta aceita por Hugo em 18/11/2026)"
+  ],
+  [
+   "7.06",
+   "Por que escolheu esta unidade?",
+   "sai: entrevista mais curta"
+  ],
+  [
+   "7.09",
+   "Tem atendimento prioritário por lei?",
+   "sai: repete o item 6.05"
+  ],
+  [
+   "8.04",
+   "Se pudesse resolver uma coisa só, qual seria?",
+   "sai: repete o item 8.01"
+  ],
+  [
+   "10.12",
+   "Quem levantou: nome, ID funcional e data",
+   "o aplicativo imprime no PDF, a partir de 1.23 e 1.18"
+  ]
+ ],
  "final_page": {
   "title": "Relatório final da unidade (uma página)",
   "lead": "Cada unidade é sintetizada em uma página, gerada pela CGIS a partir da base, sempre na mesma ordem, para que o leitor compreenda a situação em 30 segundos. Todo número dessa página provém dos blocos, com a mesma fonte.",
   "steps": [
-   "Cabeçalho: código, nome, tipo, município (e AP, no Rio), região, população, data da visita e quem levantou.",
+   "Cabeçalho: código, nome, tipo, município (e zona, no Rio), região, data da visita e quem levantou.",
    "Faixa de cores: as 5 dimensões do Bloco 10.",
    "Números-chave (quadro abaixo).",
    "Os 3 problemas, nas palavras da chefia (8.01 a 8.03).",
-   "As 3 providências propostas, com a área indicada (10.06).",
+   "As 3 providências mais urgentes, na avaliação de quem visitou (10.06).",
    "Fotos da fachada, da espera e dos guichês (9.01, 9.03 e 9.04).",
-   "Constatações acessórias e risco iminente, quando houver (10.07 a 10.09)."
+   "Fatos fora do atendimento e risco iminente, quando houver (10.07 a 10.09)."
   ],
   "table": [
    [
     "Servidores lotados × presentes no dia",
-    "4.01 a 4.03"
+    "base da CGIS e 4.01 a 4.03"
    ],
    [
-    "Baias existentes × ativas",
-    "5.10 e 5.11"
+    "Guichês existentes × atendendo",
+    "3.01 e 6.06"
    ],
    [
     "Média de processos por dia útil (sistema)",
-    "5.14"
+    "base da CGIS (5.14)"
    ],
    [
-    "Espera máxima no dia (min) e horário de pico",
-    "6.08 (espera) e 6.02 e 6.03 (pico)"
+    "Espera média e maior espera na fila (min)",
+    "6.14 e 6.08"
    ],
    [
     "Entrevistados que voltaram pelo mesmo serviço (%)",
@@ -1873,8 +2396,8 @@
     "7.12 e 7.14"
    ],
    [
-    "Baias que ainda cabem no espaço",
-    "2.33 e 2.34"
+    "Guichês que ainda cabem no espaço",
+    "2.33"
    ]
   ]
  },
@@ -1882,30 +2405,29 @@
   "title": "Calendário, entrega e consolidação",
   "lead": "O cronograma geral de visitas a todas as unidades de atendimento é definido pela CGIS depois que o formulário é validado com os Supervisores Regionais.",
   "steps": [
-   "Fechamento do formulário: esta versão.",
-   "Validação do formulário com os Supervisores Regionais.",
+   "Formulário: esta versão (v3), ajustada em 18/11/2026 depois do teste de campo da v2.",
+   "Validação do formulário com os Supervisores Regionais, no aplicativo.",
    "Ajuste dos campos e dos limites de cor, a partir da validação.",
-   "Cronograma geral de visitas, definido pela CGIS. Os postos de vistoria vão primeiro, porque se desmobilizam até 08/12/2026: é a última chance de registrar pessoas e equipamentos para o remanejamento. Ritmo de referência por supervisor: 1 unidade grande por dia, ou 2 a 3 pequenas no mesmo município, conforme a regra do Bloco 6 para dia com mais de uma unidade. Não há visitas em feriado."
+   "Cronograma geral de visitas, definido pela CGIS. Os postos de vistoria vão primeiro, porque se desmobilizam até 08/12/2026: é a última chance de registrar pessoas e equipamentos para o remanejamento. Como a fila é contada uma só vez, na chegada, a visita cabe em um turno. Não há visitas em feriado."
   ],
   "items": [
    [
     "Entrega",
-    "em até 2 dias úteis após a visita: formulário preenchido e fotos já borradas. A página final da unidade é gerada pela CGIS."
+    "o levantamento é finalizado no aplicativo no dia da visita e segue sozinho para a base. O PDF impresso e assinado é entregue em até 2 dias úteis. A página final da unidade é gerada pela CGIS."
    ],
    [
     "Consolidação",
-    "cada código do formulário corresponde a uma coluna de uma base única da CGIS, e cada unidade, a uma linha. As páginas finais saem dessa base, e o mesmo número vale em todos os documentos. A base sinaliza automaticamente as inconsistências: presentes em número maior que lotados, baias ativas em número maior que existentes, espera negativa e soma dos presentes por função (4.13 a 4.17) diferente da soma de presentes dos itens 4.01 a 4.04, 4.07, 4.08 e 4.25."
+    "cada código do formulário corresponde a uma coluna de uma base única da CGIS, e cada unidade, a uma linha. As páginas finais saem dessa base, e o mesmo número vale em todos os documentos. O aplicativo avisa quando os números não batem: guichês atendendo em número maior que os existentes, pessoas atendendo em número maior que as presentes e hora de chegada posterior à da entrevista."
    ]
   ],
   "open_title": "Pontos em aberto",
   "open": [
    "Número de supervisores e AVAs disponíveis e a divisão de territórios.",
-   "Lista dos postos de identificação civil e de habilitação por município.",
    "Ordem de serviço da CGIS designando quem aplica.",
-   "Área de referência por baia, incluída a circulação, para o item 2.33.",
-   "Limite de vagas de agendamento por dia para unidade pequena sem dado de produção (Bloco 6).",
-   "Lista das atividades privativas de servidor, para o item 4.20.",
-   "Validação com os Supervisores Regionais: testar no celular a grade de entrevistas na fila (Bloco 7), o formato dos campos de data, hora e número e se a assinatura pelo Adobe Acrobat Reader mantém os campos legíveis para a leitura em lote."
+   "Carga da base da CGIS: lotação, postos contratados, Carta de Serviços, vagas de agendamento e produção.",
+   "Lista de empresas prestadoras, a conferir com os gestores dos contratos.",
+   "Limites de cor da dimensão Fila, a calibrar depois das primeiras visitas.",
+   "Ateste e assinatura no PDF impresso: validar com os Supervisores Regionais se há impressora na unidade ou se a assinatura fica para a entrega."
   ]
  },
  "header": [
@@ -1913,7 +2435,7 @@
   "Departamento de Trânsito do Estado do Rio de Janeiro",
   "Coordenadoria-Geral de Integração de Serviços"
  ],
- "subtitle_html": "Minuta para validação com os Supervisores Regionais, versão v2",
- "subtitle_pdf": "Formulário de campo · versão v2",
- "footer_pdf": "Relatório de Levantamento da Unidade de Atendimento v2"
+ "subtitle_html": "Minuta para validação com os Supervisores Regionais, versão v3",
+ "subtitle_pdf": "Levantamento de campo · versão v3",
+ "footer_pdf": "Relatório de Levantamento da Unidade de Atendimento v3"
 }
