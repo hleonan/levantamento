@@ -1,4 +1,5 @@
 /* Service worker: cache de todos os arquivos (cache-first). A versao vem de js/version.js. */
+/* publicacao 2.0.0 (v3 do formulario): esta linha muda a cada publicacao para todo navegador perceber a versao nova */
 importScripts('js/version.js');
 var VERSAO = self.LV.APP_VERSION;
 var CACHE = 'levantamento-' + VERSAO;
