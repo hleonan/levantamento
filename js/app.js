@@ -1,7 +1,7 @@
 /* Interface do aplicativo. Sem frameworks, sem CDN. */
 (function () {
   var LV = window.LV;
-  var S = { model: null, unidades: [], perfil: null, kit: null, cur: null, fotos: [], saveTimer: null, urls: [], swReg: null };
+  var S = { model: null, unidades: [], perfil: null, cur: null, fotos: [], saveTimer: null, urls: [], swReg: null };
   var $app;
 
   /* ---------- utilidades de DOM ---------- */
@@ -84,6 +84,7 @@
       if (p[0] === 'novo') return vNovo();
       if (p[0] === 'lev' && p[1]) return abre(p[1]).then(function (l) {
         if (!l) return go('/');
+        if (l.versao_instrumento !== S.model.spec.version) return vAnterior();
         if (p[2] === 'b') return vBloco(+p[3] || 1, q.f);
         if (p[2] === 'ent') return vEntrevista(p[3], q.f);
         if (p[2] === 'finalizar') return vFinalizar();
@@ -97,7 +98,7 @@
   function abre(id) {
     return Promise.all([LV.db.getLev(id), LV.db.fotosDe(id)]).then(function (a) {
       S.cur = a[0] || null; S.fotos = a[1] || [];
-      if (S.cur && S.cur.situacao === 'rascunho' && !S.cur.kit_aplicado && aplicaKit(S.cur)) mark();
+      if (S.cur && S.cur.situacao === 'rascunho' && S.cur.versao_instrumento === S.model.spec.version) LV.deriva(S.cur, S.fotos, S.model);
       return S.cur;
     });
   }
@@ -105,9 +106,15 @@
 
   /* ---------- progresso ---------- */
   function blocoProg(b, l) {
-    if (b.id === '7') { var n = Object.keys(l.entrevistas || {}).length; return { f: Math.min(n, 18), t: 18, n: n }; }
+    if (b.id === '7') {
+      var M = S.model, n = LV.tagsRespondidas(l, M, 'E').length + LV.tagsRespondidas(l, M, 'S').length, t = M.ent.E.n + M.ent.S.n;
+      return { f: Math.min(n, t), t: t, n: n };
+    }
     var f = 0, t = 0;
-    function cont(d) { t++; var v = l.dados[d.key]; if (v !== undefined && v !== '') f++; }
+    function cont(d) {
+      if (d.calc || !LV.visivel(d, l.dados)) return;
+      t++; var v = l.dados[d.key]; if (v !== undefined && v !== '') f++;
+    }
     b.items.forEach(function (it) {
       if (it.type === 'fields') it.rows.forEach(function (d) { if (!d.cgis && d.kind !== 'sig') cont(d); });
       else if (it.type === 'grid') it.rows.forEach(function (r) { r.cells.forEach(cont); });
@@ -121,95 +128,121 @@
   }
   function barra(pct) { return h('div', { class: 'bar', role: 'progressbar', 'aria-valuenow': pct, 'aria-valuemin': 0, 'aria-valuemax': 100 }, h('div', { style: 'width:' + pct + '%' })); }
 
-  /* ---------- kit ---------- */
-  function aplicaKit(l) {
-    var k = S.kit && S.kit.dados && S.kit.dados[l.unidade.id];
-    if (!k) return false;
-    Object.keys(k).forEach(function (key) {
-      if (S.model.fields[key] && (l.dados[key] === undefined || l.dados[key] === '')) l.dados[key] = LV.clean(String(k[key]));
-    });
-    l.kit_aplicado = true; return true;
-  }
-  function kitSilencioso() {
+  /* ---------- listas do servidor e utilidades ---------- */
+  function listasSilencioso() {
     if (!navigator.onLine) return;
-    LV.getConfig().then(function (c) { if (c.url && c.token) return LV.atualizaKit(); }).then(function (n) {
-      return LV.db.getMeta('kit').then(function (k) { S.kit = k; });
-    }).catch(function () {});
+    LV.getConfig().then(function (c) { if (c.url && c.token) return LV.atualizaListas().then(function () { return LV.db.getMeta('listas'); }).then(function (l) { LV.aplicaListas(S.model, l); }); }).catch(function () {});
   }
+  window.addEventListener('online', listasSilencioso);
+  function usuarioTxt(perf) { return perf.nome + (perf.idf ? ', ID ' + perf.idf : ''); }
+  function ctxOpc() { return { lists: S.model.lists, municipio: S.cur ? (S.cur.dados.c1_06 || (S.cur.unidade || {}).municipio || '') : '' }; }
+  function campoCodigo(id, valor) {
+    var el = h('input', { id: id, type: 'text', class: 'cod', autocapitalize: 'characters', autocomplete: 'off', autocorrect: 'off', spellcheck: 'false', placeholder: 'XXXX-XXXX-XXXX' });
+    el.value = valor ? LV.fmtCodigo(valor) : '';
+    el.addEventListener('input', function () {
+      var v = el.value, pos = el.selectionStart === null ? v.length : el.selectionStart, f = LV.fmtCodigo(v);
+      if (f === v) return;
+      var antes = LV.normCodigo(v.slice(0, pos)).length, c = 0, i = 0;
+      el.value = f;
+      for (; i < f.length && c < antes; i++) if (/[A-Z0-9]/.test(f.charAt(i))) c++;
+      try { el.setSelectionRange(i, i); } catch (e) {}
+    });
+    return el;
+  }
+  var MSG_RECUSADO = 'Código de acesso não reconhecido. Confira as letras e os números com a CGIS.';
 
   /* ---------- Identificacao ---------- */
   function vIdent() {
-    var nome = h('input', { id: 'in-nome', type: 'text', autocomplete: 'name', value: (S.perfil && S.perfil.nome) || '' });
-    var perfil = h('select', { id: 'in-perfil' }, h('option', { value: 'Supervisor Regional', text: 'Supervisor Regional' }), h('option', { value: 'AVA', text: 'AVA (Agente de Verificação do Atendimento)' }));
-    if (S.perfil) perfil.value = S.perfil.perfil;
-    var cod = h('input', { id: 'in-codigo', type: 'password', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false' });
-    var url = h('input', { id: 'in-url', type: 'url', placeholder: 'https://script.google.com/macros/s/.../exec', autocapitalize: 'off' });
-    var msg = h('p', { class: 'msg', id: 'ident-msg' });
-    LV.getConfig().then(function (c) { if (!url.value) url.value = c.url || ''; if (!cod.value) cod.value = c.token || ''; });
-    function entrar() {
-      if (!nome.value.trim()) { msg.textContent = 'Informe seu nome.'; return; }
-      if (!cod.value.trim()) { msg.textContent = 'Informe o código de acesso fornecido pela CGIS.'; return; }
-      var perf = { nome: nome.value.trim(), perfil: perfil.value };
-      var cfg = { url: url.value.trim(), token: cod.value.trim() };
-      msg.textContent = 'Verificando...';
-      var fim = function (aviso) {
-        LV.db.setMeta('perfil', perf).then(function () { return LV.db.setMeta('config', cfg); }).then(function () {
-          S.perfil = perf; if (aviso) toast(aviso, 5000); kitSilencioso(); go('/');
-        });
-      };
-      LV.db.setMeta('config', cfg).then(function () {
-        if (!navigator.onLine) return fim('Sem internet: o código será conferido quando houver conexão.');
-        return LV.getConfig().then(function (c) {
-          if (!c.url) return fim('Endereço do backend não informado: o envio ficará pendente até configurá-lo.');
-          return LV.ping().then(function (j) {
-            if (j.token_valido === false) { msg.textContent = 'Código de acesso não reconhecido. Confira com a CGIS.'; return; }
-            fim();
-          }).catch(function () { fim('Não foi possível conferir o código agora. Seguindo sem validar.'); });
-        });
-      });
-    }
-    render([topbar('Primeiro acesso'), h('main', { class: 'wrap' },
-      h('div', { class: 'card' },
-        h('h1', { text: 'Identificação' }),
-        h('p', { text: 'Estes dados ficam só neste aparelho e identificam quem fez o levantamento.' }),
-        h('label', { for: 'in-nome', text: 'Seu nome completo' }), nome,
-        h('label', { for: 'in-perfil', text: 'Perfil' }), perfil,
-        h('label', { for: 'in-codigo', text: 'Código de acesso (fornecido pela CGIS)' }), cod,
-        h('label', { for: 'in-url', text: 'Endereço do backend (se a CGIS não o configurou no aplicativo)' }), url,
-        msg,
-        h('button', { class: 'btn', id: 'btn-entrar', onclick: entrar, text: 'Entrar' })))]);
+    LV.defaultConfig().then(function (def) {
+      var nome = h('input', { id: 'in-nome', type: 'text', autocomplete: 'name', value: (S.perfil && S.perfil.nome) || '' });
+      var idf = h('input', { id: 'in-idf', type: 'text', autocomplete: 'off', value: (S.perfil && S.perfil.idf) || '' });
+      var perfil = h('select', { id: 'in-perfil' }, h('option', { value: 'Supervisor Regional', text: 'Supervisor Regional' }), h('option', { value: 'AVA', text: 'AVA (Agente de Verificação do Atendimento)' }));
+      if (S.perfil) perfil.value = S.perfil.perfil;
+      var cod = campoCodigo('in-codigo');
+      var url = def.backend_url ? null : h('input', { id: 'in-url', type: 'url', placeholder: 'https://script.google.com/macros/s/.../exec', autocapitalize: 'off' });
+      var msg = h('p', { class: 'msg', id: 'ident-msg' });
+      var btn = h('button', { class: 'btn', id: 'btn-entrar', text: 'Entrar' });
+      LV.getConfig().then(function (c) { if (!cod.value) cod.value = LV.fmtCodigo(c.token || ''); if (url && !url.value) url.value = c.url || ''; });
+      function entrar() {
+        if (!nome.value.trim()) { msg.textContent = 'Informe seu nome completo.'; return; }
+        if (!LV.normCodigo(cod.value)) { msg.textContent = 'Informe o código de acesso fornecido pela CGIS.'; return; }
+        var perf = { nome: nome.value.trim(), idf: idf.value.trim(), perfil: perfil.value };
+        var cfg = { url: url ? url.value.trim() : '', token: LV.fmtCodigo(cod.value) };
+        var teste = { url: cfg.url || def.backend_url || '', token: cfg.token };
+        msg.textContent = 'Verificando...'; btn.disabled = true;
+        var fim = function (estado, aviso) {
+          cfg.estado_codigo = estado;
+          return LV.db.setMeta('perfil', perf).then(function () { return LV.db.setMeta('config', cfg); }).then(function () {
+            S.perfil = perf; if (aviso) toast(aviso, 5000); listasSilencioso(); go('/');
+          });
+        };
+        if (!navigator.onLine) return fim('pendente');
+        if (!teste.url) return fim('pendente', 'Endereço do servidor não informado: o envio ficará pendente.');
+        LV.ping(teste).then(function (j) {
+          if (j.token_valido === false) { msg.textContent = MSG_RECUSADO; btn.disabled = false; return; }
+          return fim(j.token_valido === true ? 'ok' : 'pendente');
+        }, function () { return fim('pendente'); });
+      }
+      btn.addEventListener('click', entrar);
+      render([topbar('Primeiro acesso'), h('main', { class: 'wrap' },
+        h('div', { class: 'card' },
+          h('h1', { text: 'Identificação' }),
+          h('p', { text: 'Estes dados ficam só neste aparelho e identificam quem fez o levantamento.' }),
+          h('label', { for: 'in-nome', text: 'Seu nome completo' }), nome,
+          h('label', { for: 'in-idf', text: 'ID funcional (se tiver)' }), idf,
+          h('label', { for: 'in-perfil', text: 'Perfil' }), perfil,
+          h('label', { for: 'in-codigo', text: 'Código de acesso (fornecido pela CGIS)' }), cod,
+          url ? [h('label', { for: 'in-url', text: 'Endereço do servidor' }), url] : null,
+          msg, btn))]);
+    });
   }
 
   /* ---------- Configuracoes ---------- */
   function vConfig() {
-    var url = h('input', { id: 'cf-url', type: 'url', autocapitalize: 'off' });
-    var cod = h('input', { id: 'cf-codigo', type: 'password', autocomplete: 'off' });
+    var url = h('input', { id: 'cf-url', type: 'url', autocapitalize: 'off', placeholder: 'https://script.google.com/macros/s/.../exec' });
+    var cod = campoCodigo('cf-codigo');
     var nome = h('input', { id: 'cf-nome', type: 'text', value: S.perfil.nome });
+    var idf = h('input', { id: 'cf-idf', type: 'text', autocomplete: 'off', value: S.perfil.idf || '' });
     var perfil = h('select', { id: 'cf-perfil' }, h('option', { value: 'Supervisor Regional', text: 'Supervisor Regional' }), h('option', { value: 'AVA', text: 'AVA' }));
     perfil.value = S.perfil.perfil;
     var msg = h('p', { class: 'msg', id: 'cf-msg' });
-    var kitinfo = h('p', { class: 'hint', id: 'cf-kit' });
-    function kitTxt() { LV.db.getMeta('kit').then(function (k) { S.kit = k; kitinfo.textContent = k ? 'Kit: ' + Object.keys(k.dados).length + ' unidade(s), atualizado em ' + fmtDataHora(k.em) : 'Kit ainda não baixado neste aparelho.'; }); }
-    LV.db.getMeta('config').then(function (c) { c = c || {}; url.value = c.url || ''; cod.value = c.token || ''; if (!url.value) LV.defaultConfig().then(function (d) { url.value = d.backend_url || ''; }); });
-    kitTxt();
-    function grava() {
-      var perf = { nome: nome.value.trim() || S.perfil.nome, perfil: perfil.value };
-      return LV.db.setMeta('config', { url: url.value.trim(), token: cod.value.trim() }).then(function () { return LV.db.setMeta('perfil', perf); }).then(function () { S.perfil = perf; });
+    var info = h('p', { class: 'hint', id: 'cf-listas' });
+    function listasTxt() {
+      LV.db.getMeta('listas').then(function (l) {
+        var n = (S.model.lists.empresas || []).length;
+        info.textContent = l && l.dados ? 'Lista de empresas: ' + n + ' item(ns), atualizada em ' + fmtDataHora(l.em) + '.' : 'Lista de empresas: a que vem no aplicativo (' + n + ' item(ns)).';
+      });
+    }
+    LV.db.getMeta('config').then(function (c) { c = c || {}; url.value = c.url || ''; cod.value = LV.fmtCodigo(c.token || ''); });
+    listasTxt();
+    function salvar() {
+      if (!LV.normCodigo(cod.value)) { msg.textContent = 'Informe o código de acesso.'; return; }
+      var perf = { nome: nome.value.trim() || S.perfil.nome, idf: idf.value.trim(), perfil: perfil.value };
+      var tk = LV.fmtCodigo(cod.value); cod.value = tk;
+      msg.textContent = 'Salvando...';
+      return LV.db.setMeta('perfil', perf).then(function () { S.perfil = perf; return LV.salvaConfig({ url: url.value.trim(), token: tk, estado_codigo: 'pendente' }); }).then(function () {
+        if (!navigator.onLine) { msg.textContent = 'Salvo. O código será conferido quando houver internet.'; return; }
+        msg.textContent = 'Salvo. Conferindo o código...';
+        return LV.getConfig().then(function (c) { return LV.ping(c); }).then(function (j) {
+          if (j.token_valido === false) { msg.textContent = MSG_RECUSADO; return LV.salvaConfig({ estado_codigo: 'recusado' }); }
+          msg.textContent = 'Código de acesso reconhecido' + (j.nome ? ' (' + j.nome + ')' : '') + '. Configurações salvas.';
+          return LV.salvaConfig({ estado_codigo: j.token_valido === true ? 'ok' : 'pendente' }).then(function () { listasSilencioso(); LV.enviarPendentes(true); });
+        }, function () { msg.textContent = 'Salvo, mas não foi possível conferir agora. O código será conferido quando houver conexão.'; });
+      });
     }
     render([topbar('Configurações', '/'), h('main', { class: 'wrap' }, h('div', { class: 'card' },
-      h('label', { for: 'cf-nome', text: 'Nome' }), nome, h('label', { for: 'cf-perfil', text: 'Perfil' }), perfil,
-      h('label', { for: 'cf-url', text: 'Endereço do backend (URL do Apps Script)' }), url,
+      h('label', { for: 'cf-nome', text: 'Nome completo' }), nome,
+      h('label', { for: 'cf-idf', text: 'ID funcional (se tiver)' }), idf,
+      h('label', { for: 'cf-perfil', text: 'Perfil' }), perfil,
       h('label', { for: 'cf-codigo', text: 'Código de acesso' }), cod, msg,
-      h('button', { class: 'btn', id: 'cf-salvar', text: 'Salvar', onclick: function () { grava().then(function () { msg.textContent = 'Configurações salvas.'; }); } }),
-      h('button', { class: 'btn sec', id: 'cf-testar', text: 'Testar conexão', onclick: function () {
-        msg.textContent = 'Testando...';
-        grava().then(function () { return LV.ping(); }).then(function (j) { msg.textContent = j.token_valido === false ? 'Servidor responde, mas o código de acesso não foi reconhecido.' : 'Conexão ok' + (j.nome ? ' (' + j.nome + ')' : '') + '.'; })
-          .catch(function (e) { msg.textContent = 'Falhou: ' + e.message; });
-      } }),
-      h('button', { class: 'btn sec', id: 'cf-kit-btn', text: 'Atualizar kit agora', onclick: function () {
-        msg.textContent = 'Baixando kit...';
-        grava().then(function () { return LV.atualizaKit(); }).then(function (n) { msg.textContent = 'Kit atualizado: ' + n + ' unidade(s).'; kitTxt(); }).catch(function (e) { msg.textContent = 'Falhou: ' + e.message; });
-      } }), kitinfo,
+      h('button', { class: 'btn', id: 'cf-salvar', text: 'Salvar e conferir', onclick: salvar }),
+      h('button', { class: 'btn sec', id: 'cf-listas-btn', text: 'Atualizar listas', onclick: function () {
+        msg.textContent = 'Baixando listas...';
+        LV.atualizaListas().then(function () { return LV.db.getMeta('listas'); }).then(function (l) { LV.aplicaListas(S.model, l); msg.textContent = 'Listas atualizadas.'; listasTxt(); })
+          .catch(function (e) { msg.textContent = LV.msgErro(e && e.codigo || (e && e.message)) || 'Não foi possível atualizar as listas.'; });
+      } }), info,
+      h('details', { class: 'grp' }, h('summary', { text: 'Avançado' }),
+        h('label', { for: 'cf-url', text: 'Endereço do servidor (deixe em branco para usar o do aplicativo)' }), url),
       h('p', { class: 'hint', text: 'Versão do aplicativo ' + LV.APP_VERSION + ' | instrumento ' + S.model.spec.version + ' | lista de unidades: ' + S.unidades.length + ' unidade(s).' })))]);
   }
 
@@ -220,25 +253,32 @@
       h('div', { class: 'card' }, h('h1', { text: sp.howto.title }), sp.howto.items.map(function (i) { return h('p', null, h('b', { text: i[0] + ': ' }), LV.clean(i[1])); })),
       h('div', { class: 'card' }, h('h1', { text: 'Regras de conduta' }), sp.intro.rules.map(function (i) { return h('p', null, h('b', { text: i[0] + ': ' }), LV.clean(i[1])); })),
       h('div', { class: 'card' }, h('h1', { text: 'Neste aplicativo' }),
-        h('p', { text: 'Tudo é salvo no aparelho a cada alteração. Sem internet, o levantamento e o PDF funcionam normalmente; o envio acontece sozinho quando a conexão voltar. Nunca registre nome, documento, CPF ou placa de quem é atendido. Cubra os rostos nas fotos antes de finalizar.' })))]);
+        h('p', { text: 'Tudo é salvo no aparelho a cada alteração. Sem internet, o levantamento e o PDF funcionam normalmente; o envio acontece sozinho quando a conexão voltar. O aplicativo grava as horas, soma os totais e calcula a espera pelas entrevistas: não precisa preencher. Algumas perguntas só aparecem conforme a resposta anterior. Nunca registre nome, documento, CPF ou placa de quem é atendido. Cubra os rostos nas fotos antes de finalizar. O código de acesso pode ser digitado em maiúsculas ou minúsculas, com ou sem hífen.' })))]);
   }
 
   /* ---------- Home ---------- */
+  function faixaCodigo(c) {
+    if (c.estado_codigo === 'recusado') return h('a', { class: 'faixa verm', id: 'faixa-recusado', href: '#/config', text: 'Código de acesso recusado pelo servidor. Toque aqui para corrigir.' });
+    if (c.estado_codigo === 'pendente') return h('div', { class: 'faixa amar', id: 'faixa-pendente', text: 'Código de acesso ainda não conferido. Será conferido quando houver internet.' });
+    return null;
+  }
   function vHome() {
-    LV.db.allLev().then(function (ls) {
+    Promise.all([LV.db.allLev(), LV.getConfig()]).then(function (a) {
+      var ls = a[0], cfg = a[1];
       ls.sort(function (a, b) { return (b.criado_em || '') < (a.criado_em || '') ? -1 : 1; });
       var pend = ls.filter(function (l) { return l.situacao === 'finalizado' || l.situacao === 'aguardando'; }).length;
       var info = h('p', { class: 'msg', id: 'home-msg' });
       var cards = ls.length ? ls.map(function (l) {
-        var st = l.situacao;
+        var st = l.situacao, atual = l.versao_instrumento === S.model.spec.version;
         return h('a', { class: 'lev', href: '#/lev/' + l.id, 'data-id': l.id },
           h('div', { class: 'lt' }, h('b', { text: l.unidade.nome || '(sem nome)' }), h('span', { class: 'st st-' + st, text: STATUS[st] })),
-          h('div', { class: 'hint', text: (l.unidade.municipio || '') + (l.dados.c1_18 ? ' | visita ' + l.dados.c1_18 : '') }),
-          st === 'rascunho' ? [barra(progTotal(l)), h('div', { class: 'hint', text: progTotal(l) + '% preenchido' })] : null,
-          st === 'aguardando' && l.ultimo_erro ? h('div', { class: 'hint', text: 'Último erro: ' + l.ultimo_erro }) : null);
+          h('div', { class: 'hint', text: (l.unidade.municipio || '') + (l.dados.c1_18 ? ' | visita ' + l.dados.c1_18 : '') + (atual ? '' : ' | versão anterior') }),
+          st === 'rascunho' && atual ? [barra(progTotal(l)), h('div', { class: 'hint', text: progTotal(l) + '% preenchido' })] : null,
+          st === 'aguardando' && l.ultimo_erro ? h('div', { class: 'hint', text: 'Último erro: ' + LV.msgErro(l.ultimo_erro) }) : null);
       }) : h('p', { class: 'hint', text: 'Nenhum levantamento neste aparelho ainda.' });
       render([topbar('Levantamentos'), h('main', { class: 'wrap' },
         h('div', { id: 'upd', class: 'upd', hidden: true }, h('span', { text: 'Nova versão do aplicativo pronta. ' }), h('button', { class: 'btn sm', id: 'btn-upd', text: 'Atualizar', onclick: atualizaApp })),
+        faixaCodigo(cfg),
         h('p', { class: 'hint', text: S.perfil.nome + ' | ' + S.perfil.perfil }),
         h('a', { class: 'btn', id: 'btn-novo', href: '#/novo', text: 'Novo levantamento' }),
         pend ? h('button', { class: 'btn sec', id: 'btn-enviar', text: 'Enviar agora (' + pend + ')', onclick: function () { enviarAgora(info); } }) : null,
@@ -249,8 +289,10 @@
   function enviarAgora(info) {
     if (info) info.textContent = 'Enviando...';
     LV.enviarPendentes(true).then(function (r) {
-      if (info) info.textContent = r.enviados ? r.enviados + ' enviado(s).' + (r.falhas ? ' ' + r.falhas + ' com falha: ' + r.erro : '') : (r.erro ? 'Não enviado: ' + r.erro : 'Nada a enviar.');
-      toast(r.enviados ? 'Enviado com sucesso.' : (r.erro ? 'Não enviado: ' + r.erro : 'Nada a enviar.'), 5000);
+      var e = LV.msgErro(r.erro);
+      if (info) info.textContent = r.enviados ? r.enviados + ' enviado(s).' + (r.falhas ? ' ' + r.falhas + ' com falha: ' + e : '') : (r.erro ? 'Não enviado: ' + e : 'Nada a enviar.');
+      toast(r.enviados ? 'Enviado com sucesso.' : (r.erro ? 'Não enviado: ' + e : 'Nada a enviar.'), 5000);
+      if ((location.hash || '#/') === '#/') vHomeSoft(); /* atualiza lista e faixas depois do envio */
     });
   }
   LV.onSync(function () { if (!S.cur || location.hash.indexOf('resumo') < 0) { if ((location.hash || '#/') === '#/') { var m = document.getElementById('home-msg'); if (m && /Enviando/.test(m.textContent)) return; vHomeSoft(); } } else vResumoSoft(); });
@@ -298,13 +340,18 @@
     lista_();
   }
   function cria(u) {
-    var opts = S.model.fields.c1_03.opts, d = {};
-    d.c1_01 = u.listada === false ? '' : u.id; d.c1_02 = u.nome; d.c1_03 = LV.mapTipo(u.tipo, u.nome, opts) || (u.listada === false ? u.tipo : '');
-    d.c1_06 = u.municipio; d.c1_18 = LV.hojeBr(); d.c1_23 = S.perfil.nome;
-    if (u.listada === false) { d.c1_10 = 'Corrigido'; d.c1_11 = u.endereco; }
-    var l = { id: LV.uuid(), versao_instrumento: S.model.spec.version, versao_app: LV.APP_VERSION, unidade: u, levantado_por: S.perfil.nome, perfil: S.perfil.perfil,
+    var M = S.model, d = {};
+    var auto = {
+      unidade_id: u.listada === false ? '' : u.id, unidade_nome: u.nome, unidade_municipio: u.municipio, hoje: LV.hojeBr(), agora: LV.agoraHora(), usuario: usuarioTxt(S.perfil),
+      unidade_tipo: function (k) { return LV.mapTipo(u.tipo, u.nome, M.fields[k].opts) || (u.listada === false ? u.tipo : ''); }
+    };
+    Object.keys(auto).forEach(function (nome) {
+      (M.auto[nome] || []).forEach(function (k) { var v = typeof auto[nome] === 'function' ? auto[nome](k) : auto[nome]; if (v) d[k] = v; });
+    });
+    if (u.listada === false) { d.c1_10 = 'Não'; d.c1_11 = u.endereco; }
+    var l = { id: LV.uuid(), versao_instrumento: M.spec.version, versao_app: LV.APP_VERSION, unidade: u, levantado_por: S.perfil.nome, perfil: S.perfil.perfil,
       situacao: 'rascunho', criado_em: new Date().toISOString(), dados: d, entrevistas: {}, reaberturas: [], bloco_atual: 1 };
-    aplicaKit(l);
+    LV.deriva(l, [], M);
     LV.db.putLev(l).then(function () { S.cur = l; S.fotos = []; go('/lev/' + l.id + '/b/1'); });
   }
 
@@ -314,9 +361,16 @@
     var el;
     val = val === undefined ? '' : val;
     if (d.kind === 'sel') {
-      el = h('select', a, h('option', { value: '', text: 'Selecione' }), d.opts.map(function (o) { return h('option', { value: o, text: o }); }));
+      var ops = LV.opcoes(d, ctxOpc());
+      el = h('select', a, h('option', { value: '', text: 'Selecione' }), ops.map(function (o) { return h('option', { value: o, text: o }); }));
+      if (val && ops.indexOf(val) < 0) el.appendChild(h('option', { value: val, text: val }));
       el.value = val;
-      if (val && d.opts.indexOf(val) < 0) { el.appendChild(h('option', { value: val, text: val })); el.value = val; }
+    } else if (d.kind === 'multi') {
+      var ops2 = LV.opcoes(d, ctxOpc()), marc = String(val).split('; ').filter(Boolean);
+      marc.forEach(function (m) { if (ops2.indexOf(m) < 0) ops2.push(m); });
+      el = h('div', { 'data-key': d.key, id: a.id, class: 'multi', role: 'group' }, ops2.map(function (o) {
+        return h('label', { class: 'mchk' }, h('input', { type: 'checkbox', value: o, 'data-mk': d.key, checked: marc.indexOf(o) >= 0 }), ' ' + o);
+      }));
     } else if (d.kind === 'long') { el = h('textarea', a); el.value = val; el.rows = 3; }
     else if (d.kind === 'num') { el = h('input', Object.assign({ type: 'number', inputmode: 'numeric', min: '0', step: '1', pattern: '[0-9]*' }, a)); el.value = val; }
     else if (d.kind === 'date') { el = h('input', Object.assign({ type: 'date' }, a)); el.value = LV.brToIso(val); }
@@ -326,46 +380,96 @@
   }
   function fmtBox(d, val) {
     if (d.kind !== 'date' && d.kind !== 'time') return null;
-    return h('small', { class: 'fmtshow', 'data-for': d.key, text: val ? 'Registrado: ' + val : (d.kind === 'date' ? 'dd/mm/aaaa' : 'hh:mm') });
+    var ph = d.kind === 'date' ? 'dd/mm/aaaa' : 'hh:mm';
+    return h('small', { class: 'fmtshow', 'data-for': d.key, 'data-ph': ph, text: val ? 'Registrado: ' + val : ph });
   }
-  function celula(d, val, extraLabel) {
-    var box = h('div', { class: 'field' + (d.kind === 'long' ? ' wide' : '') + (d.kind === 'text' ? ' wide' : ''), 'data-fk': d.key });
+  /* texto de um campo calculado (so leitura) */
+  function txtCalc(d, store) {
+    var v = store && store[d.key], un = /^(espera|permanencia)/.test(d.calc || '') ? ' min' : '';
+    if (d.colLabel) return d.colLabel + ': ' + (v === undefined || v === '' ? '-' : v);
+    return v === undefined || v === '' ? 'ainda sem dados' : v + un;
+  }
+  function calcNode(d, store) {
+    return h('div', { class: 'calcval', 'data-calc': d.key, id: 'f-' + d.key, text: txtCalc(d, store) });
+  }
+  function celula(d, val, extraLabel, store) {
+    var box = h('div', { class: 'field' + (d.kind === 'long' ? ' wide' : '') + (d.kind === 'text' ? ' wide' : '') + (d.calc ? ' calcf' : ''), 'data-fk': d.key });
+    if (d.when) { box.setAttribute('data-when', d.key); if (!LV.visivel(d, store)) box.hidden = true; }
+    if (d.calc) { box.appendChild(calcNode(d, store)); return box; }
     var campo = inputFor(d, val);
     var lbl = extraLabel ? h('label', { for: campo.id, text: extraLabel }) : null;
     add(box, [lbl, campo, fmtBox(d, val)]);
     if (d.kind === 'time') box.appendChild(h('button', { type: 'button', class: 'now', 'data-now': d.key, text: 'Agora' }));
     return box;
   }
-  function campoLinha(d, val) {
-    if (d.cgis) return h('div', { class: 'row', 'data-fk': d.key }, h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), h('div', { class: 'cgis', text: LV.CGIS_TXT }));
-    if (d.kind === 'sig') return h('div', { class: 'row', 'data-fk': d.key }, h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), h('div', { class: 'cgis', text: 'Assinatura à mão no PDF impresso' }));
-    var c = celula(d, val);
-    var lab = h('label', { class: 'lab', for: c.querySelector('[data-key]').id }, h('b', { text: d.code }), ' ' + d.label);
-    return h('div', { class: 'row' }, lab, c);
+  function campoLinha(d, val, store) {
+    store = store || S.cur.dados;
+    var row;
+    if (d.cgis) row = h('div', { class: 'row' }, h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), h('div', { class: 'cgis', text: LV.CGIS_TXT }));
+    else if (d.kind === 'sig') row = h('div', { class: 'row' }, h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), h('div', { class: 'cgis', text: 'Assinatura à mão no PDF impresso' }));
+    else {
+      var c = celula(d, val, null, store), campo = c.querySelector('[data-key]');
+      var rot = campo && /^(INPUT|SELECT|TEXTAREA)$/.test(campo.tagName);
+      var lab = h(rot ? 'label' : 'div', { class: 'lab', for: rot ? campo.id : null }, h('b', { text: d.code }), ' ' + d.label);
+      row = h('div', { class: 'row' }, lab, d.hint ? h('div', { class: 'hint rhint', text: LV.clean(d.hint) }) : null, c);
+      c.removeAttribute('data-when'); c.hidden = false;
+    }
+    if (d.when) { row.setAttribute('data-when', d.key); if (!LV.visivel(d, store)) row.hidden = true; }
+    return row;
   }
 
-  /* trata qualquer alteracao dentro de um container */
+  /* trata qualquer alteracao dentro de um container.
+     getStore(criar) devolve o objeto onde gravar (ou null se ainda nao existe e criar e falso). */
   function ligaCampos(cont, getStore, onchange) {
+    function defDe(key) { return S.model.fields[key] || (cont._defs && cont._defs[key]); }
     function aplica(el) {
-      var key = el.getAttribute('data-key'); if (!key) return;
-      var d = S.model.fields[key] || cont._defs && cont._defs[key]; var kind = d ? d.kind : 'text';
+      var key = el.getAttribute('data-key') || el.getAttribute('data-mk'); if (!key) return;
+      var d = defDe(key); var kind = d ? d.kind : 'text';
       var v = el.value;
+      if (el.type === 'checkbox') {
+        v = Array.prototype.filter.call(el.closest('[data-key]').querySelectorAll('input[type=checkbox]'), function (c) { return c.checked; }).map(function (c) { return c.value; }).join('; ');
+      }
       if (kind === 'date') v = LV.isoToBr(v);
       if (kind === 'num') v = el.validity && el.validity.badInput ? 'inválido' : v.trim();
-      getStore()[key] = v;
-      var box = el.closest('.field, .row'); var fb = cont.querySelector('.fmtshow[data-for="' + key + '"]');
-      if (fb) fb.textContent = v ? 'Registrado: ' + v : (kind === 'date' ? 'dd/mm/aaaa' : 'hh:mm');
+      var st = getStore(v !== '');
+      if (st) st[key] = v;
+      var fb = cont.querySelector('.fmtshow[data-for="' + key + '"]');
+      if (fb) fb.textContent = v ? 'Registrado: ' + v : fb.getAttribute('data-ph');
       var bad = !LV.valid(kind, v); el.classList.toggle('err', bad);
       var fld = el.closest('.field'); var em = fld && fld.querySelector('.errmsg');
       if (bad) { if (!em && fld) fld.appendChild(h('div', { class: 'errmsg', text: 'Formato inválido: ' + LV.fmtMsg[kind] })); } else if (em) em.remove();
       if ((kind === 'text' || kind === 'long') && LV.pareceDadoPessoal(v)) toast('Atenção: parece CPF ou placa. Não registre dado de quem é atendido.', 6000);
-      mark(); if (onchange) onchange(key, v);
+      if (onchange) onchange(key, v);
+      LV.deriva(S.cur, S.fotos, S.model);
+      sincroniza(cont, getStore(false) || {}, defDe);
+      mark();
     }
-    cont.addEventListener('input', function (e) { if (e.target.matches('input,textarea')) aplica(e.target); });
+    cont.addEventListener('input', function (e) { if (e.target.matches('input,textarea') && e.target.type !== 'checkbox') aplica(e.target); });
     cont.addEventListener('change', function (e) { if (e.target.matches('select,input,textarea')) aplica(e.target); });
     cont.addEventListener('click', function (e) {
       var k = e.target.getAttribute && e.target.getAttribute('data-now'); if (!k) return;
       var el = cont.querySelector('[data-key="' + k + '"]'); el.value = LV.agoraHora(); aplica(el);
+    });
+    cont._sync = function () { sincroniza(cont, getStore(false) || {}, defDe); };
+  }
+  /* mostra, esconde e atualiza no lugar, sem redesenhar (nao perde foco nem teclado) */
+  function sincroniza(cont, store, defDe) {
+    Array.prototype.forEach.call(cont.querySelectorAll('[data-when]'), function (el) {
+      var d = defDe(el.getAttribute('data-when')); if (!d) return;
+      var vis = LV.visivel(d, store);
+      if (el.hidden === vis) {
+        el.hidden = !vis;
+        if (!vis) {
+          Array.prototype.forEach.call(el.querySelectorAll('input,select,textarea'), function (i) { if (i.type === 'checkbox') i.checked = false; else i.value = ''; i.classList.remove('err'); });
+          Array.prototype.forEach.call(el.querySelectorAll('.errmsg'), function (x) { x.remove(); });
+          Array.prototype.forEach.call(el.querySelectorAll('.fmtshow'), function (x) { x.textContent = x.getAttribute('data-ph'); });
+        }
+      }
+    });
+    Array.prototype.forEach.call(cont.querySelectorAll('[data-calc]'), function (el) {
+      var d = defDe(el.getAttribute('data-calc')); if (!d) return;
+      var st = d.ent ? store : S.cur.dados;
+      el.textContent = txtCalc(d, st);
     });
   }
 
@@ -384,15 +488,24 @@
     if (b.lead) body.appendChild(h('details', { class: 'lead' }, h('summary', { text: 'Orientações do bloco' }), h('p', { text: LV.clean(typeof b.lead === 'string' ? b.lead : b.lead.join(' ')) })));
     if (n === 1) body.appendChild(infoUnidade(l.unidade));
     b.items.forEach(function (it) {
-      if (it.subtitle) body.appendChild(h('h3', { text: it.subtitle }));
+      var alvo = body;
+      if ((it.type === 'fields' || it.type === 'grid') && it.recolhido) {
+        alvo = h('details', { class: 'grp' }, h('summary', { text: it.subtitle }), it.nota ? h('p', { class: 'hint', text: LV.clean(it.nota) }) : null);
+        body.appendChild(alvo);
+      } else if (it.subtitle) {
+        body.appendChild(h('h3', { text: it.subtitle }));
+        if (it.nota) body.appendChild(h('p', { class: 'hint', text: LV.clean(it.nota) }));
+      }
       if (it.type === 'fields') {
-        if (n === 9) { it.rows.forEach(function (d) { body.appendChild(n9linha(d)); }); return; }
-        it.rows.forEach(function (d) { body.appendChild(campoLinha(d, l.dados[d.key])); });
+        it.rows.forEach(function (d) {
+          if (d.kind === 'foto' || d.kind === 'fotos') alvo.appendChild(n9linha(d));
+          else alvo.appendChild(campoLinha(d, l.dados[d.key]));
+        });
       } else if (it.type === 'grid') {
         it.rows.forEach(function (r) {
-          if (r.cgis) { body.appendChild(h('div', { class: 'row card2' }, h('div', { class: 'lab' }, h('b', { text: r.code }), ' ' + r.label), h('div', { class: 'cgis', text: LV.CGIS_TXT }))); return; }
-          body.appendChild(h('div', { class: 'row card2' }, h('div', { class: 'lab' }, h('b', { text: r.code }), ' ' + r.label),
-            h('div', { class: 'cells' }, r.cells.map(function (d) { return celula(d, l.dados[d.key], d.colLabel); }))));
+          if (r.cgis) { alvo.appendChild(h('div', { class: 'row card2' }, h('div', { class: 'lab' }, h('b', { text: r.code }), ' ' + r.label), h('div', { class: 'cgis', text: LV.CGIS_TXT }))); return; }
+          alvo.appendChild(h('div', { class: 'row card2' }, h('div', { class: 'lab' }, h('b', { text: r.code }), ' ' + r.label), r.hint ? h('div', { class: 'hint rhint', text: LV.clean(r.hint) }) : null,
+            h('div', { class: 'cells' }, r.cells.map(function (d) { return celula(d, l.dados[d.key], d.colLabel, l.dados); }))));
         });
       } else if (it.type === 'paras') {
         body.appendChild(h('details', { class: 'lead', open: true }, h('summary', { text: 'Como conduzir' }), it.items.map(function (p) { return h('p', null, h('b', { text: p[0] + ': ' }), LV.clean(p[1])); })));
@@ -404,7 +517,14 @@
       }
     });
     if (b.tail) body.appendChild(h('p', { class: 'hint', text: LV.clean(b.tail) }));
-    ligaCampos(body, function () { return S.cur.dados; });
+    ligaCampos(body, function () { return S.cur.dados; }, function (key, v) {
+      var ak = M.apc[key];
+      if (ak && v !== '' && !S.cur.dados[ak]) {
+        var hora = LV.agoraHora(); S.cur.dados[ak] = hora;
+        var inp = body.querySelector('[data-key="' + ak + '"]'); if (inp) inp.value = hora;
+        var fb = body.querySelector('.fmtshow[data-for="' + ak + '"]'); if (fb) fb.textContent = 'Registrado: ' + hora;
+      }
+    });
     var ant = n > 1 ? h('a', { class: 'btn sec', id: 'btn-ant', href: '#/lev/' + l.id + '/b/' + (n - 1), text: 'Anterior' }) : h('a', { class: 'btn sec', href: '#/', text: 'Início' });
     var prox = n < M.blocks.length ? h('a', { class: 'btn', id: 'btn-prox', href: '#/lev/' + l.id + '/b/' + (n + 1), text: 'Próximo' }) : h('a', { class: 'btn', id: 'btn-rev', href: '#/lev/' + l.id + '/finalizar', text: 'Revisar e finalizar' });
     render([topbar(l.unidade.nome, '/'), h('main', { class: 'wrap' },
@@ -414,7 +534,9 @@
   }
   function foca(key) {
     var el = document.querySelector('[data-key="' + key + '"]'); if (!el) return;
-    el.scrollIntoView({ block: 'center' }); el.focus({ preventScroll: true });
+    var dt = el.closest('details'); if (dt) dt.open = true;
+    el.scrollIntoView({ block: 'center' });
+    (el.matches('input,select,textarea') ? el : (el.querySelector('input') || el)).focus({ preventScroll: true });
     var bx = el.closest('.row, .field'); if (bx) { bx.classList.add('hl'); setTimeout(function () { bx.classList.remove('hl'); }, 3500); }
   }
   function infoUnidade(u) {
@@ -436,11 +558,10 @@
     var u = URL.createObjectURL(f.blob); S.urls.push(u);
     return h('img', { class: 'thumb', src: u, alt: 'Foto ' + f.codigo });
   }
+  function rotuloFoto(d) { return [h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), d.hint ? h('div', { class: 'hint rhint', text: LV.clean(d.hint) }) : null]; }
   function n9linha(d) {
-    var l = S.cur;
-    if (d.code === '9.07' || d.code === '9.08') return n9extra(d);
-    var f = fotoDe(d.code);
-    var wrap = campoLinha(d, l.dados[d.key]);
+    if (d.kind === 'fotos') return n9extra(d);
+    var f = fotoDe(d.code), l = S.cur;
     var area = h('div', { class: 'fotoarea', 'data-foto': d.code });
     if (f) {
       add(area, [thumbEl(f), h('div', { class: 'hint', text: f.revisada ? 'Rostos conferidos' + (f.cobertas ? ' (' + f.cobertas + ' área(s) coberta(s))' : '') : 'ATENÇÃO: cubra os rostos e conclua.' }),
@@ -448,19 +569,18 @@
           h('button', { class: 'btn sm sec', text: 'Remover', onclick: function () { removeFoto(f); } }))]);
     }
     area.appendChild(botaoFoto(d.code, f ? 'Refazer foto' : 'Tirar foto'));
-    wrap.appendChild(area); return wrap;
+    return h('div', { class: 'row', 'data-fk': d.key }, rotuloFoto(d), h('div', { class: 'hint fstat', id: 'f-' + d.key, 'data-calc': d.key, text: l.dados[d.key] || 'Não feita' }), area);
   }
   function n9extra(d) {
     var l = S.cur, pref = d.code;
     var fs = S.fotos.filter(function (f) { return f.codigo.indexOf(pref + '-') === 0; }).sort(function (a, b) { return a.codigo < b.codigo ? -1 : 1; });
-    var wrap = campoLinha(d, l.dados[d.key]);
     var area = h('div', { class: 'fotoarea', 'data-foto': pref }, fs.map(function (f) {
       return h('div', { class: 'fx' }, thumbEl(f), h('div', { class: 'hint', text: f.codigo + (f.revisada ? ' | rostos conferidos' : ' | cubra os rostos') }),
         h('div', { class: 'fb' }, h('button', { class: 'btn sm sec', text: 'Cobrir rostos', onclick: function () { reedita(f); } }), h('button', { class: 'btn sm sec', text: 'Remover', onclick: function () { removeFoto(f); } })));
     }));
     var prox = 1; while (fotoDe(pref + '-' + prox)) prox++;
     area.appendChild(botaoFoto(pref + '-' + prox, 'Adicionar foto'));
-    wrap.appendChild(area); return wrap;
+    return h('div', { class: 'row', 'data-fk': d.key }, rotuloFoto(d), h('div', { class: 'hint fstat', id: 'f-' + d.key, text: fs.length + ' foto(s)' }), area);
   }
   function botaoFoto(codigo, texto) {
     var inp = h('input', { type: 'file', accept: 'image/*', capture: 'environment', class: 'filein', 'data-cod': codigo, 'aria-label': texto + ' ' + codigo });
@@ -473,7 +593,7 @@
       var fin = x.ed || { blob: x.r.blob, w: x.r.w, h: x.r.h, cobertas: 0, revisada: false };
       var velha = fotoDe(codigo);
       var rec = { fid: LV.uuid(), levId: S.cur.id, codigo: codigo, blob: fin.blob, w: fin.w, h: fin.h, revisada: !!fin.revisada, cobertas: fin.cobertas || 0, criado_em: new Date().toISOString(), enviada: false };
-      return (velha ? LV.db.delFoto(velha.fid) : Promise.resolve()).then(function () { return LV.db.putFoto(rec); }).then(function () { return recarregaFotos(); }).then(function () { acertaCamposFoto(codigo); });
+      return (velha ? LV.db.delFoto(velha.fid) : Promise.resolve()).then(function () { return LV.db.putFoto(rec); }).then(function () { return recarregaFotos(); }).then(function () { acertaCamposFoto(); });
     }).catch(function (e) { toast('Não foi possível processar a foto: ' + e.message, 6000); });
   }
   function reedita(f) {
@@ -485,27 +605,27 @@
   }
   function removeFoto(f) {
     if (!confirm('Remover a foto ' + f.codigo + '?')) return;
-    LV.db.delFoto(f.fid).then(recarregaFotos).then(function () { acertaCamposFoto(f.codigo, true); });
+    LV.db.delFoto(f.fid).then(recarregaFotos).then(function () { acertaCamposFoto(); });
   }
-  function acertaCamposFoto(codigo, removida) {
-    var D = S.cur.dados;
-    if (/^9\.0[1-6]$/.test(codigo)) { D['c' + codigo.replace('.', '_')] = removida ? 'Não feita' : 'Feita'; }
-    ['9.07', '9.08'].forEach(function (p) {
-      var n = S.fotos.filter(function (f) { return f.codigo.indexOf(p + '-') === 0; }).length;
-      D['c' + p.replace('.', '_')] = String(n);
-    });
+  function acertaCamposFoto() {
+    LV.deriva(S.cur, S.fotos, S.model);
     save().then(function () { vBloco(9); });
   }
 
   /* ---------- Entrevistas (bloco 7) ---------- */
+  function tagsDe(prefix) { var g = S.model.ent[prefix], t = []; for (var i = 1; i <= g.n; i++) t.push(prefix + ('0' + i).slice(-2)); return t; }
   function painelEntrevistas(prefix) {
-    var g = S.model.ent[prefix], l = S.cur, ents = l.entrevistas;
-    var tags = []; for (var i = 1; i <= g.n; i++) tags.push(prefix + ('0' + i).slice(-2));
-    var feitas = tags.filter(function (t) { return ents[t]; });
-    var livre = tags.filter(function (t) { return !ents[t]; })[0];
+    var g = S.model.ent[prefix], l = S.cur;
+    var tags = tagsDe(prefix), feitas = LV.tagsRespondidas(l, S.model, prefix);
+    var livre = tags.filter(function (t) { return feitas.indexOf(t) < 0; })[0];
+    var e = LV.esperas(l, S.model), txt = null;
+    function plural(n) { return n + (n === 1 ? ' entrevista' : ' entrevistas'); }
+    if (prefix === 'E' && e.fila.n) txt = 'Espera média na fila até agora: ' + e.fila.media + ' min (' + plural(e.fila.n) + ')';
+    if (prefix === 'S' && e.saida.n) txt = 'Tempo médio da chegada à saída até agora: ' + e.saida.media + ' min (' + plural(e.saida.n) + ')';
     return h('div', { class: 'card2 ents', 'data-prefix': prefix },
       h('b', { text: g.subtitle + ' (' + feitas.length + ' de ' + g.n + ')' }), g.intro ? h('p', { class: 'hint', text: LV.clean(g.intro) }) : null,
       h('p', { class: 'aviso', text: 'Nunca peça nem registre nome, documento, CPF ou placa de quem é atendido.' }),
+      txt ? h('p', { class: 'calcinfo', id: 'espera-' + prefix, text: txt }) : null,
       h('div', { class: 'chips' }, feitas.map(function (t) { return h('a', { class: 'chip', href: '#/lev/' + l.id + '/ent/' + t, 'data-tag': t, text: t }); })),
       livre ? h('a', { class: 'btn sm', id: 'add-' + prefix, href: '#/lev/' + l.id + '/ent/' + livre, text: 'Nova entrevista ' + livre }) : h('p', { class: 'hint', text: 'Limite de entrevistas atingido.' }));
   }
@@ -514,34 +634,46 @@
     var num = +String(tag).slice(1);
     if (!g || !(num >= 1 && num <= g.n)) return go('/lev/' + l.id + '/b/7');
     if (l.situacao !== 'rascunho') return go('/lev/' + l.id + '/resumo');
-    if (!l.entrevistas[tag]) { l.entrevistas[tag] = {}; mark(); }
-    var E = l.entrevistas[tag], defs = {};
-    var body = h('div', { class: 'blk' }, h('p', { class: 'aviso', text: 'Nunca peça nem registre nome, documento, CPF ou placa de quem é atendido.' }),
-      g.fields.map(function (d) {
-        defs[d.key] = d;
-        var c = celula(d, E[d.key]); var inp = c.querySelector('[data-key]');
-        return h('div', { class: 'row' }, h('label', { class: 'lab', for: inp.id }, h('b', { text: d.code }), ' ' + d.label), c);
-      }));
-    body._defs = defs;
-    ligaCampos(body, function () { return l.entrevistas[tag]; });
-    var tags = []; for (var i = 1; i <= g.n; i++) tags.push(prefix + ('0' + i).slice(-2));
+    var body = h('div', { class: 'blk', id: 'blk-ent' }, h('p', { class: 'aviso', text: 'Nunca peça nem registre nome, documento, CPF ou placa de quem é atendido.' }),
+      g.fields.map(function (d) { return campoLinha(d, (l.entrevistas[tag] || {})[d.key], l.entrevistas[tag] || {}); }));
+    body._defs = g.defs;
+    /* o registro so nasce na primeira resposta; nesse momento os campos auto 'agora' recebem a hora */
+    ligaCampos(body, function (criar) {
+      if (!l.entrevistas[tag]) {
+        if (!criar) return null;
+        var E = l.entrevistas[tag] = {}, hora = LV.agoraHora();
+        g.fields.forEach(function (d) {
+          if (d.auto !== 'agora') return;
+          E[d.key] = hora;
+          var inp = body.querySelector('[data-key="' + d.key + '"]'); if (inp) inp.value = hora;
+          var fb = body.querySelector('.fmtshow[data-for="' + d.key + '"]'); if (fb) fb.textContent = 'Registrado: ' + hora;
+        });
+      }
+      return l.entrevistas[tag];
+    });
+    var tags = tagsDe(prefix);
     render([topbar('Entrevista ' + tag, '/lev/' + l.id + '/b/7'), h('main', { class: 'wrap' },
       h('div', { class: 'bhead' }, h('h1', { text: (prefix === 'E' ? 'Na fila: ' : 'Na saída: ') + tag }), h('div', { class: 'hint' }, h('span', { id: 'saveind', text: 'Salvo' }))), body,
       h('button', { class: 'btn sec', id: 'ent-del', text: 'Excluir esta entrevista', onclick: function () {
         if (!confirm('Excluir a entrevista ' + tag + '?')) return;
-        delete l.entrevistas[tag]; save().then(function () { go('/lev/' + l.id + '/b/7'); });
+        delete l.entrevistas[tag]; LV.deriva(l, S.fotos, S.model); save().then(function () { go('/lev/' + l.id + '/b/7'); });
       } })), h('nav', { class: 'bnav' },
       h('a', { class: 'btn sec', id: 'ent-voltar', href: '#/lev/' + l.id + '/b/7', text: 'Voltar ao bloco 7' }),
-      (function () { var nx = tags.filter(function (t) { return !l.entrevistas[t]; })[0]; return nx ? h('a', { class: 'btn', id: 'ent-nova', href: '#/lev/' + l.id + '/ent/' + nx, text: 'Próxima: ' + nx }) : null; })())]);
+      (function () {
+        var vazias = tags.filter(function (t) { return t !== tag && !LV.entrevistaRespondida(S.model, prefix, l.entrevistas[t]); });
+        var nx = vazias.filter(function (t) { return t > tag; })[0] || vazias[0];
+        return nx ? h('a', { class: 'btn', id: 'ent-nova', href: '#/lev/' + l.id + '/ent/' + nx, text: 'Próxima: ' + nx }) : null;
+      })())]);
     if (foco) setTimeout(function () { foca(foco); }, 50);
   }
 
   /* ---------- Finalizar ---------- */
+  function numOuNull(v) { return /^\d+$/.test(String(v === undefined || v === null ? '' : v).trim()) ? +String(v).trim() : null; }
   LV.pendencias = function (l, fotos, model) {
     var p = [], D = l.dados;
     function falta(key, msg) { var d = model.fields[key]; if (!D[key]) p.push({ bloco: d.block, key: key, msg: msg }); }
     falta('c1_02', 'Unidade: informe o nome (1.02)');
-    falta('c1_18', 'Data da visita (1.18)'); falta('c1_19', 'Hora de chegada (1.19)'); falta('c1_20', 'Hora de saída (1.20)');
+    falta('c1_18', 'Data da visita (1.18)'); falta('c1_19', 'Hora de chegada (1.19)');
     falta('c1_23', 'Quem levantou: nome e ID (1.23)');
     Object.keys(D).forEach(function (k) {
       var d = model.fields[k]; if (!d) return;
@@ -549,35 +681,75 @@
     });
     if (D.c1_19 && D.c1_20 && LV.valid('time', D.c1_19) && LV.valid('time', D.c1_20) && D.c1_20 < D.c1_19) p.push({ bloco: '1', key: 'c1_20', msg: 'Hora de saída (1.20) anterior à hora de chegada (1.19)' });
     Object.keys(l.entrevistas || {}).forEach(function (t) {
-      var g = model.ent[t.charAt(0)];
+      var g = model.ent[t.charAt(0)]; if (!g) return;
       g.fields.forEach(function (d) { var v = l.entrevistas[t][d.key]; if (!LV.valid(d.kind, v)) p.push({ bloco: '7', ent: t, key: d.key, msg: 'Entrevista ' + t + ', ' + d.code + ': formato inválido' }); });
     });
     fotos.forEach(function (f) { if (!f.revisada) p.push({ bloco: '9', key: undefined, cod: f.codigo, msg: 'Foto ' + f.codigo + ': cubra os rostos e conclua a edição' }); });
     return p;
   };
+  /* avisos: aparecem na revisao, mas nao impedem finalizar */
+  LV.avisos = function (l, fotos, model) {
+    var a = [], D = l.dados;
+    var c6 = numOuNull(D.c6_06), c3 = numOuNull(D.c3_01_c1);
+    if (c6 !== null && c3 !== null && c6 > c3) a.push({ bloco: '6', key: 'c6_06', msg: 'Guichês atendendo (6.06) em número maior que o total de guichês (3.01).' });
+    model.blocks.forEach(function (b) {
+      if (b.id !== '4') return;
+      b.items.forEach(function (it) {
+        if (it.type !== 'grid') return;
+        it.rows.forEach(function (r) {
+          if (r.soma_de) return;
+          var pr = null, at = null;
+          r.cells.forEach(function (d) { if (d.colLabel === 'Presentes') pr = d; if (d.colLabel === 'Atendendo') at = d; });
+          if (!pr || !at) return;
+          var vp = numOuNull(D[pr.key]), va = numOuNull(D[at.key]);
+          if (vp !== null && va !== null && va > vp) a.push({ bloco: '4', key: at.key, msg: 'Item ' + r.code + ': atendendo em número maior que presentes.' });
+        });
+      });
+    });
+    var nE = LV.tagsRespondidas(l, model, 'E').length;
+    if (nE < 5) a.push({ bloco: '7', key: null, msg: 'Menos de 5 entrevistas na fila: as cores de Fila e de Resolução ficam "Sem amostra".' });
+    var sem = [];
+    (model.calcs.foto_feita || []).forEach(function (k) { if (D[k] !== 'Feita') sem.push(model.fields[k].code); });
+    if (sem.length) a.push({ bloco: '9', key: null, msg: 'Fotos obrigatórias não feitas: ' + sem.join(', ') + '.' });
+    ['E', 'S'].forEach(function (pre) {
+      var ka = pre === 'E' ? 'c7_01' : 'c7_10', kb = pre === 'E' ? 'c7_17' : 'c7_11';
+      LV.tagsRespondidas(l, model, pre).forEach(function (t) {
+        var E = l.entrevistas[t], x = LV.minutos(E[ka]), y = LV.minutos(E[kb]);
+        if (x !== null && y !== null && x > y) a.push({ bloco: '7', ent: t, key: ka, msg: 'Entrevista ' + t + ': hora de chegada posterior à hora ' + (pre === 'E' ? 'da entrevista.' : 'da saída.') });
+      });
+    });
+    if (['c6_02', 'c6_03', 'c6_04', 'c6_05', 'c6_06'].every(function (k) { return D[k] === undefined || D[k] === ''; })) a.push({ bloco: '6', key: 'c6_02', msg: 'A fila não foi contada (Bloco 6).' });
+    return a;
+  };
   function vFinalizar() {
     var l = S.cur;
     if (l.situacao !== 'rascunho') return go('/lev/' + l.id + '/resumo');
-    var p = LV.pendencias(l, S.fotos, S.model);
+    LV.deriva(l, S.fotos, S.model);
+    var p = LV.pendencias(l, S.fotos, S.model), av = LV.avisos(l, S.fotos, S.model);
+    function href(x) { return x.ent ? '#/lev/' + l.id + '/ent/' + x.ent + '?f=' + x.key : '#/lev/' + l.id + '/b/' + x.bloco + (x.key ? '?f=' + x.key : ''); }
     var porBloco = {}; p.forEach(function (x) { (porBloco[x.bloco] = porBloco[x.bloco] || []).push(x); });
     var lista = Object.keys(porBloco).sort(function (a, b) { return a - b; }).map(function (b) {
       return h('div', { class: 'card2' }, h('b', { text: S.model.blocks[b - 1].title }), porBloco[b].map(function (x) {
-        var href = x.ent ? '#/lev/' + l.id + '/ent/' + x.ent + '?f=' + x.key : '#/lev/' + l.id + '/b/' + b + (x.key ? '?f=' + x.key : '');
-        return h('div', { class: 'pend' }, h('span', { text: x.msg + ' ' }), h('a', { class: 'lk', href: href, text: 'Ir ao campo' }));
+        return h('div', { class: 'pend' }, h('span', { text: x.msg + ' ' }), h('a', { class: 'lk', href: href(x), text: 'Ir ao campo' }));
       }));
     });
+    var listaAv = av.length ? h('div', { class: 'card2', id: 'avisos' }, h('b', { text: 'Avisos (não impedem finalizar)' }), av.map(function (x) {
+      return h('div', { class: 'pend aviso-i' }, h('span', { text: x.msg + ' ' }), h('a', { class: 'lk', href: href(x), text: 'Ir ao campo' }));
+    })) : null;
     var tem = S.fotos.length > 0;
     var chk = h('input', { type: 'checkbox', id: 'chk-rostos' });
     var btn = h('button', { class: 'btn', id: 'btn-finalizar', text: 'Finalizar levantamento', disabled: p.length > 0 || tem, onclick: finaliza });
     chk.addEventListener('change', function () { btn.disabled = p.length > 0 || (tem && !chk.checked); });
     function finaliza() {
+      if (!l.dados.c1_20) l.dados.c1_20 = LV.agoraHora();
+      LV.deriva(l, S.fotos, S.model);
       l.situacao = 'finalizado'; l.finalizado_em = new Date().toISOString(); l.tentativas = 0; l.proxima_tentativa = null; l.ultimo_erro = '';
       LV.getConfig().then(function (c) { if (c.url && c.token) l.situacao = 'aguardando'; }).then(save).then(function () { go('/lev/' + l.id + '/resumo'); LV.enviarPendentes(true); });
     }
     render([topbar('Finalizar', '/lev/' + l.id + '/b/' + (l.bloco_atual || 1)), h('main', { class: 'wrap' },
       h('div', { class: 'card' }, h('h1', { text: 'Revisão final' }), h('p', { text: l.unidade.nome }),
         p.length ? h('p', { class: 'msg', id: 'npend', text: p.length + ' pendência(s) para resolver:' }) : h('p', { class: 'ok', id: 'npend', text: 'Sem pendências. Campos mínimos preenchidos e formatos válidos.' })),
-      lista,
+      lista, listaAv,
       tem ? h('label', { class: 'chk' }, chk, ' Confirmo que os rostos foram cobertos em todas as fotos.') : null, btn,
       h('a', { class: 'btn sec', href: '#/lev/' + l.id + '/b/' + (l.bloco_atual || 1), text: 'Voltar ao preenchimento' }))]);
   }
@@ -615,7 +787,7 @@
       h('h1', { text: l.unidade.nome }), h('p', null, h('span', { class: 'st st-' + l.situacao, id: 'rs-status', text: STATUS[l.situacao] })),
       h('p', { class: 'hint', text: 'Visita ' + (l.dados.c1_18 || '') + ' | finalizado em ' + fmtDataHora(l.finalizado_em) + (l.enviado_em ? ' | enviado em ' + fmtDataHora(l.enviado_em) : '') }),
       h('p', { class: 'hint', text: 'ID ' + l.id }), h('p', { class: 'hint', text: 'Fotos: ' + ne + ' de ' + nf + ' enviadas' }),
-      l.ultimo_erro && l.situacao !== 'enviado' ? h('p', { class: 'msg', text: 'Último erro de envio: ' + l.ultimo_erro + (l.proxima_tentativa ? ' (nova tentativa automática após ' + fmtDataHora(l.proxima_tentativa) + ')' : '') }) : null),
+      l.ultimo_erro && l.situacao !== 'enviado' ? h('p', { class: 'msg', id: 'rs-erro', text: 'Último erro de envio: ' + LV.msgErro(l.ultimo_erro) + (l.proxima_tentativa ? ' (nova tentativa automática após ' + fmtDataHora(l.proxima_tentativa) + ')' : '') }) : null),
       h('div', { class: 'card' }, h('label', { class: 'chk' }, mini, ' Incluir miniaturas das fotos no PDF'),
         navigator.canShare ? h('button', { class: 'btn', id: 'btn-share', text: 'Compartilhar PDF', onclick: function () { pdf('share'); } }) : null,
         h('button', { class: navigator.canShare ? 'btn sec' : 'btn', id: 'btn-pdf', text: 'Baixar PDF', onclick: function () { pdf('down'); } }), info,
@@ -623,7 +795,7 @@
       h('div', { class: 'card' }, l.situacao !== 'enviado' ? h('button', { class: 'btn', id: 'btn-enviar', text: 'Enviar agora', onclick: function () { enviarAgora(info); } }) : h('p', { class: 'ok', text: 'Recebido pelo servidor.' }),
         h('button', { class: 'btn sec', id: 'btn-reabrir', text: 'Reabrir para correção', onclick: function () {
           if (!confirm('Reabrir este levantamento para correção? Será preciso finalizar de novo.')) return;
-          l.situacao = 'rascunho'; (l.reaberturas = l.reaberturas || []).push(new Date().toISOString()); l.proxima_tentativa = null; l.kit_aplicado = true;
+          l.situacao = 'rascunho'; (l.reaberturas = l.reaberturas || []).push(new Date().toISOString()); l.proxima_tentativa = null;
           save().then(function () { go('/lev/' + l.id + '/b/1'); });
         } })),
       h('a', { class: 'btn sec', href: '#/', text: 'Voltar ao início' }),
@@ -631,6 +803,23 @@
         if (!confirm('Apagar este levantamento deste aparelho? ' + (l.situacao === 'enviado' ? '' : 'ELE AINDA NÃO FOI ENVIADO.'))) return;
         LV.db.delFotosDe(l.id).then(function () { return LV.db.delLev(l.id); }).then(function () { S.cur = null; go('/'); });
       } }) : null)]);
+  }
+
+  /* ---------- Levantamento de versao anterior ---------- */
+  function vAnterior() {
+    var l = S.cur, info = h('p', { class: 'msg', id: 'rs-msg' });
+    var pode = l.situacao === 'finalizado' || l.situacao === 'aguardando';
+    render([topbar('Versão anterior', '/'), h('main', { class: 'wrap' }, h('div', { class: 'card' },
+      h('h1', { text: 'Levantamento da versão anterior' }), h('p', { text: l.unidade.nome || '' }),
+      h('p', null, h('span', { class: 'st st-' + l.situacao, id: 'rs-status', text: STATUS[l.situacao] })),
+      h('p', { class: 'hint', text: 'Este levantamento foi feito na versão ' + (l.versao_instrumento || '?') + ' do formulário e não pode mais ser editado. ' + (pode ? 'Ele ainda pode ser enviado como está.' : (l.situacao === 'enviado' ? 'Já foi recebido pelo servidor.' : 'Como é rascunho, não pode ser enviado: apague e refaça no formulário novo.')) }),
+      l.ultimo_erro && l.situacao !== 'enviado' ? h('p', { class: 'msg', text: 'Último erro de envio: ' + LV.msgErro(l.ultimo_erro) }) : null,
+      pode ? h('button', { class: 'btn', id: 'btn-enviar', text: 'Enviar agora', onclick: function () { enviarAgora(info); } }) : null, info,
+      h('a', { class: 'btn sec', href: '#/', text: 'Voltar ao início' }),
+      h('button', { class: 'btn danger', id: 'btn-apagar', text: 'Apagar do aparelho', onclick: function () {
+        if (!confirm('Apagar este levantamento deste aparelho? ' + (l.situacao === 'enviado' ? '' : 'ELE AINDA NÃO FOI ENVIADO.'))) return;
+        LV.db.delFotosDe(l.id).then(function () { return LV.db.delLev(l.id); }).then(function () { S.cur = null; go('/'); });
+      } })))]);
   }
 
   /* ---------- inicializacao ---------- */
@@ -663,13 +852,13 @@
   }
   function boot() {
     $app = document.getElementById('app');
-    Promise.all([carrega('spec.json'), carrega('unidades_app.json'), LV.db.getMeta('perfil'), LV.db.getMeta('kit')]).then(function (a) {
-      S.model = LV.buildModel(a[0]); S.unidades = normUnidades(a[1]); S.perfil = a[2] || null; S.kit = a[3] || null;
+    Promise.all([carrega('spec.json'), carrega('unidades_app.json'), LV.db.getMeta('perfil'), LV.db.getMeta('listas')]).then(function (a) {
+      S.model = LV.model = LV.buildModel(a[0]); S.unidades = normUnidades(a[1]); S.perfil = a[2] || null; LV.aplicaListas(S.model, a[3]);
       window.LVAPP = S; // diagnostico e testes
       registraSW();
       if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
       window.addEventListener('hashchange', route);
-      route(); LV.iniciaFila(); kitSilencioso();
+      route(); LV.iniciaFila(); LV.reconfereCodigo(); listasSilencioso();
       document.documentElement.setAttribute('data-pronto', '1');
     }).catch(function (e) {
       $app.textContent = 'Não foi possível iniciar o aplicativo: ' + e.message;

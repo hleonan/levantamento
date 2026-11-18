@@ -6,7 +6,7 @@
 
   function t(s) {
     if (s === undefined || s === null) return '';
-    return String(s).replace(/[\u2013\u2014]/g, '-').replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'")
+    return String(s).replace(/m\u00b2/g, 'm2').replace(/[\u2013\u2014]/g, '-').replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'")
       .replace(/…/g, '...').replace(/[^\x09\x0a\x0d\x20-\xff]/g, '?');
   }
   function blobDataUrl(blob) {
@@ -15,7 +15,11 @@
 
   LV.gerarPDF = function (lev, model, fotos, opts) {
     opts = opts || {};
-    var spec = model.spec, D = lev.dados;
+    var spec = model.spec;
+    /* trabalha numa copia: recalcula somas e medias e tira o que esta escondido, sem mexer no registro guardado */
+    lev = Object.assign({}, lev, { dados: JSON.parse(JSON.stringify(lev.dados || {})), entrevistas: JSON.parse(JSON.stringify(lev.entrevistas || {})) });
+    LV.deriva(lev, fotos || [], model);
+    var D = lev.dados;
     var J = window.jspdf.jsPDF;
     var doc = new J({ unit: 'mm', format: 'a4', orientation: 'portrait' });
     doc.setProperties({ title: t(spec.title) + ' ' + spec.version, author: 'DETRAN-RJ CGIS' });
@@ -97,6 +101,10 @@
     function resp(d, v) {
       if (d.cgis) return { txt: LV.CGIS_TXT, it: true };
       if (d.kind === 'sig') return { txt: 'Assinatura à mão no quadro final', it: true };
+      if (d.kind === 'fotos') return (v === undefined || v === null || v === '' ? '0' : v) + ' foto(s)';
+      if (d.kind === 'foto') return v || 'Não feita';
+      if (d.calc && (v === undefined || v === '')) return 'sem dados';
+      if (d.calc && /^(espera|permanencia)/.test(d.calc)) return v + ' min';
       return v === undefined || v === null ? '' : v;
     }
 
@@ -122,24 +130,24 @@
       b.items.forEach(function (it) {
         if (it.type === 'fields') {
           if (it.subtitle) sub(it.subtitle);
-          tabela([13, 100, CW - 113], ['Código', 'Item', 'Resposta'], it.rows.map(function (d) { return [d.code, d.label, resp(d, D[d.key])]; }));
+          tabela([13, 100, CW - 113], ['Código', 'Item', 'Resposta'], it.rows.filter(function (d) { return LV.visivel(d, D); }).map(function (d) { return [d.code, d.label, resp(d, D[d.key])]; }));
         } else if (it.type === 'grid') {
           if (it.subtitle) sub(it.subtitle);
           var nc = it.cols.length, iw = nc >= 4 ? 52 : 64, cw = (CW - 13 - iw) / nc;
           var ws = [13, iw]; for (var i = 0; i < nc; i++) ws.push(cw);
           tabela(ws, ['Código', 'Item'].concat(it.cols), it.rows.map(function (r) {
             if (r.cgis) { var row = [r.code, r.label]; for (var k = 0; k < nc; k++) row.push(k === 0 ? { txt: LV.CGIS_TXT, it: true } : ''); return row; }
-            return [r.code, r.label].concat(r.cells.map(function (d) { return D[d.key] || ''; }));
+            return [r.code, r.label].concat(r.cells.map(function (d) { return LV.visivel(d, D) ? (D[d.key] || '') : ''; }));
           }));
         } else if (it.type === 'questions') {
           var g = model.ent[it.prefix];
           sub(g.subtitle);
-          var tags = Object.keys(lev.entrevistas || {}).filter(function (x) { return x.charAt(0) === it.prefix; }).sort();
+          var tags = LV.tagsRespondidas(lev, model, it.prefix);
           if (!tags.length) para('Nenhuma entrevista registrada.', 8.5, false, [100, 112, 124]);
           tags.forEach(function (tag) {
             var E = lev.entrevistas[tag];
             precisa(40); para('Entrevista ' + tag, 8.5, true);
-            tabela([16, 100, CW - 116], ['Código', 'Pergunta', 'Resposta'], g.fields.map(function (d) { return [d.code, d.label, E[d.key] || '']; }));
+            tabela([16, 100, CW - 116], ['Código', 'Pergunta', 'Resposta'], g.fields.filter(function (d) { return LV.visivel(d, E); }).map(function (d) { return [d.code, d.label, E[d.key] || '']; }));
           });
         }
       });
@@ -167,14 +175,15 @@
     precisa(60);
     barra('Assinaturas');
     var bw = (CW - 6) / 2;
-    var nomeResp = D.c10_10 || '', nomeLev = D.c10_12 || D.c1_23 || lev.levantado_por || '';
-    [['10.11 Assinatura do responsável pela unidade', 'Nome e cargo: ' + nomeResp], ['10.13 Assinatura de quem levantou', 'Nome e ID: ' + nomeLev]].forEach(function (b, i) {
+    var nomeResp = D.c10_10 || '', nomeLev = D.c1_23 || lev.levantado_por || '';
+    [['10.11 Assinatura do responsável pela unidade', 'Nome e cargo: ' + nomeResp], ['10.13 Assinatura de quem levantou', 'Nome e ID: ' + nomeLev + '\nData: ' + (D.c1_18 || '')]].forEach(function (b, i) {
       var x = M + i * (bw + 6);
       doc.setDrawColor.apply(doc, TXT); doc.setLineWidth(0.3); doc.line(x, y + 22, x + bw, y + 22);
       doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor.apply(doc, TXT);
       doc.text(t(b[0]), x, y + 26);
       doc.setFont('helvetica', 'normal');
-      doc.splitTextToSize(t(b[1]), bw).slice(0, 3).forEach(function (l, j) { doc.text(l, x, y + 30.5 + j * 4); });
+      var ln = []; b[1].split('\n').forEach(function (ps) { ln = ln.concat(doc.splitTextToSize(t(ps), bw)); });
+      ln.slice(0, 4).forEach(function (l, j) { doc.text(l, x, y + 30.5 + j * 4); });
     });
     y += 45;
 
@@ -182,7 +191,7 @@
     for (var p = 1; p <= total; p++) {
       doc.setPage(p); doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(100, 112, 124);
       doc.setDrawColor(LINHA[0], LINHA[1], LINHA[2]); doc.line(M, PH - 12, PW - M, PH - 12);
-      doc.text(t('ID ' + lev.id + '  |  Instrumento ' + spec.version + '  |  App ' + LV.APP_VERSION), M, PH - 8);
+      doc.text(t(spec.footer_pdf + '  |  ID ' + lev.id + '  |  App ' + LV.APP_VERSION), M, PH - 8);
       doc.text('Página ' + p + ' de ' + total, PW - M, PH - 8, { align: 'right' });
     }
     return doc.output('blob');
