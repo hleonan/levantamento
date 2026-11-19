@@ -1,4 +1,4 @@
-/* Modelo do formulario: tudo vem de spec.json (instrumento v3). Chaves de dados conforme o contrato com o servidor. */
+/* Modelo do formulario: tudo vem de spec.json. Chaves de dados conforme o contrato com o servidor. */
 (function () {
   var LV = window.LV = window.LV || {};
   LV.CGIS_TXT = 'Preenchido pela CGIS na base';
@@ -16,7 +16,8 @@
     function def(r, bid, ex) {
       var d = { key: keyOf(r.code), code: r.code, label: r.label, kind: norm(r.kind), opts: r.opts || null, cgis: !!r.cgis, block: bid,
         opts_ref: r.opts_ref || null, extra: r.extra || null, primeiro: r.primeiro || null, hint: r.hint || '', when: r.when || null,
-        auto: r.auto || null, calc: r.calc || null };
+        auto: r.auto || null, calc: r.calc || null, sem_agora: !!r.sem_agora, declara: r.declara || '',
+        foto_em: r.foto_em || null, foto_quando: r.foto_quando || null, foto_hint: r.foto_hint || '' };
       if (ex) for (var k in ex) d[k] = ex[k];
       return d;
     }
@@ -77,12 +78,12 @@
     else model.lists.empresas = (model.spec.lists.empresas || []).slice();
   };
 
-  /* Lista plana de chaves gravaveis (sem entrevistas), na ordem do spec. Inclui auto e calc; exclui cgis e sig. */
+  /* Lista plana de chaves gravaveis (sem entrevistas), na ordem do spec. Inclui auto, calc e sig; exclui so cgis. */
   LV.fieldKeys = function (model) {
     var out = [];
     model.blocks.forEach(function (b) {
       b.items.forEach(function (it) {
-        if (it.type === 'fields') it.rows.forEach(function (d) { if (!d.cgis && d.kind !== 'sig') out.push(d.key); });
+        if (it.type === 'fields') it.rows.forEach(function (d) { if (!d.cgis) out.push(d.key); });
         else if (it.type === 'grid') it.rows.forEach(function (r) { r.cells.forEach(function (d) { out.push(d.key); }); });
       });
     });
@@ -124,6 +125,42 @@
     var n = LV.normCodigo(x);
     if (n.length > 12) return n;
     return n.replace(/(.{4})(?=.)/g, '$1-');
+  };
+
+  /* Texto colado com o nome junto: se ha exatamente um trecho XXXX-XXXX-XXXX (sem letra ou numero colado antes ou depois)
+     e sobra mais coisa, devolve so o trecho; senao null. */
+  LV.extraiCodigo = function (bruto) {
+    var s = String(bruto === undefined || bruto === null ? '' : bruto), re = /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}/, achados = [], i;
+    for (i = 0; i < s.length; i++) {
+      if (i > 0 && /[A-Za-z0-9]/.test(s.charAt(i - 1))) continue;
+      var m = re.exec(s.slice(i));
+      if (m && !/[A-Za-z0-9]/.test(s.charAt(i + 14) || '')) achados.push(m[0]);
+    }
+    if (achados.length !== 1) return null;
+    return LV.normCodigo(s).length > LV.normCodigo(achados[0]).length ? achados[0] : null;
+  };
+
+  /* ---------- fotos: origem e dia ---------- */
+  function p2(n) { return ('0' + n).slice(-2); }
+  /* ISO completo -> 'AAAA-MM-DDTHH:MM' no horario do aparelho */
+  LV.isoParaMin = function (iso) {
+    var d = new Date(iso); if (!iso || isNaN(d.getTime())) return '';
+    return d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()) + 'T' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+  };
+  /* ISO -> 'dd/mm/aaaa hh:mm' no horario do aparelho */
+  LV.isoParaBr = function (iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(LV.isoParaMin(iso)); return m ? m[3] + '/' + m[2] + '/' + m[1] + ' ' + m[4] + ':' + m[5] : '';
+  };
+  /* Origem, data e avisos de uma foto (registro antigo sem origem vale como camera, com a data de criado_em) */
+  LV.fotoInfo = function (f, visitaBr) {
+    var origem = f.origem === 'galeria' ? 'galeria' : 'camera';
+    var t = f.tirada_em !== undefined && f.tirada_em !== null ? f.tirada_em : (origem === 'camera' ? LV.isoParaMin(f.criado_em) : '');
+    var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(t || '');
+    var dia = m ? m[3] + '/' + m[2] + '/' + m[1] : '', hora = m ? m[4] + ':' + m[5] : '';
+    var rotulo = origem === 'camera' ? (m ? 'Câmera, ' + dia + ' ' + hora : 'Câmera') : (m ? 'Galeria, foto de ' + dia + ' ' + hora : 'Galeria, sem data na foto');
+    var fora = !!m && !!visitaBr && dia !== visitaBr, sem = !m;
+    return { origem: origem, dia: dia, hora: hora, rotulo: rotulo, fora: fora, sem: sem,
+      aviso: fora ? 'Esta foto não é do dia da visita.' : (sem ? 'Não foi possível confirmar o dia desta foto.' : '') };
   };
 
   /* ---------- entrevistas ---------- */
@@ -169,6 +206,31 @@
     }
   };
 
+  /* Numero sem zero a esquerda: "04" -> "4", "00" -> "0". Outros valores ficam como estao. */
+  LV.semZeroEsq = function (v) {
+    var s = String(v === undefined || v === null ? '' : v).trim();
+    return /^\d+$/.test(s) ? s.replace(/^0+(?=\d)/, '') : v;
+  };
+  /* Na finalizacao: tira zero a esquerda dos campos numericos (levantamento e entrevistas) e, na grade com soma,
+     na linha em que uma coluna somada tem numero e a outra esta vazia, a vazia vira "0". Linha toda vazia fica vazia. */
+  LV.normalizaNumeros = function (l, model) {
+    var D = l.dados;
+    Object.keys(D).forEach(function (k) { var d = model.fields[k]; if (d && d.kind === 'num') D[k] = LV.semZeroEsq(D[k]); });
+    Object.keys(l.entrevistas || {}).forEach(function (t) {
+      var g = model.ent[t.charAt(0)], E = l.entrevistas[t]; if (!g || !E) return;
+      g.fields.forEach(function (d) { if (d.kind === 'num' && E[d.key] !== undefined) E[d.key] = LV.semZeroEsq(E[d.key]); });
+    });
+    function temNum(v) { return /^\d+$/.test(String(v === undefined || v === null ? '' : v).trim()); }
+    function vazio(v) { return v === undefined || v === null || String(v).trim() === ''; }
+    Object.keys(model.fields).forEach(function (k) {
+      var d = model.fields[k];
+      if (d.calc !== 'soma' || !LV.visivel(d, D)) return;
+      var origem = d.somaFrom;
+      if (origem.some(function (kk) { return temNum(D[kk]); })) origem.forEach(function (kk) { if (vazio(D[kk]) && LV.visivel(model.fields[kk], D)) D[kk] = '0'; });
+    });
+    return l;
+  };
+
   /* Calcula somas, medias e contagens de foto e grava em l.dados; chamada em todo salvamento e na finalizacao */
   LV.deriva = function (l, fotos, model) {
     var D = l.dados; fotos = fotos || [];
@@ -184,6 +246,9 @@
         D[k] = fotos.some(function (f) { return f.codigo === d.code; }) ? 'Feita' : 'Não feita';
       } else if (d.calc === 'conta_fotos') {
         D[k] = String(fotos.filter(function (f) { return f.codigo.indexOf(d.code + '-') === 0; }).length);
+      } else if (d.calc === 'assinatura') {
+        var as = l.assinaturas && l.assinaturas[d.code];
+        D[k] = as ? 'Assinada na tela em ' + LV.isoParaBr(as.em) : 'Não assinada na tela';
       }
     });
     var e = LV.esperas(l, model), c = model.calcs;

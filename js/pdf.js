@@ -9,6 +9,13 @@
     return String(s).replace(/m\u00b2/g, 'm2').replace(/[\u2013\u2014]/g, '-').replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'")
       .replace(/…/g, '...').replace(/[^\x09\x0a\x0d\x20-\xff]/g, '?');
   }
+  /* largura e altura de um PNG (data URL), lidas do cabecalho */
+  function pngDims(url) {
+    try {
+      var b = atob(String(url).split(',')[1].slice(0, 44)), r = function (o) { return (b.charCodeAt(o) << 24 | b.charCodeAt(o + 1) << 16 | b.charCodeAt(o + 2) << 8 | b.charCodeAt(o + 3)) >>> 0; };
+      var w = r(16), h = r(20); return w && h ? { w: w, h: h } : null;
+    } catch (e) { return null; }
+  }
   function blobDataUrl(blob) {
     return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = rej; r.readAsDataURL(blob); });
   }
@@ -22,7 +29,8 @@
     var D = lev.dados;
     var J = window.jspdf.jsPDF;
     var doc = new J({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-    doc.setProperties({ title: t(spec.title) + ' ' + spec.version, author: 'DETRAN-RJ CGIS' });
+    doc.setProperties({ title: t(spec.title) + ' - versão ' + LV.APP_VERSION, author: 'DETRAN-RJ CGIS' });
+    var teste = spec.teste && spec.teste.ativo ? t(spec.teste.texto) : '';
     var y = M;
 
     function novaPagina() {
@@ -100,7 +108,7 @@
 
     function resp(d, v) {
       if (d.cgis) return { txt: LV.CGIS_TXT, it: true };
-      if (d.kind === 'sig') return { txt: 'Assinatura à mão no quadro final', it: true };
+      if (d.kind === 'sig') return v || 'Não assinada na tela';
       if (d.kind === 'fotos') return (v === undefined || v === null || v === '' ? '0' : v) + ' foto(s)';
       if (d.kind === 'foto') return v || 'Não feita';
       if (d.calc && (v === undefined || v === '')) return 'sem dados';
@@ -114,7 +122,12 @@
     doc.setTextColor(AZUL[0], AZUL[1], AZUL[2]); doc.setFontSize(14);
     doc.text(t(spec.title.toUpperCase()), PW / 2, y + 5, { align: 'center' }); y += 9;
     doc.setTextColor.apply(doc, TXT); doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
-    doc.text(t(spec.subtitle_pdf), PW / 2, y + 3, { align: 'center' }); y += 8;
+    doc.text(t(spec.subtitle_pdf + ' · versão ' + LV.APP_VERSION), PW / 2, y + 3, { align: 'center' }); y += 8;
+    if (teste) {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(200, 0, 0);
+      doc.text(teste, PW / 2, y + 3, { align: 'center' }); y += 8;
+      doc.setTextColor.apply(doc, TXT); doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    }
     var u = lev.unidade;
     tabela([34, CW - 34], ['Dado', 'Informação'], [
       ['Unidade', (u.nome || '') + (u.id ? ' (' + u.id + ')' : '')],
@@ -158,48 +171,77 @@
         else {
           var tw = 40, th = 30, gap = 4, per = Math.floor((CW + gap) / (tw + gap)), idx = 0;
           while (idx < fotos.length) {
-            precisa(th + 8);
+            precisa(th + 12);
             for (var c = 0; c < per && idx < fotos.length; c++, idx++) {
               var f = fotos[idx], x = M + c * (tw + gap);
-              try { doc.addImage(f.thumb, 'JPEG', x, y, tw, th, undefined, 'FAST'); } catch (e) {}
+              /* a foto mantem a proporcao dentro da caixa (foto em pe nao sai achatada) */
+              var asp = f.w && f.h ? f.w / f.h : tw / th, iw = tw, ih = th;
+              if (asp > tw / th) ih = tw / asp; else iw = th * asp;
+              var ix = x + (tw - iw) / 2, iy = y + (th - ih) / 2;
+              try { doc.addImage(f.thumb, 'JPEG', ix, iy, iw, ih, undefined, 'FAST'); } catch (e) {}
               doc.setDrawColor(LINHA[0], LINHA[1], LINHA[2]); doc.rect(x, y, tw, th);
               doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor.apply(doc, TXT);
               doc.text(t('Foto ' + f.codigo), x, y + th + 3);
+              var fi = LV.fotoInfo(f, D.c1_18 || '');
+              if (fi.sem) doc.text('(sem data)', x, y + th + 6.2);
+              else if (fi.fora) doc.text(t('(foto de ' + fi.dia + ')'), x, y + th + 6.2);
             }
-            y += th + 6;
+            y += th + 9;
           }
         }
       }
     });
 
-    precisa(60);
+    precisa(72);
     barra('Assinaturas');
     var bw = (CW - 6) / 2;
     var nomeResp = D.c10_10 || '', nomeLev = D.c1_23 || lev.levantado_por || '';
-    [['10.11 Assinatura do responsável pela unidade', 'Nome e cargo: ' + nomeResp], ['10.13 Assinatura de quem levantou', 'Nome e ID: ' + nomeLev + '\nData: ' + (D.c1_18 || '')]].forEach(function (b, i) {
-      var x = M + i * (bw + 6);
+    [['10.11', '10.11 Assinatura do responsável pela unidade', 'Nome e cargo: ' + nomeResp], ['10.13', '10.13 Assinatura de quem levantou', 'Nome e ID: ' + nomeLev + '\nData: ' + (D.c1_18 || '')]].forEach(function (b, i) {
+      var x = M + i * (bw + 6), as = lev.assinaturas && lev.assinaturas[b[0]];
+      if (as && as.png) { /* assinatura feita na tela: a imagem sobre a linha */
+        var dim = pngDims(as.png), aw = bw - 4, ah = 19;
+        if (dim) { var ar = dim.w / dim.h; if (ar > aw / ah) ah = aw / ar; else aw = ah * ar; }
+        try { doc.addImage(as.png, 'PNG', x + 2, y + 21.5 - ah, aw, ah, undefined, 'FAST'); } catch (e) {} /* 'FAST': a imagem entra comprimida (sem isso, cada assinatura pesa mais de 1 MB no PDF) */
+      }
       doc.setDrawColor.apply(doc, TXT); doc.setLineWidth(0.3); doc.line(x, y + 22, x + bw, y + 22);
       doc.setFont('helvetica', 'bold'); doc.setFontSize(8); doc.setTextColor.apply(doc, TXT);
-      doc.text(t(b[0]), x, y + 26);
+      doc.text(t(b[1]), x, y + 26);
       doc.setFont('helvetica', 'normal');
-      var ln = []; b[1].split('\n').forEach(function (ps) { ln = ln.concat(doc.splitTextToSize(t(ps), bw)); });
-      ln.slice(0, 4).forEach(function (l, j) { doc.text(l, x, y + 30.5 + j * 4); });
+      /* o que a assinatura atesta vai escrito junto dela (vale para a assinatura na tela e para a assinatura a caneta) */
+      var ln = [], dk = model.fields['c' + b[0].replace('.', '_')], decl = dk && dk.declara ? LV.clean(dk.declara) : '';
+      if (decl) ln = ln.concat(doc.splitTextToSize(t(decl), bw));
+      if (as) ln.push(D['c' + b[0].replace('.', '_')] || ('Assinada na tela em ' + LV.isoParaBr(as.em)));
+      b[2].split('\n').forEach(function (ps) { ln = ln.concat(doc.splitTextToSize(t(ps), bw)); });
+      ln.slice(0, 8).forEach(function (l, j) { doc.text(t(l), x, y + 30.5 + j * 4); });
     });
-    y += 45;
+    y += 60;
 
     var total = doc.getNumberOfPages();
     for (var p = 1; p <= total; p++) {
       doc.setPage(p); doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(100, 112, 124);
       doc.setDrawColor(LINHA[0], LINHA[1], LINHA[2]); doc.line(M, PH - 12, PW - M, PH - 12);
-      doc.text(t(spec.footer_pdf + '  |  ID ' + lev.id + '  |  App ' + LV.APP_VERSION), M, PH - 8);
+      doc.text(t(spec.footer_pdf + '  |  versão ' + LV.APP_VERSION + '  |  ID ' + lev.id), M, PH - 8);
       doc.text('Página ' + p + ' de ' + total, PW - M, PH - 8, { align: 'right' });
+      if (teste) { doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(200, 0, 0); doc.text(teste, PW / 2, 6.5, { align: 'center' }); }
     }
     return doc.output('blob');
   };
 
   LV.prepararMiniaturas = function (fotos) {
     return Promise.all(fotos.map(function (f) {
-      return LV.comprimir(f.blob, 320, 0.6).then(function (r) { return blobDataUrl(r.blob); }).then(function (u) { return { codigo: f.codigo, thumb: u }; });
+      return LV.comprimir(f.blob, 320, 0.6).then(function (r) { return blobDataUrl(r.blob).then(function (u) { return { codigo: f.codigo, thumb: u, w: f.w || r.w, h: f.h || r.h }; }); });
     }));
+  };
+
+  /* PDF do levantamento guardado no aparelho (fotos do banco, assinaturas do proprio registro). miniaturas = false: so a lista de fotos. */
+  LV.pdfDoLevantamento = function (l, miniaturas) {
+    return LV.db.fotosDe(l.id).then(function (fs) {
+      fs.sort(function (a, b) { return a.codigo < b.codigo ? -1 : 1; });
+      return (miniaturas ? LV.prepararMiniaturas(fs) : Promise.resolve([])).then(function (th) {
+        var map = {}; th.forEach(function (x) { map[x.codigo] = x; });
+        var lst = fs.map(function (f) { var x = map[f.codigo] || {}; return { codigo: f.codigo, thumb: x.thumb, w: f.w, h: f.h, origem: f.origem, tirada_em: f.tirada_em, criado_em: f.criado_em }; });
+        return LV.gerarPDF(l, LV.model, lst, { fotos: !!miniaturas });
+      });
+    });
   };
 })();

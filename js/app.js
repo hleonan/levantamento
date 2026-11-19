@@ -27,6 +27,8 @@
   }
   function go(hash) { if (location.hash === '#' + hash) route(); else location.hash = hash; }
   function toast(msg, ms) {
+    Array.prototype.forEach.call(document.querySelectorAll('.toast'), function (x) { x.remove(); }); /* um aviso de cada vez */
+    if (!msg) return;
     var t = h('div', { class: 'toast', role: 'status', text: msg }); document.body.appendChild(t);
     setTimeout(function () { t.remove(); }, ms || 3500);
   }
@@ -52,10 +54,12 @@
 
   /* ---------- cabecalho e estado de rede ---------- */
   function topbar(titulo, voltar) {
-    return h('header', { class: 'top' },
+    var ft = S.model && S.model.spec.teste;
+    return h('header', { class: 'top' }, h('div', { class: 'toprow' },
       voltar ? h('a', { class: 'back', href: '#' + voltar, 'aria-label': 'Voltar', text: '‹' }) : null,
       h('div', { class: 'tt', text: titulo || 'Levantamento' }),
-      h('span', { id: 'netpill', class: 'pill ' + (navigator.onLine ? 'on' : 'off'), text: navigator.onLine ? 'Com internet' : 'Sem internet' }));
+      h('span', { id: 'netpill', class: 'pill ' + (navigator.onLine ? 'on' : 'off'), text: navigator.onLine ? 'Com internet' : 'Sem internet' })),
+      ft && ft.ativo ? h('div', { class: 'faixa-teste', text: ft.texto }) : null);
   }
   function atualizaRede() {
     var p = document.getElementById('netpill'); if (!p) return;
@@ -136,10 +140,15 @@
   window.addEventListener('online', listasSilencioso);
   function usuarioTxt(perf) { return perf.nome + (perf.idf ? ', ID ' + perf.idf : ''); }
   function ctxOpc() { return { lists: S.model.lists, municipio: S.cur ? (S.cur.dados.c1_06 || (S.cur.unidade || {}).municipio || '') : '' }; }
+  /* campo do codigo: formata a cada tecla; se colaram o nome junto, fica so o codigo (aviso em #cod-aviso, guardado em el._aviso) */
   function campoCodigo(id, valor) {
     var el = h('input', { id: id, type: 'text', class: 'cod', autocapitalize: 'characters', autocomplete: 'off', autocorrect: 'off', spellcheck: 'false', placeholder: 'XXXX-XXXX-XXXX' });
+    var av = h('p', { id: 'cod-aviso', class: 'hint', role: 'status', hidden: true, text: 'Aproveitei só o código de acesso.' }); el._aviso = av;
     el.value = valor ? LV.fmtCodigo(valor) : '';
     el.addEventListener('input', function () {
+      var ext = LV.extraiCodigo(el.value);
+      if (ext) { el.value = LV.fmtCodigo(ext); av.hidden = false; try { el.setSelectionRange(el.value.length, el.value.length); } catch (e) {} return; }
+      av.hidden = true;
       var v = el.value, pos = el.selectionStart === null ? v.length : el.selectionStart, f = LV.fmtCodigo(v);
       if (f === v) return;
       var antes = LV.normCodigo(v.slice(0, pos)).length, c = 0, i = 0;
@@ -150,6 +159,10 @@
     return el;
   }
   var MSG_RECUSADO = 'Código de acesso não reconhecido. Confira as letras e os números com a CGIS.';
+  function msgTamanho(cod) {
+    var n = LV.normCodigo(cod).length;
+    return n > 12 ? 'O código de acesso tem 12 letras e números, no formato XXXX-XXXX-XXXX. O que foi digitado tem ' + n + '. Apague o que estiver a mais (o nome, por exemplo).' : '';
+  }
 
   /* ---------- Identificacao ---------- */
   function vIdent() {
@@ -166,6 +179,7 @@
       function entrar() {
         if (!nome.value.trim()) { msg.textContent = 'Informe seu nome completo.'; return; }
         if (!LV.normCodigo(cod.value)) { msg.textContent = 'Informe o código de acesso fornecido pela CGIS.'; return; }
+        var mt = msgTamanho(cod.value); if (mt) { msg.textContent = mt; return; }
         var perf = { nome: nome.value.trim(), idf: idf.value.trim(), perfil: perfil.value };
         var cfg = { url: url ? url.value.trim() : '', token: LV.fmtCodigo(cod.value) };
         var teste = { url: cfg.url || def.backend_url || '', token: cfg.token };
@@ -180,6 +194,7 @@
         if (!teste.url) return fim('pendente', 'Endereço do servidor não informado: o envio ficará pendente.');
         LV.ping(teste).then(function (j) {
           if (j.token_valido === false) { msg.textContent = MSG_RECUSADO; btn.disabled = false; return; }
+          if (j.token_limpo) cfg.token = LV.fmtCodigo(j.token_limpo);
           return fim(j.token_valido === true ? 'ok' : 'pendente');
         }, function () { return fim('pendente'); });
       }
@@ -191,7 +206,7 @@
           h('label', { for: 'in-nome', text: 'Seu nome completo' }), nome,
           h('label', { for: 'in-idf', text: 'ID funcional (se tiver)' }), idf,
           h('label', { for: 'in-perfil', text: 'Perfil' }), perfil,
-          h('label', { for: 'in-codigo', text: 'Código de acesso (fornecido pela CGIS)' }), cod,
+          h('label', { for: 'in-codigo', text: 'Código de acesso (fornecido pela CGIS)' }), cod, cod._aviso,
           url ? [h('label', { for: 'in-url', text: 'Endereço do servidor' }), url] : null,
           msg, btn))]);
     });
@@ -217,6 +232,7 @@
     listasTxt();
     function salvar() {
       if (!LV.normCodigo(cod.value)) { msg.textContent = 'Informe o código de acesso.'; return; }
+      var mt = msgTamanho(cod.value); if (mt) { msg.textContent = mt; return; }
       var perf = { nome: nome.value.trim() || S.perfil.nome, idf: idf.value.trim(), perfil: perfil.value };
       var tk = LV.fmtCodigo(cod.value); cod.value = tk;
       msg.textContent = 'Salvando...';
@@ -225,8 +241,14 @@
         msg.textContent = 'Salvo. Conferindo o código...';
         return LV.getConfig().then(function (c) { return LV.ping(c); }).then(function (j) {
           if (j.token_valido === false) { msg.textContent = MSG_RECUSADO; return LV.salvaConfig({ estado_codigo: 'recusado' }); }
-          msg.textContent = 'Código de acesso reconhecido' + (j.nome ? ' (' + j.nome + ')' : '') + '. Configurações salvas.';
-          return LV.salvaConfig({ estado_codigo: j.token_valido === true ? 'ok' : 'pendente' }).then(function () { listasSilencioso(); LV.enviarPendentes(true); });
+          if (j.token_limpo) { cod.value = LV.fmtCodigo(j.token_limpo); return LV.salvaConfig({ token: cod.value }).then(function () { return j; }); }
+          return j;
+        }).then(function (j) {
+          if (!j || j.token_valido === false) return;
+          return LV.salvaConfig({ estado_codigo: j.token_valido === true ? 'ok' : 'pendente' }).then(function () {
+            msg.textContent = 'Código de acesso reconhecido' + (j.nome ? ' (' + j.nome + ')' : '') + '. Configurações salvas.';
+            listasSilencioso(); LV.enviarPendentes(true);
+          });
         }, function () { msg.textContent = 'Salvo, mas não foi possível conferir agora. O código será conferido quando houver conexão.'; });
       });
     }
@@ -234,7 +256,7 @@
       h('label', { for: 'cf-nome', text: 'Nome completo' }), nome,
       h('label', { for: 'cf-idf', text: 'ID funcional (se tiver)' }), idf,
       h('label', { for: 'cf-perfil', text: 'Perfil' }), perfil,
-      h('label', { for: 'cf-codigo', text: 'Código de acesso' }), cod, msg,
+      h('label', { for: 'cf-codigo', text: 'Código de acesso' }), cod, cod._aviso, msg,
       h('button', { class: 'btn', id: 'cf-salvar', text: 'Salvar e conferir', onclick: salvar }),
       h('button', { class: 'btn sec', id: 'cf-listas-btn', text: 'Atualizar listas', onclick: function () {
         msg.textContent = 'Baixando listas...';
@@ -243,7 +265,7 @@
       } }), info,
       h('details', { class: 'grp' }, h('summary', { text: 'Avançado' }),
         h('label', { for: 'cf-url', text: 'Endereço do servidor (deixe em branco para usar o do aplicativo)' }), url),
-      h('p', { class: 'hint', text: 'Versão do aplicativo ' + LV.APP_VERSION + ' | instrumento ' + S.model.spec.version + ' | lista de unidades: ' + S.unidades.length + ' unidade(s).' })))]);
+      h('p', { class: 'hint', text: 'Versão ' + LV.APP_VERSION + ' | lista de unidades: ' + S.unidades.length + ' unidade(s).' })))]);
   }
 
   /* ---------- Ajuda ---------- */
@@ -253,17 +275,21 @@
       h('div', { class: 'card' }, h('h1', { text: sp.howto.title }), sp.howto.items.map(function (i) { return h('p', null, h('b', { text: i[0] + ': ' }), LV.clean(i[1])); })),
       h('div', { class: 'card' }, h('h1', { text: 'Regras de conduta' }), sp.intro.rules.map(function (i) { return h('p', null, h('b', { text: i[0] + ': ' }), LV.clean(i[1])); })),
       h('div', { class: 'card' }, h('h1', { text: 'Neste aplicativo' }),
-        h('p', { text: 'Tudo é salvo no aparelho a cada alteração. Sem internet, o levantamento e o PDF funcionam normalmente; o envio acontece sozinho quando a conexão voltar. O aplicativo grava as horas, soma os totais e calcula a espera pelas entrevistas: não precisa preencher. Algumas perguntas só aparecem conforme a resposta anterior. Nunca registre nome, documento, CPF ou placa de quem é atendido. Cubra os rostos nas fotos antes de finalizar. O código de acesso pode ser digitado em maiúsculas ou minúsculas, com ou sem hífen.' })))]);
+        h('p', { text: 'Tudo é salvo no aparelho a cada alteração. Sem internet, o levantamento e o PDF funcionam normalmente; o envio acontece sozinho quando a conexão voltar. O aplicativo grava as horas, soma os totais e calcula a espera pelas entrevistas: não precisa preencher. Algumas perguntas só aparecem conforme a resposta anterior. Nunca registre nome, documento, CPF ou placa de quem é atendido. As fotos podem ser tiradas pela câmera ou escolhidas na galeria do celular; cubra os rostos e as placas de veículos em cada foto antes de salvar. As assinaturas dos itens 10.11 e 10.13 são feitas com o dedo, na tela, e o PDF segue sozinho para a CGIS. O código de acesso tem 12 letras e números e pode ser digitado em maiúsculas ou minúsculas, com ou sem hífen. Não digite o nome junto com o código.' })))]);
   }
 
   /* ---------- Home ---------- */
   function faixaCodigo(c) {
-    if (c.estado_codigo === 'recusado') return h('a', { class: 'faixa verm', id: 'faixa-recusado', href: '#/config', text: 'Código de acesso recusado pelo servidor. Toque aqui para corrigir.' });
+    if (c.estado_codigo === 'recusado') return h('a', { class: 'faixa verm', id: 'faixa-recusado', href: '#/config', text: 'Código de acesso recusado. Toque aqui para corrigir. Seus levantamentos continuam guardados no aparelho.' });
     if (c.estado_codigo === 'pendente') return h('div', { class: 'faixa amar', id: 'faixa-pendente', text: 'Código de acesso ainda não conferido. Será conferido quando houver internet.' });
     return null;
   }
+  /* a tela inicial e a rota vazia ('', '#' ou '#/') */
+  function naInicial() { return !location.hash.slice(1).split('?')[0].split('/').filter(Boolean).length; }
   function vHome() {
     Promise.all([LV.db.allLev(), LV.getConfig()]).then(function (a) {
+      /* a leitura do banco demora um instante: se nesse meio-tempo a pessoa abriu outra tela, a lista nao pode se desenhar por cima dela */
+      if (!naInicial()) return;
       var ls = a[0], cfg = a[1];
       ls.sort(function (a, b) { return (b.criado_em || '') < (a.criado_em || '') ? -1 : 1; });
       var pend = ls.filter(function (l) { return l.situacao === 'finalizado' || l.situacao === 'aguardando'; }).length;
@@ -274,7 +300,8 @@
           h('div', { class: 'lt' }, h('b', { text: l.unidade.nome || '(sem nome)' }), h('span', { class: 'st st-' + st, text: STATUS[st] })),
           h('div', { class: 'hint', text: (l.unidade.municipio || '') + (l.dados.c1_18 ? ' | visita ' + l.dados.c1_18 : '') + (atual ? '' : ' | versão anterior') }),
           st === 'rascunho' && atual ? [barra(progTotal(l)), h('div', { class: 'hint', text: progTotal(l) + '% preenchido' })] : null,
-          st === 'aguardando' && l.ultimo_erro ? h('div', { class: 'hint', text: 'Último erro: ' + LV.msgErro(l.ultimo_erro) }) : null);
+          st === 'aguardando' && l.ultimo_erro ? h('div', { class: 'hint', text: 'Último erro: ' + LV.msgErro(l.ultimo_erro) }) : null,
+          st === 'enviado' && atual && l.pdf && l.pdf.estado !== 'enviado' ? h('div', { class: 'hint', text: 'PDF aguardando envio' }) : null);
       }) : h('p', { class: 'hint', text: 'Nenhum levantamento neste aparelho ainda.' });
       render([topbar('Levantamentos'), h('main', { class: 'wrap' },
         h('div', { id: 'upd', class: 'upd', hidden: true }, h('span', { text: 'Nova versão do aplicativo pronta. ' }), h('button', { class: 'btn sm', id: 'btn-upd', text: 'Atualizar', onclick: atualizaApp })),
@@ -283,7 +310,7 @@
         h('a', { class: 'btn', id: 'btn-novo', href: '#/novo', text: 'Novo levantamento' }),
         pend ? h('button', { class: 'btn sec', id: 'btn-enviar', text: 'Enviar agora (' + pend + ')', onclick: function () { enviarAgora(info); } }) : null,
         info, h('div', { class: 'list', id: 'lista' }, cards),
-        h('nav', { class: 'foot' }, h('a', { href: '#/config', text: 'Configurações' }), h('a', { href: '#/ajuda', text: 'Ajuda' }), h('span', { class: 'hint', text: 'v' + LV.APP_VERSION })))]);
+        h('nav', { class: 'foot' }, h('a', { href: '#/config', text: 'Configurações' }), h('a', { href: '#/ajuda', text: 'Ajuda' }), h('span', { class: 'hint', text: 'Versão ' + LV.APP_VERSION })))]);
     });
   }
   function enviarAgora(info) {
@@ -297,7 +324,7 @@
   }
   LV.onSync(function () { if (!S.cur || location.hash.indexOf('resumo') < 0) { if ((location.hash || '#/') === '#/') { var m = document.getElementById('home-msg'); if (m && /Enviando/.test(m.textContent)) return; vHomeSoft(); } } else vResumoSoft(); });
   function vHomeSoft() { /* atualiza a lista sem apagar a mensagem */ var m = document.getElementById('home-msg'), t = m ? m.textContent : ''; vHome(); setTimeout(function () { var n = document.getElementById('home-msg'); if (n && t) n.textContent = t; }, 60); }
-  function vResumoSoft() { if (S.cur) LV.db.getLev(S.cur.id).then(function (l) { if (l && S.cur && S.cur.id === l.id && l.situacao !== 'rascunho') { S.cur = l; vResumo(); } }); }
+  function vResumoSoft() { if (S.cur) LV.db.getLev(S.cur.id).then(function (l) { if (l && S.cur && S.cur.id === l.id && l.situacao !== 'rascunho' && location.hash.indexOf('/lev/' + l.id + '/resumo') >= 0) { S.cur = l; vResumo(); } }); }
 
   function atualizaApp() {
     if (S.swReg && S.swReg.waiting) S.swReg.waiting.postMessage({ type: 'SKIP_WAITING' }); else location.reload();
@@ -399,14 +426,14 @@
     var campo = inputFor(d, val);
     var lbl = extraLabel ? h('label', { for: campo.id, text: extraLabel }) : null;
     add(box, [lbl, campo, fmtBox(d, val)]);
-    if (d.kind === 'time') box.appendChild(h('button', { type: 'button', class: 'now', 'data-now': d.key, text: 'Agora' }));
+    if (d.kind === 'time' && !d.sem_agora) box.appendChild(h('button', { type: 'button', class: 'now', 'data-now': d.key, text: 'Agora' }));
     return box;
   }
   function campoLinha(d, val, store) {
     store = store || S.cur.dados;
     var row;
     if (d.cgis) row = h('div', { class: 'row' }, h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), h('div', { class: 'cgis', text: LV.CGIS_TXT }));
-    else if (d.kind === 'sig') row = h('div', { class: 'row' }, h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), h('div', { class: 'cgis', text: 'Assinatura à mão no PDF impresso' }));
+    else if (d.kind === 'sig') return sigLinha(d);
     else {
       var c = celula(d, val, null, store), campo = c.querySelector('[data-key]');
       var rot = campo && /^(INPUT|SELECT|TEXTAREA)$/.test(campo.tagName);
@@ -414,6 +441,7 @@
       row = h('div', { class: 'row' }, lab, d.hint ? h('div', { class: 'hint rhint', text: LV.clean(d.hint) }) : null, c);
       c.removeAttribute('data-when'); c.hidden = false;
     }
+    if (d.foto_em) row.appendChild(atalhoFoto(d, store));
     if (d.when) { row.setAttribute('data-when', d.key); if (!LV.visivel(d, store)) row.hidden = true; }
     return row;
   }
@@ -446,6 +474,13 @@
     }
     cont.addEventListener('input', function (e) { if (e.target.matches('input,textarea') && e.target.type !== 'checkbox') aplica(e.target); });
     cont.addEventListener('change', function (e) { if (e.target.matches('select,input,textarea')) aplica(e.target); });
+    /* numero sem zero a esquerda ao sair do campo: "04" vira "4" */
+    cont.addEventListener('focusout', function (e) {
+      var el = e.target, key = el.getAttribute && el.getAttribute('data-key'), d = key && defDe(key);
+      if (!d || d.kind !== 'num' || el.type === 'checkbox') return;
+      var nv = LV.semZeroEsq(el.value);
+      if (nv !== el.value && /^\d+$/.test(nv)) { el.value = nv; aplica(el); }
+    });
     cont.addEventListener('click', function (e) {
       var k = e.target.getAttribute && e.target.getAttribute('data-now'); if (!k) return;
       var el = cont.querySelector('[data-key="' + k + '"]'); el.value = LV.agoraHora(); aplica(el);
@@ -465,6 +500,10 @@
           Array.prototype.forEach.call(el.querySelectorAll('.fmtshow'), function (x) { x.textContent = x.getAttribute('data-ph'); });
         }
       }
+    });
+    Array.prototype.forEach.call(cont.querySelectorAll('[data-atalho]'), function (el) {
+      var d = defDe(el.getAttribute('data-atalho')); if (!d) return;
+      el.hidden = (d.foto_quando || []).indexOf(String(store[d.key] === undefined ? '' : store[d.key])) < 0;
     });
     Array.prototype.forEach.call(cont.querySelectorAll('[data-calc]'), function (el) {
       var d = defDe(el.getAttribute('data-calc')); if (!d) return;
@@ -552,64 +591,160 @@
     return h('div', { class: 'card2 info' }, h('b', { text: 'Dados do cadastro (a confirmar no local)' }), linhas.map(function (x) { return h('div', { text: LV.clean(x) }); }));
   }
 
-  /* ---------- Bloco 9: fotos ---------- */
+  /* ---------- Fotos (Bloco 9 e atalho do item 3.20) ---------- */
   function fotoDe(codigo) { return S.fotos.filter(function (f) { return f.codigo === codigo; })[0]; }
   function thumbEl(f) {
     var u = URL.createObjectURL(f.blob); S.urls.push(u);
     return h('img', { class: 'thumb', src: u, alt: 'Foto ' + f.codigo });
   }
   function rotuloFoto(d) { return [h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), d.hint ? h('div', { class: 'hint rhint', text: LV.clean(d.hint) }) : null]; }
+  /* linha abaixo da foto: origem, data e, se for o caso, o aviso do dia */
+  function fotoLinhas(f) {
+    var fi = LV.fotoInfo(f, S.cur.dados.c1_18 || '');
+    return [h('div', { class: 'fotolinha', 'data-info': f.codigo, text: fi.rotulo }), fi.aviso ? h('div', { class: 'fotoaviso', text: fi.aviso }) : null];
+  }
+  function fotoStatus(f) { return f.revisada ? 'Rostos e placas conferidos' + (f.cobertas ? ' (' + f.cobertas + ' área(s) coberta(s))' : '') : 'ATENÇÃO: confira rostos e placas e salve.'; }
   function n9linha(d) {
     if (d.kind === 'fotos') return n9extra(d);
     var f = fotoDe(d.code), l = S.cur;
     var area = h('div', { class: 'fotoarea', 'data-foto': d.code });
     if (f) {
-      add(area, [thumbEl(f), h('div', { class: 'hint', text: f.revisada ? 'Rostos conferidos' + (f.cobertas ? ' (' + f.cobertas + ' área(s) coberta(s))' : '') : 'ATENÇÃO: cubra os rostos e conclua.' }),
-        h('div', { class: 'fb' }, h('button', { class: 'btn sm sec', text: 'Cobrir rostos', onclick: function () { reedita(f); } }),
+      add(area, [thumbEl(f), fotoLinhas(f), h('div', { class: 'hint' + (f.revisada ? '' : ' fotoaviso'), text: fotoStatus(f) }),
+        h('div', { class: 'fb' }, h('button', { class: 'btn sm sec', text: 'Cobrir rostos ou placas', onclick: function () { reedita(f); } }),
           h('button', { class: 'btn sm sec', text: 'Remover', onclick: function () { removeFoto(f); } }))]);
     }
-    area.appendChild(botaoFoto(d.code, f ? 'Refazer foto' : 'Tirar foto'));
+    area.appendChild(h('div', { class: 'btnrow' }, botaoFoto({ fixa: d.code }, f ? 'Refazer foto' : 'Tirar foto', 'camera', false, d.code), botaoFoto({ fixa: d.code }, 'Da galeria', 'galeria', false, d.code)));
     return h('div', { class: 'row', 'data-fk': d.key }, rotuloFoto(d), h('div', { class: 'hint fstat', id: 'f-' + d.key, 'data-calc': d.key, text: l.dados[d.key] || 'Não feita' }), area);
   }
+  function fotosDoItem(pref) { return S.fotos.filter(function (f) { return f.codigo.indexOf(pref + '-') === 0; }).sort(function (a, b) { return +a.codigo.split('-')[1] - +b.codigo.split('-')[1]; }); }
+  function proxCodigo(pref) { var n = 1; while (fotoDe(pref + '-' + n)) n++; return pref + '-' + n; }
   function n9extra(d) {
-    var l = S.cur, pref = d.code;
-    var fs = S.fotos.filter(function (f) { return f.codigo.indexOf(pref + '-') === 0; }).sort(function (a, b) { return a.codigo < b.codigo ? -1 : 1; });
+    var pref = d.code, fs = fotosDoItem(pref);
     var area = h('div', { class: 'fotoarea', 'data-foto': pref }, fs.map(function (f) {
-      return h('div', { class: 'fx' }, thumbEl(f), h('div', { class: 'hint', text: f.codigo + (f.revisada ? ' | rostos conferidos' : ' | cubra os rostos') }),
-        h('div', { class: 'fb' }, h('button', { class: 'btn sm sec', text: 'Cobrir rostos', onclick: function () { reedita(f); } }), h('button', { class: 'btn sm sec', text: 'Remover', onclick: function () { removeFoto(f); } })));
+      return h('div', { class: 'fx' }, thumbEl(f), h('div', { class: 'hint', text: f.codigo + ' | ' + (f.revisada ? 'rostos e placas conferidos' : 'confira rostos e placas e salve') }), fotoLinhas(f),
+        h('div', { class: 'fb' }, h('button', { class: 'btn sm sec', text: 'Cobrir rostos ou placas', onclick: function () { reedita(f); } }), h('button', { class: 'btn sm sec', text: 'Remover', onclick: function () { removeFoto(f); } })));
     }));
-    var prox = 1; while (fotoDe(pref + '-' + prox)) prox++;
-    area.appendChild(botaoFoto(pref + '-' + prox, 'Adicionar foto'));
+    area.appendChild(h('div', { class: 'btnrow' }, botaoFoto({ extra: pref }, 'Tirar foto', 'camera', false, proxCodigo(pref)), botaoFoto({ extra: pref }, 'Da galeria', 'galeria', true, proxCodigo(pref))));
     return h('div', { class: 'row', 'data-fk': d.key }, rotuloFoto(d), h('div', { class: 'hint fstat', id: 'f-' + d.key, text: fs.length + ' foto(s)' }), area);
   }
-  function botaoFoto(codigo, texto) {
-    var inp = h('input', { type: 'file', accept: 'image/*', capture: 'environment', class: 'filein', 'data-cod': codigo, 'aria-label': texto + ' ' + codigo });
-    inp.addEventListener('change', function () { var file = inp.files[0]; if (file) novaFoto(codigo, file); });
+  /* alvo: {fixa: '9.01'} (uma foto, substitui) ou {extra: '9.08'} (acrescenta 9.08-N). depois: o que atualizar ao fim (padrao: redesenhar o Bloco 9) */
+  function botaoFoto(alvo, texto, origem, varias, codigo, depois) {
+    var at = { type: 'file', accept: 'image/*', class: 'filein', 'data-cod': codigo, 'data-origem': origem, 'aria-label': texto + ' ' + codigo };
+    if (origem === 'camera') at.capture = 'environment';
+    if (varias) at.multiple = true;
+    var inp = h('input', at);
+    inp.addEventListener('change', function () {
+      var files = Array.prototype.slice.call(inp.files || []); try { inp.value = ''; } catch (e) {}
+      if (files.length) processaFotos(alvo, files, origem, depois);
+    });
     return h('label', { class: 'btn sm filelab' }, texto, inp);
   }
-  function novaFoto(codigo, file) {
-    toast('Processando foto...', 1500);
-    LV.comprimir(file).then(function (r) { return LV.editorRostos(r.blob, 'Foto ' + codigo).then(function (ed) { return { r: r, ed: ed }; }); }).then(function (x) {
-      var fin = x.ed || { blob: x.r.blob, w: x.r.w, h: x.r.h, cobertas: 0, revisada: false };
-      var velha = fotoDe(codigo);
-      var rec = { fid: LV.uuid(), levId: S.cur.id, codigo: codigo, blob: fin.blob, w: fin.w, h: fin.h, revisada: !!fin.revisada, cobertas: fin.cobertas || 0, criado_em: new Date().toISOString(), enviada: false };
-      return (velha ? LV.db.delFoto(velha.fid) : Promise.resolve()).then(function () { return LV.db.putFoto(rec); }).then(function () { return recarregaFotos(); }).then(function () { acertaCamposFoto(); });
-    }).catch(function (e) { toast('Não foi possível processar a foto: ' + e.message, 6000); });
+  function agoraMin() { return LV.isoParaMin(new Date().toISOString()); }
+  /* passa as fotos pela tela de foto, uma a uma, na ordem */
+  function processaFotos(alvo, files, origem, depois) {
+    var n = files.length, i = 0, fim = depois || acertaCamposFoto, ruins = 0;
+    function proxima() {
+      if (i >= n) return Promise.resolve();
+      var file = files[i++], pos = i;
+      return umaFoto(alvo, file, origem, pos, n).then(function (r) { if (r === 'erro') ruins++; return proxima(); });
+    }
+    return proxima().then(function () { return fim(); }).then(function () {
+      if (ruins) toast(n === 1 ? 'Não foi possível abrir esta foto. Escolha outra ou use a câmera.' : 'Não foi possível abrir ' + ruins + ' das ' + n + ' fotos. Escolha outras ou use a câmera.', 6000);
+    });
+  }
+  function umaFoto(alvo, file, origem, pos, total) {
+    var codigo = alvo.fixa || proxCodigo(alvo.extra), titulo = 'Foto ' + codigo + (total > 1 ? ' (' + pos + ' de ' + total + ')' : '');
+    toast('Processando foto...', 1200);
+    var tirada = origem === 'galeria' ? LV.dataExif(file) : Promise.resolve(agoraMin());
+    return Promise.all([tirada, LV.comprimir(file)]).then(function (x) {
+      toast('');
+      return LV.editorRostos(x[1].blob, titulo, {}).then(function (ed) {
+        if (!ed) return;
+        var cod = alvo.fixa || proxCodigo(alvo.extra), velha = fotoDe(cod);
+        var rec = { fid: LV.uuid(), levId: S.cur.id, codigo: cod, blob: ed.blob, w: ed.w, h: ed.h, revisada: true, cobertas: ed.cobertas || 0, criado_em: new Date().toISOString(), enviada: false, origem: origem, tirada_em: x[0] || '' };
+        return (velha ? LV.db.delFoto(velha.fid) : Promise.resolve()).then(function () { return LV.db.putFoto(rec); }).then(recarregaFotos);
+      });
+    }, function () { toast(''); return 'erro'; }).catch(function (e) { toast('Não foi possível processar a foto: ' + (e && e.message || e), 6000); });
   }
   function reedita(f) {
-    LV.editorRostos(f.blob, 'Foto ' + f.codigo).then(function (ed) {
+    return LV.editorRostos(f.blob, 'Foto ' + f.codigo, { edicao: true }).then(function (ed) {
       if (!ed) return;
       f.blob = ed.blob; f.w = ed.w; f.h = ed.h; f.revisada = true; f.cobertas = (f.cobertas || 0) + ed.cobertas; f.enviada = false;
-      return LV.db.putFoto(f).then(function () { return recarregaFotos(); }).then(function () { vBloco(9); });
+      return LV.db.putFoto(f).then(function () { return recarregaFotos(); }).then(function () { return acertaCamposFoto(); });
     });
   }
   function removeFoto(f) {
     if (!confirm('Remover a foto ' + f.codigo + '?')) return;
-    LV.db.delFoto(f.fid).then(recarregaFotos).then(function () { acertaCamposFoto(); });
+    LV.db.delFoto(f.fid).then(recarregaFotos).then(function () { return acertaCamposFoto(); });
   }
+  /* depois de mexer nas fotos: recalcula, salva e atualiza a tela sem sair do ponto em que a pessoa estava */
   function acertaCamposFoto() {
     LV.deriva(S.cur, S.fotos, S.model);
-    save().then(function () { vBloco(9); });
+    var y = window.scrollY, alvoBloco = /\/b\/(\d+)/.exec(location.hash);
+    return save().then(function () {
+      if (alvoBloco && +alvoBloco[1] === 9) { vBloco(9); window.scrollTo(0, y); }
+      else Array.prototype.forEach.call(document.querySelectorAll('[data-atalho]'), function (el) { if (el._refresh) el._refresh(); });
+    });
+  }
+  /* atalho de foto no proprio campo (spec: foto_em, foto_quando, foto_hint): a foto entra no item foto_em e a pessoa continua onde estava */
+  function atalhoFoto(d, store) {
+    var pref = d.foto_em, box = h('div', { class: 'atalho', 'data-atalho': d.key });
+    function monta() {
+      var n = fotosDoItem(pref).length, prox = proxCodigo(pref);
+      box.innerHTML = '';
+      add(box, [h('p', { class: 'hint', text: LV.clean(d.foto_hint) }),
+        h('div', { class: 'btnrow' }, botaoFoto({ extra: pref }, 'Tirar foto', 'camera', false, prox), botaoFoto({ extra: pref }, 'Da galeria', 'galeria', true, prox)),
+        h('p', { class: 'fstat', 'data-atalho-cont': pref, text: n + ' foto(s) no item ' + pref })]);
+    }
+    box._refresh = monta; monta();
+    box.hidden = (d.foto_quando || []).indexOf(String((store || {})[d.key] === undefined ? '' : store[d.key])) < 0;
+    return box;
+  }
+
+  /* ---------- Assinatura na tela (10.11 e 10.13) ---------- */
+  function sigLinha(d) {
+    var l = S.cur, as = l.assinaturas && l.assinaturas[d.code];
+    var row = h('div', { class: 'row', 'data-fk': d.key });
+    var estado = h('div', { class: 'fstat', id: 'f-' + d.key, 'data-key': d.key, tabindex: '-1', text: l.dados[d.key] || (as ? 'Assinada na tela em ' + LV.isoParaBr(as.em) : 'Não assinada na tela') });
+    var msg = h('p', { class: 'msg', id: 'sig-msg-' + d.key });
+    add(row, [h('div', { class: 'lab' }, h('b', { text: d.code }), ' ' + d.label), d.hint ? h('div', { class: 'hint rhint', text: LV.clean(d.hint) }) : null, estado]);
+    if (as) row.appendChild(h('img', { class: 'sigthumb', src: as.png, alt: 'Assinatura ' + d.code }));
+    var mud = d.code === '10.11' ? LV.atesteMudou(l) : [];
+    if (mud.length) row.appendChild(h('div', { class: 'fotoaviso', id: 'sig-mudou', text: 'Atenção: ' + txtAtesteMudou(mud) + '. Refaça a assinatura.' }));
+    row.appendChild(h('div', { class: 'btnrow' },
+      h('button', { type: 'button', class: 'btn sm', 'data-sig': d.code, text: as ? 'Refazer assinatura' : 'Assinar na tela', onclick: function () { assinar(d, row, msg); } }),
+      as ? h('button', { type: 'button', class: 'btn sm sec', 'data-sig-apagar': d.code, text: 'Apagar assinatura', onclick: function () {
+        if (!confirm('Apagar a assinatura ' + d.code + '?')) return;
+        delete l.assinaturas[d.code]; LV.deriva(l, S.fotos, S.model); mark(); row.replaceWith(sigLinha(d));
+      } }) : null));
+    row.appendChild(msg);
+    return row;
+  }
+  /* o que o responsavel pela unidade atesta ao assinar o 10.11: quem levantou, a data, a hora de chegada e quem assina */
+  var ATESTADO = [['c1_18', '1.18'], ['c1_19', '1.19'], ['c1_23', '1.23'], ['c10_10', '10.10']];
+  function refAteste(D) { var r = {}; ATESTADO.forEach(function (x) { r[x[0]] = String(D[x[0]] === undefined || D[x[0]] === null ? '' : D[x[0]]); }); return r; }
+  /* itens atestados que mudaram depois da assinatura 10.11 (lista de codigos; vazia se nada mudou ou se nao ha assinatura) */
+  LV.atesteMudou = function (l) {
+    var a = l.assinaturas && l.assinaturas['10.11']; if (!a || !a.ref) return [];
+    var agora = refAteste(l.dados);
+    return ATESTADO.filter(function (x) { return agora[x[0]] !== String(a.ref[x[0]] || ''); }).map(function (x) { return x[1]; });
+  };
+  function txtAtesteMudou(mud) { return (mud.length > 1 ? 'os itens ' + mud.join(', ') + ' mudaram' : 'o item ' + mud[0] + ' mudou') + ' depois da assinatura'; }
+  function assinar(d, row, msg) {
+    var l = S.cur, D = l.dados;
+    if (d.code === '10.11' && !String(D.c10_10 || '').trim()) {
+      msg.textContent = 'Antes, preencha o item 10.10 com o nome, o cargo e o ID de quem vai assinar.'; foca('c10_10'); return;
+    }
+    msg.textContent = '';
+    var quem = d.code === '10.11' ? 'Quem assina: ' + (D.c10_10 || '') : 'Quem assina: ' + (D.c1_23 || l.levantado_por || '');
+    var dados = d.declara ? 'Quem levantou (1.23): ' + (D.c1_23 || '') + ' | Data (1.18): ' + (D.c1_18 || '') + ' | Chegada (1.19): ' + (D.c1_19 || '') : '';
+    LV.telaAssinatura({ titulo: d.code + ' ' + d.label, declara: d.declara ? LV.clean(d.declara) : '', dados: dados, quem: quem }).then(function (r) {
+      if (!r) return;
+      l.assinaturas = l.assinaturas || {}; l.assinaturas[d.code] = { png: r.png, em: new Date().toISOString() };
+      if (d.code === '10.11') l.assinaturas[d.code].ref = refAteste(D);
+      LV.deriva(l, S.fotos, S.model); mark();
+      var nova = sigLinha(d); row.replaceWith(nova);
+    });
   }
 
   /* ---------- Entrevistas (bloco 7) ---------- */
@@ -650,7 +785,13 @@
         });
       }
       return l.entrevistas[tag];
-    });
+    }, function () { avChegada(); });
+    /* aviso de chegada igual (some e aparece conforme os valores, sem redesenhar a tela) */
+    var ka = prefix === 'E' ? 'c7_01' : 'c7_10', kb = prefix === 'E' ? 'c7_17' : 'c7_11';
+    var avEl = h('p', { class: 'avchegada', id: 'av-chegada', role: 'status', hidden: true, text: prefix === 'E' ? 'Chegada igual à hora da entrevista: a espera fica zero. Confirme com a pessoa.' : 'Chegada igual à hora da saída. Confirme com a pessoa.' });
+    var rowA = body.querySelector('[data-fk="' + ka + '"]'); rowA = rowA && rowA.closest('.row'); if (rowA) rowA.appendChild(avEl);
+    function avChegada() { var E = l.entrevistas[tag] || {}; avEl.hidden = !(E[ka] && E[kb] && LV.minutos(E[ka]) !== null && E[ka] === E[kb]); }
+    avChegada();
     var tags = tagsDe(prefix);
     render([topbar('Entrevista ' + tag, '/lev/' + l.id + '/b/7'), h('main', { class: 'wrap' },
       h('div', { class: 'bhead' }, h('h1', { text: (prefix === 'E' ? 'Na fila: ' : 'Na saída: ') + tag }), h('div', { class: 'hint' }, h('span', { id: 'saveind', text: 'Salvo' }))), body,
@@ -684,7 +825,14 @@
       var g = model.ent[t.charAt(0)]; if (!g) return;
       g.fields.forEach(function (d) { var v = l.entrevistas[t][d.key]; if (!LV.valid(d.kind, v)) p.push({ bloco: '7', ent: t, key: d.key, msg: 'Entrevista ' + t + ', ' + d.code + ': formato inválido' }); });
     });
-    fotos.forEach(function (f) { if (!f.revisada) p.push({ bloco: '9', key: undefined, cod: f.codigo, msg: 'Foto ' + f.codigo + ': cubra os rostos e conclua a edição' }); });
+    fotos.forEach(function (f) { if (!f.revisada) p.push({ bloco: '9', key: undefined, cod: f.codigo, msg: 'Foto ' + f.codigo + ': confira rostos e placas e salve' }); });
+    var semFoto = [];
+    (model.calcs.foto_feita || []).forEach(function (k) { if (D[k] !== 'Feita') semFoto.push(model.fields[k].code); });
+    if (semFoto.length && !String(D.c9_09 || '').trim()) p.push({ bloco: '9', key: 'c9_09', msg: 'Fotos obrigatórias não feitas: ' + semFoto.join(', ') + '. Explique no item 9.09.' });
+    var mud = LV.atesteMudou(l);
+    if (mud.length) p.push({ bloco: '10', key: 'c10_11', msg: 'Assinatura 10.11: ' + txtAtesteMudou(mud) + '. Refaça a assinatura (ou apague-a, para assinar no papel).' });
+    /* finalizacao em outro dia: o aplicativo nao inventa a hora de saida */
+    if (!D.c1_20 && D.c1_18 && LV.valid('date', D.c1_18) && D.c1_18 !== LV.hojeBr()) p.push({ bloco: '1', key: 'c1_20', msg: 'Hora de saída (1.20): a visita foi em outro dia. Informe a hora em que você saiu da unidade.' });
     return p;
   };
   /* avisos: aparecem na revisao, mas nao impedem finalizar */
@@ -710,12 +858,19 @@
     if (nE < 5) a.push({ bloco: '7', key: null, msg: 'Menos de 5 entrevistas na fila: as cores de Fila e de Resolução ficam "Sem amostra".' });
     var sem = [];
     (model.calcs.foto_feita || []).forEach(function (k) { if (D[k] !== 'Feita') sem.push(model.fields[k].code); });
-    if (sem.length) a.push({ bloco: '9', key: null, msg: 'Fotos obrigatórias não feitas: ' + sem.join(', ') + '.' });
+    if (sem.length && String(D.c9_09 || '').trim()) a.push({ bloco: '9', key: 'c9_09', msg: 'Fotos obrigatórias não feitas: ' + sem.join(', ') + '.' });
+    [['10.11', 'c10_11', 'do responsável pela unidade'], ['10.13', 'c10_13', 'de quem levantou']].forEach(function (x) {
+      if (!(l.assinaturas && l.assinaturas[x[0]])) a.push({ bloco: '10', key: x[1], msg: 'Assinatura ' + x[2] + ' (' + x[0] + ') não feita na tela: o PDF sai com o espaço para assinar à caneta.' });
+    });
+    var forad = fotos.filter(function (f) { var i = LV.fotoInfo(f, D.c1_18 || ''); return i.fora || i.sem; }).map(function (f) { return f.codigo; })
+      .sort(function (x, y) { return x < y ? -1 : (x > y ? 1 : 0); });
+    if (forad.length) a.push({ bloco: '9', key: null, msg: 'Fotos que não são do dia da visita ou sem data: ' + forad.join(', ') + '.' });
     ['E', 'S'].forEach(function (pre) {
       var ka = pre === 'E' ? 'c7_01' : 'c7_10', kb = pre === 'E' ? 'c7_17' : 'c7_11';
       LV.tagsRespondidas(l, model, pre).forEach(function (t) {
         var E = l.entrevistas[t], x = LV.minutos(E[ka]), y = LV.minutos(E[kb]);
         if (x !== null && y !== null && x > y) a.push({ bloco: '7', ent: t, key: ka, msg: 'Entrevista ' + t + ': hora de chegada posterior à hora ' + (pre === 'E' ? 'da entrevista.' : 'da saída.') });
+        else if (x !== null && x === y) a.push({ bloco: '7', ent: t, key: ka, msg: 'Entrevista ' + t + ': hora de chegada igual à hora ' + (pre === 'E' ? 'da entrevista (espera zero).' : 'da saída.') });
       });
     });
     if (['c6_02', 'c6_03', 'c6_04', 'c6_05', 'c6_06'].every(function (k) { return D[k] === undefined || D[k] === ''; })) a.push({ bloco: '6', key: 'c6_02', msg: 'A fila não foi contada (Bloco 6).' });
@@ -738,19 +893,40 @@
     })) : null;
     var tem = S.fotos.length > 0;
     var chk = h('input', { type: 'checkbox', id: 'chk-rostos' });
-    var btn = h('button', { class: 'btn', id: 'btn-finalizar', text: 'Finalizar levantamento', disabled: p.length > 0 || tem, onclick: finaliza });
-    chk.addEventListener('change', function () { btn.disabled = p.length > 0 || (tem && !chk.checked); });
+    var fmsg = h('p', { class: 'msg', id: 'fin-msg', role: 'alert' });
+    var chkLab = h('label', { class: 'chk', id: 'chk-lab' }, chk, ' Confirmo que os rostos e as placas de veículos foram cobertos em todas as fotos.');
+    var btn = h('button', { class: 'btn', id: 'btn-finalizar', text: 'Finalizar levantamento', onclick: tenta });
+    chk.addEventListener('change', function () { if (chk.checked) { fmsg.textContent = ''; chkLab.classList.remove('hl'); } });
+    function tenta() {
+      if (p.length) { fmsg.textContent = 'Resolva antes as ' + p.length + ' pendência(s) da lista acima.'; return; }
+      if (tem && !chk.checked) { fmsg.textContent = 'Falta marcar a confirmação das fotos, logo acima.'; chkLab.classList.add('hl'); chkLab.scrollIntoView({ block: 'center' }); return; }
+      fmsg.textContent = ''; finaliza();
+    }
+    function hhmm(iso) { return LV.isoParaMin(iso).slice(11); }
     function finaliza() {
-      if (!l.dados.c1_20) l.dados.c1_20 = LV.agoraHora();
+      btn.disabled = true;
+      LV.normalizaNumeros(l, S.model);
+      /* 1.20: a hora de agora a cada finalizacao feita no dia da visita, a nao ser que a pessoa tenha digitado outra hora depois da ultima
+         gravacao do app. Finalizacao (ou correcao) em outro dia nao mexe na hora de saida: seria a hora de outro dia. */
+      var agora = LV.agoraHora(), atualFim = l.dados.c1_20;
+      var doApp = !atualFim || (l.auto_fim ? atualFim === l.auto_fim : (!!l.finalizado_em && atualFim === hhmm(l.finalizado_em)));
+      var noDia = !l.dados.c1_18 || l.dados.c1_18 === LV.hojeBr();
+      if (doApp && noDia) { l.dados.c1_20 = agora; l.auto_fim = agora; }
+      var agoraIso = new Date().toISOString();
+      if (!l.primeira_finalizacao_em) l.primeira_finalizacao_em = agoraIso;
+      l.situacao = 'finalizado'; l.finalizado_em = agoraIso; l.tentativas = 0; l.proxima_tentativa = null; l.ultimo_erro = '';
+      l.pdf = LV.novoEstadoPdf(l);
       LV.deriva(l, S.fotos, S.model);
-      l.situacao = 'finalizado'; l.finalizado_em = new Date().toISOString(); l.tentativas = 0; l.proxima_tentativa = null; l.ultimo_erro = '';
-      LV.getConfig().then(function (c) { if (c.url && c.token) l.situacao = 'aguardando'; }).then(save).then(function () { go('/lev/' + l.id + '/resumo'); LV.enviarPendentes(true); });
+      LV.getConfig().then(function (c) { if (c.url && c.token) l.situacao = 'aguardando'; }).then(save).then(function () {
+        go('/lev/' + l.id + '/resumo'); LV.enviarPendentes(true);
+        LV.garantePdf(l).catch(function () { /* o envio tenta de novo; o PDF e gerado quando for enviado */ });
+      });
     }
     render([topbar('Finalizar', '/lev/' + l.id + '/b/' + (l.bloco_atual || 1)), h('main', { class: 'wrap' },
       h('div', { class: 'card' }, h('h1', { text: 'Revisão final' }), h('p', { text: l.unidade.nome }),
         p.length ? h('p', { class: 'msg', id: 'npend', text: p.length + ' pendência(s) para resolver:' }) : h('p', { class: 'ok', id: 'npend', text: 'Sem pendências. Campos mínimos preenchidos e formatos válidos.' })),
       lista, listaAv,
-      tem ? h('label', { class: 'chk' }, chk, ' Confirmo que os rostos foram cobertos em todas as fotos.') : null, btn,
+      tem ? chkLab : null, fmsg, btn,
       h('a', { class: 'btn sec', href: '#/lev/' + l.id + '/b/' + (l.bloco_atual || 1), text: 'Voltar ao preenchimento' }))]);
   }
 
@@ -761,14 +937,7 @@
     var mini = h('input', { type: 'checkbox', id: 'chk-mini', checked: true });
     function pdf(modo) {
       info.textContent = 'Gerando PDF...';
-      LV.db.fotosDe(l.id).then(function (fs) {
-        fs.sort(function (a, b) { return a.codigo < b.codigo ? -1 : 1; });
-        return (mini.checked ? LV.prepararMiniaturas(fs) : Promise.resolve([])).then(function (th) {
-          var map = {}; th.forEach(function (x) { map[x.codigo] = x.thumb; });
-          var lst = fs.map(function (f) { return { codigo: f.codigo, thumb: map[f.codigo] }; });
-          return LV.gerarPDF(l, S.model, lst, { fotos: mini.checked });
-        });
-      }).then(function (blob) {
+      LV.pdfDoLevantamento(l, mini.checked).then(function (blob) {
         var nome = ((l.unidade.id || 'unidade') + ' Levantamento ' + (l.dados.c1_18 || '').replace(/\//g, '-')).replace(/[^\w.\- ]+/g, '').replace(/\s+/g, '_') + '.pdf';
         var file = new File([blob], nome, { type: 'application/pdf' });
         info.textContent = 'PDF gerado: ' + nome + ' (' + Math.round(blob.size / 1024) + ' KB)';
@@ -783,16 +952,21 @@
       setTimeout(function () { URL.revokeObjectURL(u); }, 30000);
     }
     var nf = S.fotos.length, ne = S.fotos.filter(function (f) { return f.enviada; }).length;
+    function motivo(cod) { var m = LV.msgErro(cod).replace(/\.$/, ''); return m.charAt(0).toLowerCase() + m.slice(1); }
+    var p = l.pdf, pdfTxt = !p ? 'PDF: aguardando envio' : (p.estado === 'enviado' ? 'PDF: enviado à CGIS em ' + fmtDataHora(p.enviado_em) :
+      (p.estado === 'erro' ? 'PDF: ainda não enviado (' + motivo(p.erro) + '). O aplicativo tenta de novo sozinho.' : 'PDF: aguardando envio'));
     render([topbar('Levantamento', '/'), h('main', { class: 'wrap' }, h('div', { class: 'card' },
       h('h1', { text: l.unidade.nome }), h('p', null, h('span', { class: 'st st-' + l.situacao, id: 'rs-status', text: STATUS[l.situacao] })),
       h('p', { class: 'hint', text: 'Visita ' + (l.dados.c1_18 || '') + ' | finalizado em ' + fmtDataHora(l.finalizado_em) + (l.enviado_em ? ' | enviado em ' + fmtDataHora(l.enviado_em) : '') }),
       h('p', { class: 'hint', text: 'ID ' + l.id }), h('p', { class: 'hint', text: 'Fotos: ' + ne + ' de ' + nf + ' enviadas' }),
+      h('p', { class: 'hint', id: 'rs-pdf', 'data-estado': p ? p.estado : 'pendente', text: pdfTxt }),
       l.ultimo_erro && l.situacao !== 'enviado' ? h('p', { class: 'msg', id: 'rs-erro', text: 'Último erro de envio: ' + LV.msgErro(l.ultimo_erro) + (l.proxima_tentativa ? ' (nova tentativa automática após ' + fmtDataHora(l.proxima_tentativa) + ')' : '') }) : null),
       h('div', { class: 'card' }, h('label', { class: 'chk' }, mini, ' Incluir miniaturas das fotos no PDF'),
         navigator.canShare ? h('button', { class: 'btn', id: 'btn-share', text: 'Compartilhar PDF', onclick: function () { pdf('share'); } }) : null,
         h('button', { class: navigator.canShare ? 'btn sec' : 'btn', id: 'btn-pdf', text: 'Baixar PDF', onclick: function () { pdf('down'); } }), info,
-        h('p', { class: 'hint', text: 'Imprima o PDF, colete as assinaturas à mão (itens 10.11 e 10.13) e entregue à CGIS.' })),
-      h('div', { class: 'card' }, l.situacao !== 'enviado' ? h('button', { class: 'btn', id: 'btn-enviar', text: 'Enviar agora', onclick: function () { enviarAgora(info); } }) : h('p', { class: 'ok', text: 'Recebido pelo servidor.' }),
+        h('p', { class: 'hint', text: 'O PDF segue sozinho para a CGIS, com as assinaturas feitas na tela. Se alguma assinatura ficou em branco, imprima o PDF, colha a assinatura à caneta e entregue à CGIS.' })),
+      h('div', { class: 'card' }, l.situacao === 'enviado' ? h('p', { class: 'ok', text: 'Recebido pelo servidor.' }) : null,
+        l.situacao !== 'enviado' || (p && p.estado !== 'enviado') ? h('button', { class: 'btn', id: 'btn-enviar', text: 'Enviar agora', onclick: function () { enviarAgora(info); } }) : null,
         h('button', { class: 'btn sec', id: 'btn-reabrir', text: 'Reabrir para correção', onclick: function () {
           if (!confirm('Reabrir este levantamento para correção? Será preciso finalizar de novo.')) return;
           l.situacao = 'rascunho'; (l.reaberturas = l.reaberturas || []).push(new Date().toISOString()); l.proxima_tentativa = null;
@@ -801,7 +975,7 @@
       h('a', { class: 'btn sec', href: '#/', text: 'Voltar ao início' }),
       l.situacao === 'enviado' || true ? h('button', { class: 'btn danger', id: 'btn-apagar', text: 'Apagar do aparelho', onclick: function () {
         if (!confirm('Apagar este levantamento deste aparelho? ' + (l.situacao === 'enviado' ? '' : 'ELE AINDA NÃO FOI ENVIADO.'))) return;
-        LV.db.delFotosDe(l.id).then(function () { return LV.db.delLev(l.id); }).then(function () { S.cur = null; go('/'); });
+        LV.db.delFotosDe(l.id).then(function () { return LV.db.delAnexosDe(l.id); }).then(function () { return LV.db.delLev(l.id); }).then(function () { S.cur = null; go('/'); });
       } }) : null)]);
   }
 
@@ -812,13 +986,13 @@
     render([topbar('Versão anterior', '/'), h('main', { class: 'wrap' }, h('div', { class: 'card' },
       h('h1', { text: 'Levantamento da versão anterior' }), h('p', { text: l.unidade.nome || '' }),
       h('p', null, h('span', { class: 'st st-' + l.situacao, id: 'rs-status', text: STATUS[l.situacao] })),
-      h('p', { class: 'hint', text: 'Este levantamento foi feito na versão ' + (l.versao_instrumento || '?') + ' do formulário e não pode mais ser editado. ' + (pode ? 'Ele ainda pode ser enviado como está.' : (l.situacao === 'enviado' ? 'Já foi recebido pelo servidor.' : 'Como é rascunho, não pode ser enviado: apague e refaça no formulário novo.')) }),
+      h('p', { class: 'hint', text: 'Este levantamento foi feito em uma versão anterior do aplicativo e não pode mais ser editado. ' + (pode ? 'Ele ainda pode ser enviado como está.' : (l.situacao === 'enviado' ? 'Já foi recebido pelo servidor.' : 'Como é rascunho, não pode ser enviado: apague e refaça na versão atual.')) }),
       l.ultimo_erro && l.situacao !== 'enviado' ? h('p', { class: 'msg', text: 'Último erro de envio: ' + LV.msgErro(l.ultimo_erro) }) : null,
       pode ? h('button', { class: 'btn', id: 'btn-enviar', text: 'Enviar agora', onclick: function () { enviarAgora(info); } }) : null, info,
       h('a', { class: 'btn sec', href: '#/', text: 'Voltar ao início' }),
       h('button', { class: 'btn danger', id: 'btn-apagar', text: 'Apagar do aparelho', onclick: function () {
         if (!confirm('Apagar este levantamento deste aparelho? ' + (l.situacao === 'enviado' ? '' : 'ELE AINDA NÃO FOI ENVIADO.'))) return;
-        LV.db.delFotosDe(l.id).then(function () { return LV.db.delLev(l.id); }).then(function () { S.cur = null; go('/'); });
+        LV.db.delFotosDe(l.id).then(function () { return LV.db.delAnexosDe(l.id); }).then(function () { return LV.db.delLev(l.id); }).then(function () { S.cur = null; go('/'); });
       } })))]);
   }
 
@@ -852,13 +1026,14 @@
   }
   function boot() {
     $app = document.getElementById('app');
+    LV.aoBloquearBanco = function () { if (!S.model) $app.textContent = 'Para terminar a atualização, feche as outras janelas ou abas deste aplicativo. Esta tela continua sozinha.'; };
     Promise.all([carrega('spec.json'), carrega('unidades_app.json'), LV.db.getMeta('perfil'), LV.db.getMeta('listas')]).then(function (a) {
       S.model = LV.model = LV.buildModel(a[0]); S.unidades = normUnidades(a[1]); S.perfil = a[2] || null; LV.aplicaListas(S.model, a[3]);
       window.LVAPP = S; // diagnostico e testes
       registraSW();
       if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
       window.addEventListener('hashchange', route);
-      route(); LV.iniciaFila(); LV.reconfereCodigo(); listasSilencioso();
+      route(); LV.iniciaFila(); LV.reconfereCodigo(true); listasSilencioso();
       document.documentElement.setAttribute('data-pronto', '1');
     }).catch(function (e) {
       $app.textContent = 'Não foi possível iniciar o aplicativo: ' + e.message;
