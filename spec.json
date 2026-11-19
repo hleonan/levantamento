@@ -1,6 +1,10 @@
 {
  "title": "Relatório de Levantamento da Unidade de Atendimento",
- "version": "v3",
+ "version": "3.0",
+ "teste": {
+  "ativo": true,
+  "texto": "TESTE: sem validade"
+ },
  "intro": {
   "title": "Apresentação",
   "paras": [
@@ -40,7 +44,7 @@
    ],
    [
     "Lei Geral de Proteção de Dados Pessoais - LGPD (Lei Federal nº 13.709/2018)",
-    "do cidadão não se registram nome, Cadastro de Pessoas Físicas - CPF, placa, telefone ou endereço. Servidores e prestadores são registrados apenas em número, por vínculo e função; os únicos nomes registrados são os de quem realiza o levantamento (1.23) e de quem atesta a visita (10.10). As fotos não podem conter rosto identificável nem tela com dado de cidadão."
+    "do cidadão não se registram nome, Cadastro de Pessoas Físicas - CPF, placa, telefone ou endereço. Servidores e prestadores são registrados apenas em número, por vínculo e função; os únicos nomes registrados são os de quem realiza o levantamento (1.23) e de quem atesta a visita (10.10). As fotos não podem conter rosto identificável, placa de veículo legível nem tela com dado de cidadão."
    ],
    [
     "Vocabulário",
@@ -52,7 +56,7 @@
    ],
    [
     "Prazo",
-    "o levantamento é finalizado no aplicativo no dia da visita, e o PDF assinado é entregue em até 2 dias úteis."
+    "o levantamento é finalizado no aplicativo no dia da visita. O PDF, com as assinaturas feitas na tela, segue sozinho para a CGIS. Se alguma assinatura ficar para o papel, o PDF impresso e assinado é entregue em até 2 dias úteis."
    ]
   ]
  },
@@ -149,15 +153,15 @@
    ],
    [
     "Fotos",
-    "são tiradas pelo próprio aplicativo, que pede para cobrir os rostos antes de finalizar."
+    "podem ser tiradas pelo aplicativo ou escolhidas na galeria do celular. Em cada foto, cubra os rostos e as placas de veículos antes de salvar."
    ],
    [
     "No fim",
-    "toque em \"Revisar e finalizar\". O aplicativo gera o PDF: imprima, colha as assinaturas à mão e entregue à CGIS."
+    "colha as assinaturas na tela (itens 10.11 e 10.13) e toque em \"Revisar e finalizar\". O PDF segue sozinho para a CGIS. Se alguém preferir assinar no papel, deixe a assinatura em branco, imprima o PDF, colha a assinatura à caneta e entregue à CGIS."
    ],
    [
     "Código de acesso",
-    "é pessoal. Pode ser digitado em maiúsculas ou minúsculas, com ou sem hífen."
+    "é pessoal e tem 12 letras e números. Pode ser digitado em maiúsculas ou minúsculas, com ou sem hífen. Não digite o seu nome junto."
    ]
   ]
  },
@@ -322,7 +326,7 @@
        "label": "Hora de saída",
        "kind": "time",
        "auto": "agora_fim",
-       "hint": "O aplicativo grava ao finalizar."
+       "hint": "O aplicativo grava a cada finalização feita no dia da visita. Se você finalizar em outro dia, informe a hora em que saiu da unidade."
       },
       {
        "code": "1.23",
@@ -774,7 +778,12 @@
        "opts": [
         "Não",
         "Sim"
-       ]
+       ],
+       "foto_em": "9.08",
+       "foto_quando": [
+        "Sim"
+       ],
+       "foto_hint": "Fotografe esses móveis. As fotos ficam no item 9.08, Fotos adicionais."
       },
       {
        "code": "3.22",
@@ -1212,6 +1221,17 @@
        ]
       },
       {
+       "code": "5.24",
+       "label": "Qual é o outro motivo?",
+       "kind": "txt",
+       "when": {
+        "key": "c5_23",
+        "in": [
+         "Outro motivo"
+        ]
+       }
+      },
+      {
        "code": "5.16",
        "label": "Cidadãos encaminhados a outra unidade durante a visita (quantidade)",
        "kind": "num",
@@ -1411,7 +1431,9 @@
       {
        "code": "7.01",
        "label": "A que horas o(a) senhor(a) chegou à unidade?",
-       "kind": "time"
+       "kind": "time",
+       "sem_agora": true,
+       "hint": "É a hora em que a pessoa chegou, e não a hora de agora."
       },
       {
        "code": "7.02",
@@ -1506,7 +1528,9 @@
       {
        "code": "7.10",
        "label": "A que horas chegou à unidade?",
-       "kind": "time"
+       "kind": "time",
+       "sem_agora": true,
+       "hint": "É a hora em que a pessoa chegou, e não a hora de agora."
       },
       {
        "code": "7.11",
@@ -1675,7 +1699,7 @@
   {
    "id": "9",
    "title": "Bloco 9. Fotos e evidências",
-   "lead": "Seis fotos obrigatórias, sempre com os mesmos enquadramentos, para que as fotos de uma unidade se comparem com as de outra. O achado grave tem foto própria: é grave o que configura risco iminente (10.08) ou leva a vermelho em alguma dimensão do Bloco 10. Fotos adicionais são livres. O aplicativo marca sozinho cada foto tirada.",
+   "lead": "Seis fotos obrigatórias, sempre com os mesmos enquadramentos, para que as fotos de uma unidade se comparem com as de outra. O achado grave tem foto própria: é grave o que configura risco iminente (10.08) ou leva a vermelho em alguma dimensão do Bloco 10. Fotos adicionais são livres. A foto pode ser tirada na hora ou escolhida na galeria do celular, e o aplicativo marca sozinho cada foto registrada.",
    "groups": [
     {
      "type": "fields",
@@ -1731,12 +1755,13 @@
       {
        "code": "9.09",
        "label": "Se alguma foto obrigatória não pôde ser feita, diga qual e por quê",
-       "kind": "txt"
+       "kind": "txt",
+       "hint": "Obrigatório quando faltar alguma das fotos 9.01 a 9.06."
       }
      ]
     }
    ],
-   "tail": "Nunca fotografe tela ou documento com dado de cidadão. Os rostos são cobertos no próprio aplicativo antes do envio; foto com rosto identificável não entra no relatório."
+   "tail": "Nunca fotografe tela ou documento com dado de cidadão. Rostos e placas de veículos são cobertos no próprio aplicativo antes de salvar a foto; foto com rosto ou placa identificável não entra no relatório."
   },
   {
    "id": "10",
@@ -1888,17 +1913,22 @@
        "code": "10.10",
        "label": "Ateste da unidade: nome, cargo e ID funcional do responsável presente",
        "kind": "txt",
-       "hint": "\"Atesto o comparecimento do servidor identificado no item 1.23, na data e no horário dos itens 1.18 a 1.20.\""
+       "hint": "\"Atesto o comparecimento do servidor identificado no item 1.23, na data do item 1.18, com chegada na hora do item 1.19.\""
       },
       {
        "code": "10.11",
        "label": "Assinatura do responsável pela unidade",
-       "kind": "sig"
+       "kind": "sig",
+       "calc": "assinatura",
+       "declara": "Atesto o comparecimento do servidor identificado no item 1.23, na data do item 1.18, com chegada na hora do item 1.19.",
+       "hint": "Quem assina desenha a assinatura com o dedo, na tela. Se preferir o papel, deixe em branco: o PDF sai com o espaço para assinar à caneta."
       },
       {
        "code": "10.13",
        "label": "Assinatura de quem levantou",
-       "kind": "sig"
+       "kind": "sig",
+       "calc": "assinatura",
+       "hint": "Desenhe a assinatura com o dedo, na tela."
       }
      ]
     }
@@ -2405,15 +2435,15 @@
   "title": "Calendário, entrega e consolidação",
   "lead": "O cronograma geral de visitas a todas as unidades de atendimento é definido pela CGIS depois que o formulário é validado com os Supervisores Regionais.",
   "steps": [
-   "Formulário: esta versão (v3), ajustada em 18/11/2026 depois do teste de campo da v2.",
-   "Validação do formulário com os Supervisores Regionais, no aplicativo.",
-   "Ajuste dos campos e dos limites de cor, a partir da validação.",
+   "Formulário: esta versão (3.0), ajustada em 19/11/2026 depois do teste de mesa da versão 2.0 pelos Supervisores Regionais.",
+   "Teste de campo da versão 3.0 nas unidades, pelos Supervisores Regionais, seguido de reunião de briefing e debriefing. Os levantamentos do teste não valem.",
+   "Ajuste dos campos e dos limites de cor, a partir do teste de campo.",
    "Cronograma geral de visitas, definido pela CGIS. Os postos de vistoria vão primeiro, porque se desmobilizam até 08/12/2026: é a última chance de registrar pessoas e equipamentos para o remanejamento. Como a fila é contada uma só vez, na chegada, a visita cabe em um turno. Não há visitas em feriado."
   ],
   "items": [
    [
     "Entrega",
-    "o levantamento é finalizado no aplicativo no dia da visita e segue sozinho para a base. O PDF impresso e assinado é entregue em até 2 dias úteis. A página final da unidade é gerada pela CGIS."
+    "o levantamento é finalizado no aplicativo no dia da visita e segue sozinho para a base, com as fotos e com o PDF que leva as assinaturas feitas na tela. Se alguma assinatura ficar para o papel, o PDF impresso e assinado é entregue em até 2 dias úteis. A página final da unidade é gerada pela CGIS."
    ],
    [
     "Consolidação",
@@ -2427,7 +2457,7 @@
    "Carga da base da CGIS: lotação, postos contratados, Carta de Serviços, vagas de agendamento e produção.",
    "Lista de empresas prestadoras, a conferir com os gestores dos contratos.",
    "Limites de cor da dimensão Fila, a calibrar depois das primeiras visitas.",
-   "Ateste e assinatura no PDF impresso: validar com os Supervisores Regionais se há impressora na unidade ou se a assinatura fica para a entrega."
+   "Assinatura na tela: vale como registro de presença. Se o PDF for usado como prova formal, a ratificar pela Assessoria Jurídica."
   ]
  },
  "header": [
@@ -2435,7 +2465,7 @@
   "Departamento de Trânsito do Estado do Rio de Janeiro",
   "Coordenadoria-Geral de Integração de Serviços"
  ],
- "subtitle_html": "Minuta para validação com os Supervisores Regionais, versão v3",
- "subtitle_pdf": "Levantamento de campo · versão v3",
- "footer_pdf": "Relatório de Levantamento da Unidade de Atendimento v3"
+ "subtitle_html": "Versão 3.0, para teste de campo com os Supervisores Regionais",
+ "subtitle_pdf": "Levantamento de campo",
+ "footer_pdf": "Relatório de Levantamento da Unidade de Atendimento"
 }
