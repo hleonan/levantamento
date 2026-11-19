@@ -1,7 +1,7 @@
-/* Service worker: cache de todos os arquivos (cache-first). A versao vem de js/version.js. */
-/* publicacao 2.0.0 (v3 do formulario): esta linha muda a cada publicacao para todo navegador perceber a versao nova */
-importScripts('js/version.js');
-var VERSAO = self.LV.APP_VERSION;
+/* Service worker: guarda todos os arquivos no aparelho (cache-first).
+   A versao abaixo tem de ser igual a de js/version.js: o empacotador confere. Trocar a versao muda este arquivo,
+   e e essa mudanca que faz todo navegador perceber a publicacao nova. */
+var VERSAO = '3.0.0';
 var CACHE = 'levantamento-' + VERSAO;
 var ARQUIVOS = [
   './', 'index.html', 'manifest.webmanifest', 'config.json', 'spec.json', 'unidades_app.json',
@@ -13,7 +13,17 @@ var ARQUIVOS = [
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) {
     return Promise.all(ARQUIVOS.map(function (u) {
-      return fetch(new Request(u, { cache: 'reload' })).then(function (r) { if (!r.ok) throw new Error(u + ' ' + r.status); return c.put(u, r); });
+      /* endereco com a versao: nem o navegador nem o servidor de arquivos entregam copia guardada de outra publicacao */
+      return fetch(new Request(u + '?v=' + VERSAO, { cache: 'reload' })).then(function (r) {
+        if (!r.ok) throw new Error(u + ' ' + r.status);
+        if (u !== 'js/version.js') return c.put(u, r);
+        /* so instala se os arquivos do servidor ja forem desta versao. Publicacao pela metade (este arquivo subiu antes da pasta js)
+           ou copia antiga: a instalacao falha, o aparelho segue na versao que tem e o navegador tenta de novo na proxima abertura. */
+        return r.clone().text().then(function (t) {
+          if (t.indexOf("'" + VERSAO + "'") < 0) throw new Error('js/version.js do servidor nao e da versao ' + VERSAO);
+          return c.put(u, r);
+        });
+      });
     }));
   }));
 });
